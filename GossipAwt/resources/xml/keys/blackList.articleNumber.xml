@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gs:BlackList xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:KeySet>
+    <gs:KeyLine id="1">
+      <!-- ,;!|#~*%$@/\\? -->
+      <gs:Key>
+        <gs:Value id="0">,</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">;</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">!</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">|</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">~</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">*</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">%</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">$</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">@</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">/</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">\</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">?</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+  </gs:KeySet>
+</gs:BlackList>

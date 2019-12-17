@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <!-- Sondertasten: #SHIFT, #ALTGR, #SPACE, #BACKSPACE  -->
+  <!--  Sonderzeichen #0123 -->
+  <gs:KeySet>
+    <gs:KeyLine id="1">
+      <gs:Key>
+        <gs:Value id="0">7</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">8</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">9</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="2">
+      <gs:Key>
+        <gs:Value id="0">4</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">5</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">6</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="3">
+      <gs:Key>
+        <gs:Value id="0">1</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">2</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">3</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="4">
+      <gs:Key>
+        <gs:Value id="0">0</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+  </gs:KeySet>
+</gs:KeyBoard>

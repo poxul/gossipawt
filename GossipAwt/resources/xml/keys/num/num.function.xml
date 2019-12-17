@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:KeySet>
+    <!--Funktionstasten -->
+    <gs:KeyLine id="0">
+      <gs:Key>
+        <gs:Value id="0">#FUNC1</gs:Value>
+        <gs:Value id="1">#FUNC1</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC2</gs:Value>
+        <gs:Value id="1">#FUNC2</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC3</gs:Value>
+        <gs:Value id="1">#FUNC3</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC4</gs:Value>
+        <gs:Value id="1">#FUNC4</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC5</gs:Value>
+        <gs:Value id="1">#FUNC5</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC6</gs:Value>
+        <gs:Value id="1">#FUNC6</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC7</gs:Value>
+        <gs:Value id="1">#FUNC7</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#FUNC8</gs:Value>
+        <gs:Value id="1">#FUNC8</gs:Value>
+        <gs:Size>140</gs:Size>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="1">
+      <gs:Key>
+        <gs:Value id="0">#INSERT</gs:Value>
+        <gs:Value id="1">#INSERT</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#POS1</gs:Value>
+        <gs:Value id="1">#POS1</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#PAGEUP</gs:Value>
+        <gs:Value id="1">#PAGEUP</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#TAB</gs:Value>
+        <gs:Value id="1">#TAB</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="2">
+      <gs:Key>
+        <gs:Value id="0">#DELETE</gs:Value>
+        <gs:Value id="1">#DELETE</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#END</gs:Value>
+        <gs:Value id="1">#END</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#PAGEDOWN</gs:Value>
+        <gs:Value id="1">#PAGEDOWN</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#ALT</gs:Value>
+        <gs:Value id="1">#ALT</gs:Value>
+        <gs:Value id="2">#ALT</gs:Value>
+        <gs:Size>180</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#PAGE1</gs:Value>
+        <gs:Value id="1">#PAGE1</gs:Value>
+        <gs:Size>200</gs:Size>
+      </gs:Key>
+    </gs:KeyLine>
+  </gs:KeySet>
+</gs:KeyBoard>

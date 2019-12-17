@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:KeySet>
+    <!--Funktionstasten -->
+    <gs:KeyLine id="0">
+      <gs:Key>
+        <gs:Value id="0">#EXIT</gs:Value>
+        <gs:Value id="1">#EXIT</gs:Value>
+        <gs:Size>120</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#ESC</gs:Value>
+        <gs:Value id="1">#ESC</gs:Value>
+        <gs:Size>120</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#CTRL</gs:Value>
+        <gs:Value id="1">#CTRL</gs:Value>
+        <gs:Locked>true</gs:Locked>
+        <gs:Size>120</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#PAGE2</gs:Value>
+        <gs:Value id="1">#PAGE2</gs:Value>
+        <gs:Size>150</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#BACKSPACE</gs:Value>
+        <gs:Value id="1">#BACKSPACE</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#ENTER</gs:Value>
+        <gs:Value id="1">#ENTER</gs:Value>
+        <gs:Size>150</gs:Size>
+      </gs:Key>
+    </gs:KeyLine>
+  </gs:KeySet>
+</gs:KeyBoard>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gs:KeyBoards xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:Alphanum language="de">
+    <gs:FileName>board/alphanum.de.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="en">
+    <gs:FileName>board/alphanum.en.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="pl">
+    <gs:FileName>board/alphanum.pl.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="eg">
+    <gs:FileName>board/alphanum.eg.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="zh">
+    <gs:FileName>board/alphanum.zh.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="cs">
+    <gs:FileName>board/alphanum.cs.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="da">
+    <gs:FileName>board/alphanum.da.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="nl">
+    <gs:FileName>board/alphanum.nl.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="uk">
+    <gs:FileName>board/alphanum.uk.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="fi">
+    <gs:FileName>board/alphanum.fi.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="fr">
+    <gs:FileName>board/alphanum.fr.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="el">
+    <gs:FileName>board/alphanum.el.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="hu">
+    <gs:FileName>board/alphanum.hu.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="it">
+    <gs:FileName>board/alphanum.it.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="pl">
+    <gs:FileName>board/alphanum.pl.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="po">
+    <gs:FileName>board/alphanum.po.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="ru">
+    <gs:FileName>board/alphanum.ru.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="es">
+    <gs:FileName>board/alphanum.es.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="sv">
+    <gs:FileName>board/alphanum.sv.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="tr">
+    <gs:FileName>board/alphanum.tr.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="no">
+    <gs:FileName>board/alphanum.no.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="sq">
+    <gs:FileName>board/alphanum.sq.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="sk">
+    <gs:FileName>board/alphanum.sk.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="sl">
+    <gs:FileName>board/alphanum.sl.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="uk">
+    <gs:FileName>board/alphanum.uk.xml</gs:FileName>
+  </gs:Alphanum>
+</gs:KeyBoards>

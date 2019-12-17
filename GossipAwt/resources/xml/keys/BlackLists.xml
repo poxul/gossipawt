@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gs:BlackLists xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:Alphanum language="de" type="articleNumber">
+    <gs:FileName>KeyBoard/blackList.articleNumber.xml</gs:FileName>
+  </gs:Alphanum>
+  <gs:Alphanum language="en" type="articleNumber">
+    <gs:FileName>KeyBoard/blackList.articleNumber.xml</gs:FileName>
+  </gs:Alphanum>
+</gs:BlackLists>

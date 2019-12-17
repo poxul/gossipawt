@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="lib/apache-log4j-2.12.1-bin/log4j-api-2.12.1.jar"/>
+	<classpathentry kind="lib" path="lib/apache-log4j-2.12.1-bin/log4j-core-2.12.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.9/commons-lang3-3.9.jar"/>
+	<classpathentry kind="lib" path="lib/gossip-proto.jar"/>
+	<classpathentry kind="lib" path="lib/jargs.jar"/>
+	<classpathentry kind="lib" path="lib/protobuf-java.jar"/>
+	<classpathentry kind="lib" path="lib/netty-4.1.43.Final/jar/all-in-one/netty-all-4.1.43.Final.jar"/>
+	<classpathentry kind="lib" path="lib/gossip.jar" sourcepath="/Gossip"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

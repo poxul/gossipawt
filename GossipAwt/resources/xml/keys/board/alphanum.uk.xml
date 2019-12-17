@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?><gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:KeySet>
+    <!--Ukrainian ** Ukrainian Keyboard Layout-->
+    <gs:KeyLine id="0">
+      <gs:Key>
+        <gs:Value id="0">#U+0451</gs:Value>
+        <gs:Value id="1">#U+0401</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0031</gs:Value>
+        <gs:Value id="1">#U+0021</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0032</gs:Value>
+        <gs:Value id="1">#U+0022</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0033</gs:Value>
+        <gs:Value id="1">#U+2116</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0034</gs:Value>
+        <gs:Value id="1">#U+003b</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0035</gs:Value>
+        <gs:Value id="1">#U+0025</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0036</gs:Value>
+        <gs:Value id="1">#U+003a</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0037</gs:Value>
+        <gs:Value id="1">#U+003f</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0038</gs:Value>
+        <gs:Value id="1">#U+002a</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0039</gs:Value>
+        <gs:Value id="1">#U+0028</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0030</gs:Value>
+        <gs:Value id="1">#U+0029</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+002d</gs:Value>
+        <gs:Value id="1">#U+005f</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+003d</gs:Value>
+        <gs:Value id="1">#U+002b</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="1">
+      <gs:Key>
+        <gs:Value id="0">#U+0439</gs:Value>
+        <gs:Value id="1">#U+0419</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0446</gs:Value>
+        <gs:Value id="1">#U+0426</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0443</gs:Value>
+        <gs:Value id="1">#U+0423</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043a</gs:Value>
+        <gs:Value id="1">#U+041a</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0435</gs:Value>
+        <gs:Value id="1">#U+0415</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043d</gs:Value>
+        <gs:Value id="1">#U+041d</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0433</gs:Value>
+        <gs:Value id="1">#U+0413</gs:Value>
+        <gs:Value id="2">#U+0491</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0448</gs:Value>
+        <gs:Value id="1">#U+0428</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0449</gs:Value>
+        <gs:Value id="1">#U+0429</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0437</gs:Value>
+        <gs:Value id="1">#U+0417</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0445</gs:Value>
+        <gs:Value id="1">#U+0425</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0457</gs:Value>
+        <gs:Value id="1">#U+0407</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+005c</gs:Value>
+        <gs:Value id="1">#U+002f</gs:Value>
+        <gs:Value id="2">#U+0000</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="2">
+      <gs:Key>
+        <gs:Value id="0">#SHIFT</gs:Value>
+        <gs:Value id="1">#SHIFT</gs:Value>
+        <gs:Value id="2">#SHIFT</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0444</gs:Value>
+        <gs:Value id="1">#U+0424</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0456</gs:Value>
+        <gs:Value id="1">#U+0406</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0432</gs:Value>
+        <gs:Value id="1">#U+0412</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0430</gs:Value>
+        <gs:Value id="1">#U+0410</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043f</gs:Value>
+        <gs:Value id="1">#U+041f</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0440</gs:Value>
+        <gs:Value id="1">#U+0420</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043e</gs:Value>
+        <gs:Value id="1">#U+041e</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043b</gs:Value>
+        <gs:Value id="1">#U+041b</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0434</gs:Value>
+        <gs:Value id="1">#U+0414</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0436</gs:Value>
+        <gs:Value id="1">#U+0416</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0454</gs:Value>
+        <gs:Value id="1">#U+0404</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="3">
+      <gs:Key>
+        <gs:Value id="0">#U+0491</gs:Value>
+        <gs:Value id="1">#U+0490</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+044f</gs:Value>
+        <gs:Value id="1">#U+042f</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0447</gs:Value>
+        <gs:Value id="1">#U+0427</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0441</gs:Value>
+        <gs:Value id="1">#U+0421</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+043c</gs:Value>
+        <gs:Value id="1">#U+041c</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0438</gs:Value>
+        <gs:Value id="1">#U+0418</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0442</gs:Value>
+        <gs:Value id="1">#U+0422</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+044c</gs:Value>
+        <gs:Value id="1">#U+042c</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+0431</gs:Value>
+        <gs:Value id="1">#U+0411</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+044e</gs:Value>
+        <gs:Value id="1">#U+042e</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#U+002f</gs:Value>
+        <gs:Value id="1">#U+002f</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+    <gs:KeyLine id="4">
+      <gs:Key>
+        <gs:Value id="0">#ALTGR</gs:Value>
+        <gs:Value id="1">#ALTGR</gs:Value>
+        <gs:Value id="2">#ALTGR</gs:Value>
+        <gs:Size>100</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#SPACE</gs:Value>
+        <gs:Value id="1">#SPACE</gs:Value>
+        <gs:Value id="1">#SPACE</gs:Value>
+        <gs:Size>400</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#LEFT</gs:Value>
+        <gs:Value id="1">#LEFT</gs:Value>
+        <gs:Value id="2">#LEFT</gs:Value>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#RIGHT</gs:Value>
+        <gs:Value id="1">#RIGHT</gs:Value>
+        <gs:Value id="2">#RIGHT</gs:Value>
+      </gs:Key>
+    </gs:KeyLine>
+  </gs:KeySet>
+</gs:KeyBoard>

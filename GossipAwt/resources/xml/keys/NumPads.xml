@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Definition spezeller Tastaturen -->
+<gs:KeyBoards xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <gs:NumPad language="en" type="float">
+    <gs:FileName>num/num.point.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="ip">
+    <gs:FileName>num/num.ip.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="integer">
+    <gs:FileName>num/num.integer.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="unsigned_integer">
+    <gs:FileName>num/num.unsigned_integer.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="unsigned_integer_hex">
+    <gs:FileName>num/num.unsigned_integer_hex.xml</gs:FileName>
+  </gs:NumPad>
+    <gs:NumPad language="en" type="unsigned_integer_off">
+    <gs:FileName>num/num.unsigned_integer_off.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="esc">
+    <gs:FileName>num/num.esc.xml</gs:FileName>
+  </gs:NumPad>
+  <gs:NumPad language="en" type="function">
+    <gs:FileName>num/num.function.xml</gs:FileName>
+  </gs:NumPad>
+</gs:KeyBoards>
