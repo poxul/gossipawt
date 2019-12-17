@@ -50,7 +50,7 @@ public class GraphicsTextRenderer implements ButtonTextUiInterface {
 	private GraphicText[] texts;
 	private StringFormatterUtil.Alignment alignment = Alignment.CENTER;
 	private boolean isDrawTargetRect = false; // DEBUG !
-	private Color textBackgroundColor = Color.PINK;
+	private Color textBackgroundColor = Color.WHITE;
 
 	public GraphicsTextRenderer(final String text, final Font bigFont) {
 		targetRect = new Rectangle();

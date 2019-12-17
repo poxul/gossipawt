@@ -7,8 +7,10 @@ public class ColorConstants {
 	public static final Color DEBUG_1 = Color.RED;
 
 	public static final Color TEXT_COLOR = Color.BLACK;
-	public static final Color BUTTON_COLOR_DEFAULT = Color.BLUE;
-	public static final Color DEFAULT_TEXT_COLOR = Color.BLACK;
+	public static final Color BUTTON_COLOR_DEFAULT = Color.LIGHT_GRAY;
+
+	public static final Color DEFAULT_TEXT_COLOR = TEXT_COLOR;
+
 	public static final Color ALERT_COLOR_INFO_1 = Color.CYAN;
 	public static final Color ALERT_COLOR_INFO_2 = Color.MAGENTA;
 	public static final Color ALERT_COLOR_WARNING_1 = Color.YELLOW;
@@ -18,4 +20,3 @@ public class ColorConstants {
 	public static final Color ALERT_COLOR_TEXT = Color.RED;
 
 }
-

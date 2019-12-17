@@ -1,9 +1,7 @@
 package gossip.button;
 
 import java.awt.Component;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
 import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
@@ -23,7 +21,7 @@ import gossip.manager.ImageManager;
 import gossip.manager.LanguageManager;
 import gossip.util.ObjectUtil;
 
-public abstract class DefaultButtonFace extends DisposablePanelAdatper implements PressedReleasedListener, DisableListener, InputItemChangeListener {
+public class DefaultButtonFace extends DisposablePanelAdatper implements PressedReleasedListener, DisableListener, InputItemChangeListener {
 
 	private class PressedJob extends ServiceJobAWTDefault {
 
@@ -145,6 +143,10 @@ public abstract class DefaultButtonFace extends DisposablePanelAdatper implement
 	private ActivationMode mode = ActivationMode.NORMAL; // shift alt ... 0 = normal
 	private volatile String fixedText;
 
+	public static DefaultButtonFace createButtonFace(String name) {
+		return new DefaultButtonFace(name);
+	}
+
 	DefaultButtonFace(String name) {
 		super();
 		faceName = name;
@@ -160,10 +162,6 @@ public abstract class DefaultButtonFace extends DisposablePanelAdatper implement
 		isPressedRequested = false;
 		isPressed = isPressedRequested;
 	}
-
-	public abstract void createDefaultDisabledImage(Component comp);
-
-	public abstract void drawFaceImage(Graphics2D g2D);
 
 	@Override
 	public boolean equals(Object obj) {
@@ -221,8 +219,6 @@ public abstract class DefaultButtonFace extends DisposablePanelAdatper implement
 		return faceName;
 	}
 
-	public abstract int getHeight();
-
 	/**
 	 * 
 	 * @return
@@ -238,8 +234,6 @@ public abstract class DefaultButtonFace extends DisposablePanelAdatper implement
 		}
 		return objectId;
 	}
-
-	public abstract int getWidth();
 
 	@Override
 	public int hashCode() {
@@ -425,13 +419,6 @@ public abstract class DefaultButtonFace extends DisposablePanelAdatper implement
 
 	public int getYPosition() {
 		return yPosition;
-	}
-
-	private final Rectangle bounds = new Rectangle();
-
-	public Rectangle getBounds() {
-		bounds.setBounds(xPosition, yPosition, getWidth(), getHeight());
-		return bounds;
 	}
 
 	public Image getOverlay() {

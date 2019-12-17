@@ -7,13 +7,11 @@ import java.awt.event.HierarchyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutionException;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
-import javax.swing.SwingWorker;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -155,7 +153,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private JPanelInputKeyBoard getInput() {
 		if (input == null) {
 			input = new JPanelInputKeyBoard();
-
+			input.setPreferredSize(new Dimension(200, 40));
 			input.addKeyBoardEventListener(event -> {
 				switch (event.getType()) {
 				case ON_CANCEL:
@@ -218,8 +216,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 			// NOP
 		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_ENTER.equals(key)) {
 			// NOP
-		} else if (KeyBoardUtil.BUTTON_NAME_OFF.equals(key)) {
-			input.insertText(KeyBoardUtil.BUTTON_VALUE_OFF);
 		}
 	};
 
@@ -260,15 +256,15 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		if (mainPanel == null) {
 			mainPanel = new JPanelDisposable();
 			mainPanel.setLayout(new BorderLayout());
-			mainPanel.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 30));
+			mainPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
 			mainPanel.setOpaque(false);
 
 			JPanel p0 = new JPanelDisposable();
 
 			p0.setLayout(new BorderLayout());
 			p0.setOpaque(false);
-			p0.add(getInput(), BorderLayout.NORTH);
-			p0.add(getAlertPanel(), BorderLayout.CENTER);
+			p0.add(getInput(), BorderLayout.CENTER);
+			p0.add(getAlertPanel(), BorderLayout.NORTH);
 
 			mainPanel.add(p0, BorderLayout.NORTH);
 			mainPanel.add(getKeyPanel(), BorderLayout.CENTER);
@@ -334,7 +330,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	}
 
 	/**
-	 * Change the layout but will not take care of changes in isPassword and Overlay
 	 * 
 	 * @param def
 	 */
@@ -342,76 +337,44 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		if (def != null && !def.compareTo(curDef)) {
 			logger.info("keyboard definition changed ={}", def);
 			curDef = def;
-			ChangeDefinitionWorker worker = new ChangeDefinitionWorker(def);
-			worker.execute();
+			setDefinition(def);
 		}
 	}
 
-	private class ChangeDefinitionWorker extends SwingWorker<JPanel, Boolean> {
-
-		private final KeyBoardDefinition def;
-		private ArrayList<JPanelKeyLine> diposeKeys;
-
-		/**
-		 * @param def
-		 */
-		private ChangeDefinitionWorker(KeyBoardDefinition def) {
-			super();
-			this.def = def;
+	/**
+	 * 
+	 * @param def
+	 */
+	private void setDefinition(KeyBoardDefinition def) {
+		getInput().setPassword(def.isPassword());
+		JPanelDisposable p;
+		synchronized (keyLineList) {
+			keyLineList.clear();
+			p = createKeysPanel(def);
 		}
 
-		@Override
-		protected JPanelDisposable doInBackground() throws Exception {
-			getInput().setPassword(def.isPassword());
-			setOverlayName(def.getOverlayName());
-			synchronized (keyLineList) {
-				diposeKeys = new ArrayList<>(keyLineList);
-				keyLineList.clear();
-				return createKeysPanel(def);
-			}
-		}
-
-		private JPanelDisposable createKeysPanel(KeyBoardDefinition definition) {
-			JPanelDisposable pKeys = new JPanelDisposable();
-			pKeys.setLayout(new BoxLayout(pKeys, BoxLayout.PAGE_AXIS));
-			pKeys.setOpaque(false);
-
-			if (definition != null) {
-				for (int i = 0; i < definition.getKeyList().size(); i++) {
-					List<MyKey> keys = definition.getKeyList().get(i);
-					JPanelKeyLine jPanelKeyLine = new JPanelKeyLine(keys);
-					jPanelKeyLine.setPassword(definition.isPassword());
-					pKeys.add(jPanelKeyLine);
-					keyLineList.add(jPanelKeyLine);
-					jPanelKeyLine.addKeyListener(keyBoardListener);
-				}
-			}
-			return pKeys;
-		}
-
-		@Override
-		protected void done() {
-			for (JPanelKeyLine line : diposeKeys) {
-				line.dispose();
-			}
-			JPanelDisposable kPanel = getKeyPanel();
-			DisposableUtil.disposeContainerContent(kPanel);
-			try {
-				kPanel.add(get(), BorderLayout.SOUTH);
-				kPanel.add(Box.createVerticalBox(), BorderLayout.CENTER);
-			} catch (InterruptedException e) {
-				MyLogger.printExecption(logger, e);
-				// Restore interrupted state...
-				Thread.currentThread().interrupt();
-			} catch (ExecutionException e) {
-				MyLogger.printExecption(logger, e);
-			}
-
-		}
+		JPanelDisposable kPanel = getKeyPanel();
+		DisposableUtil.disposeContainerContent(kPanel);
+		kPanel.add(p, BorderLayout.SOUTH);
+		kPanel.add(Box.createVerticalBox(), BorderLayout.CENTER);
 	}
 
-	public void setOverlayName(String overlayName) {
+	private JPanelDisposable createKeysPanel(KeyBoardDefinition definition) {
+		JPanelDisposable pKeys = new JPanelDisposable();
+		pKeys.setLayout(new BoxLayout(pKeys, BoxLayout.PAGE_AXIS));
+		pKeys.setOpaque(false);
 
+		if (definition != null) {
+			for (int i = 0; i < definition.getKeyList().size(); i++) {
+				List<MyKey> keys = definition.getKeyList().get(i);
+				JPanelKeyLine jPanelKeyLine = new JPanelKeyLine(keys);
+				jPanelKeyLine.setPassword(definition.isPassword());
+				pKeys.add(jPanelKeyLine);
+				keyLineList.add(jPanelKeyLine);
+				jPanelKeyLine.addKeyListener(keyBoardListener);
+			}
+		}
+		return pKeys;
 	}
 
 	@Override

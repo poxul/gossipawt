@@ -2,12 +2,9 @@ package gossip.manager;
 
 import java.util.Locale;
 
-
-import gossip.inputelement.InputItem;
 import gossip.inputelement.InputItemChangeListener;
 import gossip.inputelement.InputItemId;
 import gossip.keyboard.KeyBoardDefinition;
-import gossip.lib.panel.MyButton;
 import gossip.lib.util.StringUtil;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;
@@ -37,13 +34,7 @@ public class LanguageManager {
 		}
 
 		public String getLocaleText(InputItemId itemId) {
-			// TODO Auto-generated method stub
-			return itemId.toString();
-		}
-
-		public InputItem getInputItem(InputItemId value) {
-			// TODO Auto-generated method stub
-			return null;
+			return itemId == null ? ":X:" : itemId.toString();
 		}
 
 	}
@@ -84,11 +75,6 @@ public class LanguageManager {
 		return get().getLocaleText(itemId);
 	}
 
-	public static InputItem getInputElement(InputItemId id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public static void setLanguage(Locale locale) {
 		get().setLocale(locale);
 	}
@@ -103,17 +89,8 @@ public class LanguageManager {
 
 	}
 
-	public static void setSingleButtonFaceItem(MyButton button, InputItemId itemId) {
-		// TODO Auto-generated method stub
-		button.setText(getLocaleText(itemId));
-	}
-
 	public static InputItemId createKeyId(String k) {
 		return new InputItemId("itemid." + k);
-	}
-
-	public static InputItem getInputItem(InputItemId value) {
-		return get().getInputItem(value);
 	}
 
 	public static boolean isUnresolvedString(String str) {

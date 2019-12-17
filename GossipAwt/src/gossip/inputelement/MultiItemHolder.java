@@ -115,17 +115,7 @@ public class MultiItemHolder implements Disposable, InputItemChangeListener {
 
 	@Override
 	public void onItemDataChanged() {
-		boolean isClean = true;
-		for (InputItemId id : items) {
-			InputItem element = LanguageManager.getInputElement(id);
-			if (!element.isClean()) {
-				isClean = false;
-				break;
-			}
-		}
-		if (isClean) {
-			listenerSet.fireEvent(null);
-		}
+		listenerSet.fireEvent(null);
 	}
 
 	@Override

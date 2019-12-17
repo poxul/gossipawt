@@ -249,7 +249,7 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 				locationString += "unknown";
 			}
 
-			logger.debug(keyStatus + "    " + keyString + "    " + modString + "    " + actionString + "    " + locationString);
+			logger.info(keyStatus + "    " + keyString + "    " + modString + "    " + actionString + "    " + locationString);
 
 		}
 	};

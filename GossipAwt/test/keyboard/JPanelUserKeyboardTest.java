@@ -42,17 +42,15 @@ public class JPanelUserKeyboardTest {
 	private JPanelKeyBoard createContentPane() {
 		JPanelKeyBoard panel = new JPanelKeyBoard();
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
-
-		logger.debug("**************************DEBUG create contenet pane*********************************");
 		return panel;
 	}
 
 	protected void createGui(JPanel panel) {
-		frame = new JFrame("Load histogram test");
+		frame = new JFrame("Keyboard-test-frame");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panel);
 		frame.setBackground(Color.DARK_GRAY);
-		frame.setPreferredSize(new Dimension(1024, 662));
+		frame.setPreferredSize(new Dimension(670, 256));
 		frame.pack();
 		frame.setVisible(true);
 	}
@@ -70,7 +68,7 @@ public class JPanelUserKeyboardTest {
 
 	public void initView() {
 
-		String basePath = "/home/mila/eclipse-workspace/GossipAwt";
+		String basePath = "/home/mila/git/gossipawt/GossipAwt";
 
 		logger.debug("**************************DEBUG******************************************************");
 		try {

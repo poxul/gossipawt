@@ -1,21 +1,26 @@
 package gossip.util;
 
-import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
-import gossip.config.ButtonConstants;
+import gossip.button.DefaultButtonFace;
+import gossip.button.DefaultButtonFace.ActivationMode;
 import gossip.config.ColorConstants;
+import gossip.config.DimensionConstants;
+import gossip.config.FontConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
+import gossip.inputelement.InputItemId;
 import gossip.key.MyKey;
 import gossip.keyboard.KeyBoardDefinition;
 import gossip.lib.file.FileNameUtil.PathResource;
@@ -44,7 +49,6 @@ public class KeyBoardUtil {
 	public static final String BUTTON_FACE_NAME_BUTTON_SPACE = "SPACE";
 
 	public static final String BUTTON_NAME_BACKSPACE = "#BACKSPACE";
-	public static final String BUTTON_NAME_OFF = "#OFF";
 
 	public static final String BUTTON_NAME_SPACE = "#SPACE";
 	public static final String BUTTON_NAME_SHIFT = "#SHIFT";
@@ -76,18 +80,6 @@ public class KeyBoardUtil {
 	public static final String BUTTON_NAME_PAGE_NORMAL = "#PAGE1";
 	public static final String BUTTON_NAME_PAGE_SPECIAL = "#PAGE2";
 
-	private static final Dimension DEFAULT_KEY_DIMENSION = new Dimension(70, 60);
-
-	private static final int BUTTON_FACE_SPACE_WIDTH = 500;
-
-	private static final int BUTTON_HEIGHT_RECT_KEYBOARD = 60;
-
-	private static final int BUTTON_FACE_SPACE_HEIGHT = BUTTON_HEIGHT_RECT_KEYBOARD;
-	private static final Dimension BUTTON_FACE_DIMENSION_CURSOR = DEFAULT_KEY_DIMENSION;
-
-	private static final Dimension BUTTON_FACE_DIMENSION_SHIFT = DEFAULT_KEY_DIMENSION;
-	private static final Dimension BUTTON_FACE_DIMENSION_BACKSPACE = new Dimension(86, 80);
-
 	public static boolean isInputChar(String faceName) {
 		if (faceName == null) {
 			return false;
@@ -97,146 +89,110 @@ public class KeyBoardUtil {
 	}
 
 	/**
-	 * Creates a button that looks like a red backspace button
 	 * 
-	 * @param dataBroker is used to get the image
-	 * @param comp       is used to load the image
-	 * @return
 	 */
-	public static MyButton createBackspaceButton(Component comp) {
+	public static MyButton createBackspaceButton() {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_BACKSPACE);
+		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE));
+		MyButton button = KeyBoardUtil.createMyButton();
+		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_BACKSPACE);
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
+		return button;
+	}
 
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_RED, ButtonPainterUtil.BUTTON_WIDTH_RECT_KEYBOARD
-//				- ButtonPainterUtil.BUTTON_IMAGE_GAP_X, ButtonPainterUtil.BUTTON_HEIGHT_RECT_KEYBOARD - ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, BUTTON_FACE_NAME_BUTTON_BACKSPACE);
+	private static Image getImage(String name) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-		MyButton button = new MyButton();
-//		button.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE, comp));
-		button.setPreferredSize(BUTTON_FACE_DIMENSION_BACKSPACE);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
+	public static MyButton createCursorLeftButton() {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_LEFT);
+		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT));
+
+		MyButton button = KeyBoardUtil.createMyButton();
+		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
 		button.setForeground(ColorConstants.TEXT_COLOR);
 		return button;
 	}
 
-	public static MyButton createCursorLeftButton(Component comp) {
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_GRAY, ButtonPainterUtil.BUTTON_WIDTH_RECT_KEYBOARD
-//				- ButtonPainterUtil.BUTTON_IMAGE_GAP_X, ButtonPainterUtil.BUTTON_HEIGHT_RECT_KEYBOARD - ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, BUTTON_FACE_NAME_BUTTON_LEFT);
+	public static MyButton createCursorRightButton() {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_RIGHT);
+		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT));
 
-		MyButton button = new MyButton();
-//		button.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT, comp));
-		button.setPreferredSize(BUTTON_FACE_DIMENSION_CURSOR);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
+		MyButton button = KeyBoardUtil.createMyButton();
+		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
 		button.setForeground(ColorConstants.TEXT_COLOR);
 		return button;
 	}
 
-	public static MyButton createCursorRightButton(Component comp) {
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_GRAY, ButtonPainterUtil.BUTTON_WIDTH_RECT_KEYBOARD
-//				- ButtonPainterUtil.BUTTON_IMAGE_GAP_X, ButtonPainterUtil.BUTTON_HEIGHT_RECT_KEYBOARD - ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, BUTTON_FACE_NAME_BUTTON_RIGHT);
-
-		MyButton button = new MyButton();
-//		button.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT, comp));
-		button.setPreferredSize(BUTTON_FACE_DIMENSION_CURSOR);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
-		button.setForeground(ColorConstants.TEXT_COLOR);
-		return button;
+	public static MyButton createPadButton(String text, String buttonFaceName) {
+		return createPadButton(text, text, text, buttonFaceName, buttonFaceName, buttonFaceName);
 	}
 
-	/**
-	 * Normal Char
-	 * 
-	 * @param dataBroker
-	 * @param comp
-	 * @param padText
-	 * @return
-	 */
-	public static MyButton createPadButton(Component comp, String text, String shiftText, String altGrText) {
-		return createPadButton(comp, ButtonConstants.BUTTON_WIDTH_RECT_KEYBOARD, text, shiftText, altGrText);
+	public static MyButton createPadButton(String text, String shiftText, String altGrText) {
+		return createPadButton(text, shiftText, altGrText, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_SHIFT, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_ALTGR);
 	}
 
-	public static MyButton createPadButton(Component comp, int width, String text, String buttonFaceName) {
-		return createPadButton(comp, width, ButtonConstants.BUTTON_HEIGHT_RECT_KEYBOARD, text, text, text, buttonFaceName, buttonFaceName, buttonFaceName);
-	}
-
-	private static MyButton createPadButton(Component comp, int width, String text, String shiftText, String altGrText) {
-		return createPadButton(comp, width, ButtonConstants.BUTTON_HEIGHT_RECT_KEYBOARD, text, shiftText, altGrText, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR,
-				BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_SHIFT, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_ALTGR);
-	}
-
-	private static MyButton createPadButton(Component comp, int width, int height, String text, String shiftText, String altGrText, String buttonFaceName,
-			String buttonFaceNameShift, String buttonFaceNameGr) {
-		MyButton button = new MyButton();
+	private static MyButton createPadButton(String text, String shiftText, String altGrText, String buttonFaceName, String buttonFaceNameShift, String buttonFaceNameGr) {
+		MyButton button = KeyBoardUtil.createMyButton();
 		if (!StringUtil.isNullOrEmpty(buttonFaceName)) {
-//			DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, width - ButtonPainterUtil.BUTTON_IMAGE_GAP_X, height
-//					- ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, buttonFaceName);
-//			buttonFace.setFixedText(text);
-//			button.addFace(buttonFace);
+			DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(buttonFaceName);
+			buttonFace.setFixedText(text);
+			button.addFace(buttonFace);
 		}
 		if (!StringUtil.isNullOrEmpty(buttonFaceNameShift)) {
-//			DefaultButtonFace buttonFaceShift = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, width - ButtonPainterUtil.BUTTON_IMAGE_GAP_X, height
-//					- ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, buttonFaceNameShift);
-//			buttonFaceShift.setFixedText(shiftText);
-//			button.addFace(buttonFaceShift);
+			DefaultButtonFace buttonFaceShift = DefaultButtonFace.createButtonFace(buttonFaceNameShift);
+			buttonFaceShift.setFixedText(shiftText);
+			button.addFace(buttonFaceShift);
 		}
 
 		if (!StringUtil.isNullOrEmpty(buttonFaceNameGr)) {
-//			DefaultButtonFace buttonFaceAltGr = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, width - ButtonPainterUtil.BUTTON_IMAGE_GAP_X, height
-//					- ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, buttonFaceNameGr);
-//			buttonFaceAltGr.setFixedText(altGrText);
-//			button.addFace(buttonFaceAltGr);
+			DefaultButtonFace buttonFaceAltGr = DefaultButtonFace.createButtonFace(buttonFaceNameGr);
+			buttonFaceAltGr.setFixedText(altGrText);
+			button.addFace(buttonFaceAltGr);
 		}
 
-//		button.setFont((FontSupport.KEYBOARD_PAD_FONT));
-		button.setForeground(ColorConstants.TEXT_COLOR);
-//		button.setCenterImage(true);
-//		button.setCurrentFace(buttonFaceName);
-		button.setPreferredSize(new Dimension(width - 16, height - 5));
-//		button.setNumTextLines(1);
+		button.setCenterImage(true);
+		button.setCurrentFace(buttonFaceName);
 		return button;
 	}
 
-	public static MyButton createSpaceButton(Component comp) {
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, BUTTON_FACE_SPACE_WIDTH - ButtonPainterUtil.BUTTON_IMAGE_GAP_X,
-//				BUTTON_FACE_SPACE_HEIGHT - ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, BUTTON_FACE_NAME_BUTTON_SPACE);
-		MyButton button = new MyButton();
-//		button.setFont((FontSupport.KEYBOARD_FONT));
-		button.setForeground(ColorConstants.TEXT_COLOR);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
-		button.setPreferredSize(new Dimension(BUTTON_FACE_SPACE_WIDTH, BUTTON_FACE_SPACE_HEIGHT));
+	public static MyButton createSpaceButton() {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_SPACE);
+		MyButton button = KeyBoardUtil.createMyButton();
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
+		button.setPreferredSize(new Dimension(DimensionConstants.BUTTON_FACE_SPACE_WIDTH, DimensionConstants.BUTTON_FACE_SPACE_HEIGHT));
 		return button;
 	}
 
-	public static MyButton createShiftButton(Component comp) {
-		MyButton button = new MyButton();
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, ButtonPainterUtil.BUTTON_WIDTH_RECT_KEYBOARD
-//				- ButtonPainterUtil.BUTTON_IMAGE_GAP_X, ButtonPainterUtil.BUTTON_HEIGHT_RECT_KEYBOARD - ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, BUTTON_FACE_NAME_BUTTON_SHIFT);
-//		button.setFont((FontSupport.KEYBOARD_FONT));
-		button.setForeground(ColorConstants.TEXT_COLOR);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
-//		button.setOverlay(getImage(ImageConstants.OVERLAY_SHIFT, comp));
-		button.setPreferredSize(BUTTON_FACE_DIMENSION_SHIFT);
+	public static MyButton createShiftButton() {
+		MyButton button = KeyBoardUtil.createMyButton();
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_SHIFT);
+		buttonFace.setOverlay(getImage(ImageConstants.OVERLAY_SHIFT));
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
+		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_SHIFT);
 		return button;
 	}
 
-	public static MyButton createLockedButton(Component comp, int width, int height, String text, String buttonFaceName) {
-		MyButton button = new MyButton();
-//		DefaultButtonFace buttonFace = new DrawButtonFace(ButtonStyle.RECT, ColorConstants.BUTTON_COLOR_DEFAULT, width - ButtonPainterUtil.BUTTON_IMAGE_GAP_X, height
-//				- ButtonPainterUtil.BUTTON_IMAGE_GAP_Y, buttonFaceName);
-//		buttonFace.setFixedText(text);
-//		buttonFace.setMode(ActivationMode.NORMAL);
-//		button.setFont((FontSupport.KEYBOARD_SPECIAL_KEY_FONT));
-		button.setForeground(ColorConstants.TEXT_COLOR);
-//		button.setCenterImage(true);
-//		button.addFace(buttonFace);
-		button.setPreferredSize(new Dimension(width - 16, height - 2));
+	public static MyButton createLockedButton(String text, String buttonFaceName) {
+		MyButton button = KeyBoardUtil.createMyButton();
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(buttonFaceName);
+		buttonFace.setFixedText(text);
+		buttonFace.setMode(ActivationMode.NORMAL);
+		button.setCenterImage(true);
+		button.addFace(buttonFace);
 		return button;
 	}
 
-	public static MyButton createAltGrButton(Component comp) {
-		return createLockedButton(comp, ButtonConstants.BUTTON_WIDTH_RECT_KEYBOARD, ButtonConstants.BUTTON_HEIGHT_RECT_KEYBOARD, "Alt", BUTTON_FACE_NAME_BUTTON_ALTGR);
+	public static MyButton createAltGrButton() {
+		return createLockedButton("Alt", BUTTON_FACE_NAME_BUTTON_ALTGR);
 	}
 
 	private static final Locale LOCALE_DEFAULT = Locale.ENGLISH;
@@ -281,8 +237,8 @@ public class KeyBoardUtil {
 		return doc;
 	}
 
-	private static final Map<Locale, String> alphaNumDefinitionFiles = new HashMap<Locale, String>(16);
-	private static final Map<Locale, Map<String, String>> numDefinitionFiles = new HashMap<Locale, Map<String, String>>(6);
+	private static final Map<Locale, String> alphaNumDefinitionFiles = new HashMap<>(16);
+	private static final Map<Locale, Map<String, String>> numDefinitionFiles = new HashMap<>(6);
 
 	public static final String BUTTON_VALUE_OFF = "0";
 
@@ -335,7 +291,7 @@ public class KeyBoardUtil {
 	 * @return
 	 */
 	private static List<List<MyKey>> generateNumPadKeys(Locale locale, String type) {
-		List<List<MyKey>> numKeyLineList = new ArrayList<List<MyKey>>();
+		List<List<MyKey>> numKeyLineList = new ArrayList<>();
 		Document xmlNum = getNumPadDefinitionDocument(locale, type);
 		if (xmlNum != null) {
 			if (!LanguageUtil.parseKeyBoard(xmlNum, numKeyLineList)) {
@@ -405,4 +361,19 @@ public class KeyBoardUtil {
 		return def;
 	}
 
+	public static void setSingleButtonFaceItem(MyButton button, InputItemId id) {
+		Set<String> set = button.getButtonFaceKeySet();
+		for (String string : set) {
+			button.getButtonFace(string).setInputItemId(id);
+		}
+	}
+
+	public static MyButton createMyButton() {
+		MyButton b = new MyButton();
+		b.setPreferredSize(DimensionConstants.DEFAULT_KEY_DIMENSION);
+		b.setForeground(ColorConstants.TEXT_COLOR);
+		b.setBackground(ColorConstants.BUTTON_COLOR_DEFAULT);
+		b.setFont(FontConstants.KEYBOARD_FONT);
+		return b;
+	}
 }

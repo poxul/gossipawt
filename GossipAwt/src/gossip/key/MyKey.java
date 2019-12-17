@@ -108,11 +108,7 @@ public class MyKey {
 	 */
 	public boolean containsString(String str) {
 		boolean result = false;
-		if (StringUtil.compare(str, keyText)) {
-			result = true;
-		} else if (StringUtil.compare(str, altKeyText)) {
-			result = true;
-		} else if (StringUtil.compare(str, shiftKeyText)) {
+		if (StringUtil.compare(str, keyText) || StringUtil.compare(str, altKeyText) || StringUtil.compare(str, shiftKeyText)) {
 			result = true;
 		}
 		return result;
