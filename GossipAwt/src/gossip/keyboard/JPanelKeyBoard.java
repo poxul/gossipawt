@@ -1,7 +1,6 @@
 package gossip.keyboard;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.HierarchyEvent;
 import java.util.ArrayList;
@@ -17,7 +16,6 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.config.ColorConstants;
 import gossip.event.KeyBoardEvent.KeyBoardResultType;
 import gossip.event.KeyBoardResultEvent;
 import gossip.event.KeyBoardResultListener;
@@ -38,22 +36,8 @@ import gossip.util.KeyBoardUtil;
 
 public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterface {
 
-	private class DefaultKeyBoardUI implements AbstractKeyBoardUI {
+	
 
-		private JPanelDisposable panel;
-
-		@Override
-		public Component getJPanelHeadLine() {
-			if (panel == null) {
-				panel = new JPanelDisposable();
-				panel.setPreferredSize(new Dimension(10, 10));
-				panel.setBackground(ColorConstants.DEBUG_1);
-			}
-			// TODO Auto-generated method stub
-			return panel;
-		}
-
-	}
 
 	private static final long serialVersionUID = 6151024246312574475L;
 
@@ -82,7 +66,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private JPanelInputKeyBoard input;
 	private final List<KeyBoardResultListener> resultListenerList = new ArrayList<>();
 	private final List<JPanelKeyLine> keyLineList = new ArrayList<>();
-	private AbstractKeyBoardUI keyBoardUI;
 	private InputPanelModel model;
 
 	private InputMode mode = InputMode.NORMAL;
@@ -92,17 +75,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private Object modeSelected;
 
 	public JPanelKeyBoard() {
-		this(null);
-	}
-
-	public JPanelKeyBoard(AbstractKeyBoardUI keyBoardUI) {
-		super();
-		if (keyBoardUI != null) {
-			this.keyBoardUI = keyBoardUI;
-		} else {
-			this.keyBoardUI = new DefaultKeyBoardUI();
-		}
-
 		init();
 	}
 
@@ -116,7 +88,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		setBorder(BorderFactory.createEmptyBorder());
 		setOpaque(false);
 		// init ui
-		add(keyBoardUI.getJPanelHeadLine(), BorderLayout.NORTH);
 		add(getMainPanel(), BorderLayout.CENTER);
 	}
 
