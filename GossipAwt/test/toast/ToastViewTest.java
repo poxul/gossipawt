@@ -44,6 +44,7 @@ public class ToastViewTest {
 
 	private JPanelDisposable createContentPane() {
 		JPanelToastView panel = new JPanelToastView();
+		panel.setMessage("Hier könnte ihre Werbung stehen und weitere Kleinigkeiten");
 		return panel;
 	}
 
