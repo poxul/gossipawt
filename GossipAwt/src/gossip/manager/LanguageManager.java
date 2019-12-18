@@ -2,9 +2,9 @@ package gossip.manager;
 
 import java.util.Locale;
 
-import gossip.inputelement.InputItemChangeListener;
-import gossip.inputelement.InputItemId;
 import gossip.keyboard.KeyBoardDefinition;
+import gossip.keyboard.input.InputItemChangeListener;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.StringUtil;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;

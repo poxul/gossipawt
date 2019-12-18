@@ -20,23 +20,23 @@ import gossip.run.ConfigurationService;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;
 
-public class JPanelUserKeyboardTest {
+public class KeyboardTest {
 
-	private static Logger logger = MyLogger.getLog(JPanelUserKeyboardTest.class);
+	private static Logger logger = MyLogger.getLog(KeyboardTest.class);
 
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		JPanelUserKeyboardTest test = new JPanelUserKeyboardTest();
+		KeyboardTest test = new KeyboardTest();
 		test.initView();
 	}
 
 	private JFrame frame;
 	private JPanelKeyBoard contentPane;
 
-	public JPanelUserKeyboardTest() {
+	public KeyboardTest() {
 		// NOP
 	}
 

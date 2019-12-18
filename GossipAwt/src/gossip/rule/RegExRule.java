@@ -3,7 +3,7 @@ package gossip.rule;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.StringUtil;
 
 

@@ -1,4 +1,4 @@
-package gossip.lib.panel;
+package gossip.lib.panel.button;
 
 import java.awt.Image;
 import java.awt.Point;
@@ -15,7 +15,6 @@ import javax.swing.JButton;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.button.DefaultButtonFace;
 import gossip.lib.panel.disposable.Disposable;
 import gossip.lib.panel.exception.InitalisationException;
 import gossip.lib.util.MyLogger;

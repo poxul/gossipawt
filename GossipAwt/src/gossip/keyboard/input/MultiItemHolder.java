@@ -1,4 +1,4 @@
-package gossip.inputelement;
+package gossip.keyboard.input;
 
 import java.util.ArrayList;
 import java.util.List;

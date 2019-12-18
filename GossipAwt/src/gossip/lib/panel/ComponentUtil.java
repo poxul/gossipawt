@@ -79,7 +79,7 @@ public class ComponentUtil {
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setMinimumSize(new Dimension(DimensionConstants.FRAME_MINIMUM_DIM_WIDTH, DimensionConstants.FRAME_MINIMUM_DIM_HEIGHT));
-
+		frame.setUndecorated(true);
 		return frame;
 	}
 

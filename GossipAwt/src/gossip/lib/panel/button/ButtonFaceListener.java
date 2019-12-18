@@ -1,4 +1,4 @@
-package gossip.button;
+package gossip.lib.panel.button;
 
 import gossip.lib.UUIDSupport;
 

@@ -6,8 +6,8 @@ import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import gossip.inputelement.AbstractInputItemChangeListener;
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.AbstractInputItemChangeListener;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.panel.txt.StringFormatterUtil;
 import gossip.lib.util.StringUtil;

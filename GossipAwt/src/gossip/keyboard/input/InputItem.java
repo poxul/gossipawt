@@ -1,4 +1,4 @@
-package gossip.inputelement;
+package gossip.keyboard.input;
 
 public class InputItem {
 

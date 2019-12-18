@@ -3,7 +3,7 @@ package gossip.rule;
 import java.util.ArrayList;
 import java.util.List;
 
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.panel.txt.StringFormatterUtil;
 import gossip.manager.LanguageManager;
 

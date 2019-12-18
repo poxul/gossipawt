@@ -1,4 +1,4 @@
-package gossip.key;
+package gossip.keyboard.key;
 
 import java.io.File;
 import java.util.ArrayList;

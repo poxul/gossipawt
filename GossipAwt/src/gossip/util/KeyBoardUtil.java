@@ -11,17 +11,17 @@ import java.util.Set;
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
-import gossip.button.DefaultButtonFace;
-import gossip.button.DefaultButtonFace.ActivationMode;
 import gossip.config.ColorConstants;
 import gossip.config.DimensionConstants;
 import gossip.config.FontConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
-import gossip.inputelement.InputItemId;
-import gossip.key.MyKey;
 import gossip.keyboard.KeyBoardDefinition;
-import gossip.lib.panel.MyButton;
+import gossip.keyboard.input.InputItemId;
+import gossip.keyboard.key.MyKey;
+import gossip.lib.panel.button.DefaultButtonFace;
+import gossip.lib.panel.button.MyButton;
+import gossip.lib.panel.button.DefaultButtonFace.ActivationMode;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package gossip.key;
+package gossip.keyboard.key;
 
 import java.awt.Color;
 

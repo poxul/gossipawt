@@ -12,8 +12,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import gossip.key.MyKey;
-import gossip.key.MyKeyBlackList;
+import gossip.keyboard.key.MyKey;
+import gossip.keyboard.key.MyKeyBlackList;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.util.xml.ParseXmlUtil;

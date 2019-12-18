@@ -1,6 +1,6 @@
 package gossip.config;
 
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.InputItemId;
 
 public class InputItemConstants {
 

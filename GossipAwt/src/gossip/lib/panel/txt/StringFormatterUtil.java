@@ -13,7 +13,7 @@ import java.util.UnknownFormatConversionException;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;

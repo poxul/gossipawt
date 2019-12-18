@@ -1,4 +1,4 @@
-package gossip.inputelement;
+package gossip.keyboard.input;
 
 import gossip.lib.UUIDSupport;
 import gossip.lib.panel.disposable.Disposable;

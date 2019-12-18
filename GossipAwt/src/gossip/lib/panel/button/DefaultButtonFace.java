@@ -1,4 +1,4 @@
-package gossip.button;
+package gossip.lib.panel.button;
 
 import java.awt.Image;
 import java.util.UUID;
@@ -7,9 +7,9 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.event.ListenerSet;
 import gossip.event.ListenerSet.ListenerSetProcessor;
+import gossip.keyboard.input.InputItemChangeListener;
+import gossip.keyboard.input.InputItemId;
 import gossip.event.PressedReleasedListener;
-import gossip.inputelement.InputItemChangeListener;
-import gossip.inputelement.InputItemId;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.DisableListener;

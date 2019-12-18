@@ -10,7 +10,7 @@ import javax.swing.BoxLayout;
 import gossip.config.ColorConstants;
 import gossip.config.DimensionConstants;
 import gossip.config.FontConstants;
-import gossip.key.MyKey;
+import gossip.keyboard.key.MyKey;
 import gossip.lib.panel.JPanelInputField;
 import gossip.lib.panel.MyTextField;
 import gossip.lib.panel.disposable.JPanelDisposable;

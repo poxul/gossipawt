@@ -1,6 +1,6 @@
 package gossip.rule;
 
-import gossip.inputelement.InputItemId;
+import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.StringUtil;
 
 public class IsDoubleNumber extends InputRule {
