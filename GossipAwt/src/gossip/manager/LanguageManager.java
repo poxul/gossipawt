@@ -97,4 +97,9 @@ public class LanguageManager {
 		return StringUtil.isNullOrEmpty(str);
 	}
 
+	public static Object getString(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

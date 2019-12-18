@@ -391,4 +391,9 @@ public class LanguageUtil {
 
 	}
 
+	public static String getPropertyName(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

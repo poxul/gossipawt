@@ -2,7 +2,6 @@ package chatView;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.Locale;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,15 +9,15 @@ import javax.swing.SwingUtilities;
 
 import org.apache.logging.log4j.Logger;
 
+import gossip.chatview.JPanelChatView;
+import gossip.data.AwtBroker;
 import gossip.data.device.DeviceData.ApplicationType;
-import gossip.keyboard.JPanelKeyBoard;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.panel.ComponentUtil;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
-import gossip.util.KeyBoardUtil;
-import gossip.util.KeyBoardUtil.KeyBoardType;
+import gossip.run.GossipClient;
 
 public class ChatViewTest {
 
@@ -34,16 +33,15 @@ public class ChatViewTest {
 	}
 
 	private JFrame frame;
-	private JPanelKeyBoard contentPane;
+	private JPanelDisposable contentPane;
+	private GossipClient gClient;
 
 	public ChatViewTest() {
 		// NOP
 	}
 
-	private JPanelKeyBoard createContentPane() {
-		JPanelKeyBoard panel = new JPanelKeyBoard();
-		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
-		panel.addKeyBoardResultListener(event -> logger.info("keyboard end result: {}", event));
+	private JPanelChatView createContentPane() {
+		JPanelChatView panel = new JPanelChatView();
 		return panel;
 	}
 
@@ -68,6 +66,22 @@ public class ChatViewTest {
 		return frame;
 	}
 
+	/**
+	 * Connect observer
+	 * 
+	 * @param rows
+	 * @param columns
+	 */
+	public void initClient(String host, int port) {
+		gClient = new GossipClient(host, port);
+		gClient.init();
+	}
+
+	private void initData() {
+		AwtBroker.create();
+		AwtBroker.get().getController().init(gClient);
+	}
+
 	public void initView() {
 
 		String basePath = "/home/mila/git/gossipawt/GossipAwt";
@@ -79,6 +93,8 @@ public class ChatViewTest {
 			logger.error(e.getMessage(), e);
 			System.exit(-2);
 		}
+		initClient("localhost", 45049);
+		initData();
 
 		SwingUtilities.invokeLater(() -> createGui(getContentPane()));
 	}
