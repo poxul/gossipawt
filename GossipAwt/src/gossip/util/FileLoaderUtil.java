@@ -75,33 +75,23 @@ public class FileLoaderUtil {
 	}
 
 	public static BufferedImage readBufferedImage(InputStream input, String imgType) {
-		logger.debug("start read image ={}", imgType);
+		logger.info("start read image ={}", imgType);
 		BufferedImage image = null;
 		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName(imgType);
 		ImageReader imageReader = readers.next();
-		ImageInputStream iis = null;
 		if (imageReader != null) {
-			try {
-				iis = ImageIO.createImageInputStream(input);
+			try (ImageInputStream iis = ImageIO.createImageInputStream(input)) {
 				imageReader.setInput(iis, true);
 				image = imageReader.read(0);
 			} catch (Exception e) {
 				logger.error(e.getMessage(), e);
 				return null;
 			} finally {
-				try {
-					if (iis != null) {
-						iis.close();
-					}
-				} catch (IOException e) {
-					logger.error(e.getMessage(), e);
-				}
 				imageReader.dispose();
 			}
 		} else {
 			logger.error("no reader for image type ={}", imgType);
 		}
-		logger.debug("read end ={}", imgType);
 		return image;
 	}
 

@@ -10,6 +10,7 @@ import javax.swing.JButton;
 
 import gossip.button.DefaultButtonFace;
 import gossip.lib.panel.disposable.Disposable;
+import gossip.lib.panel.exception.InitalisationException;
 import gossip.lib.util.StringUtil;
 
 public class MyButton extends JButton implements Disposable {
@@ -82,7 +83,13 @@ public class MyButton extends JButton implements Disposable {
 	}
 
 	public void addFace(DefaultButtonFace buttonFace) {
+		if (buttonFace == null) {
+			throw new InitalisationException("invalid button face");
+		}
 		faces.put(buttonFace.getFaceName(), buttonFace);
+		if (StringUtil.isNullOrEmpty(curFace)) {
+			setCurrentFace(buttonFace.getFaceName());
+		}
 	}
 
 }

@@ -1,6 +1,5 @@
 package gossip.button;
 
-import java.awt.Component;
 import java.awt.Image;
 import java.util.UUID;
 
@@ -17,8 +16,8 @@ import gossip.lib.panel.DisableListener;
 import gossip.lib.panel.disposable.DisposablePanelAdatper;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
-import gossip.manager.ImageManager;
 import gossip.manager.LanguageManager;
+import gossip.util.ImageUtil;
 import gossip.util.ObjectUtil;
 
 public class DefaultButtonFace extends DisposablePanelAdatper implements PressedReleasedListener, DisableListener, InputItemChangeListener {
@@ -425,13 +424,9 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 		return overlay;
 	}
 
-	public void setOverlay(String overlayName, Component comp) {
-		setOverlay(ImageManager.getImage(overlayName, comp, 40, 40));
-	}
-
 	public void setOverlay(Image overlay) {
 		if (overlay != null && !ObjectUtil.compare(this.overlay, overlay)) {
-			this.overlay = ImageManager.scaleImage(overlay, 40, 40);
+			this.overlay = ImageUtil.scaleImage(overlay, 40, 40);
 		}
 	}
 
