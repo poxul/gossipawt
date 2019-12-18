@@ -7,7 +7,7 @@ public class DimensionConstants {
 	public static final int INPUT_LABEL_HEIGHT = 60;
 	public static final int INPUT_LABEL_WIDTH = 200;
 	public static final int BUTTON_HEIGHT_KEYBOARD = 30;
-	public static final int BUTTON_WIDTH_KEYBOARD = 55;
+	public static final int BUTTON_WIDTH_KEYBOARD = 60;
 	public static final int BUTTON_FACE_SPACE_WIDTH = 200;
 	public static final int BUTTON_FACE_SPACE_HEIGHT = BUTTON_HEIGHT_KEYBOARD;
 

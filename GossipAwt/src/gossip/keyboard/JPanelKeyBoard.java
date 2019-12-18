@@ -194,7 +194,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	}
 
 	private KeyListenerInterface keyBoardListener = (key, text) -> {
-		logger.debug("Key pressed={} text={}", key, text);
+		logger.info("Key pressed={} text={}", key, text);
 		if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_SHIFT.equals(key)) {
 			toggleShift();
 		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_ALTGR.equals(key)) {
@@ -213,9 +213,11 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_RIGHT.equals(key)) {
 			input.cursorMove(1);
 		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_CANCEL.equals(key)) {
-			// NOP
+			cancel();
 		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_ENTER.equals(key)) {
-			// NOP
+			enter();
+		} else if (KeyBoardUtil.BUTTON_FACE_NAME_BUTTON_QUIT.equals(key)) {
+			cancel();
 		}
 	};
 

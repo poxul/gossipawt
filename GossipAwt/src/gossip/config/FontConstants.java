@@ -4,8 +4,8 @@ import java.awt.Font;
 
 public class FontConstants {
 
-	private static final String FONT_NAME = "Dialog";
-	private static final int FONT_SIZE = 14;
+	private static final String FONT_NAME = "Roboto";
+	private static final int FONT_SIZE = 16;
 	
 	public static final Font KEYBOARD_SPECIAL_KEY_FONT = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 	public static final Font INPUTPANEL_NUMPAD_INPUT_FONT = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);

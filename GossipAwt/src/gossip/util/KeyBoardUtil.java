@@ -35,6 +35,7 @@ public class KeyBoardUtil {
 
 	public static final String BUTTON_FACE_NAME_BUTTON_ENTER = "InputEnterFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_EMPTY = "InputEmptyFace";
+	public static final String BUTTON_FACE_NAME_BUTTON_QUIT = "InputQuitFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_BACKSPACE = "InputBackSpaceFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_LEFT = "InputLeftFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_RIGHT = "InputRightFace";
@@ -384,7 +385,6 @@ public class KeyBoardUtil {
 		}
 
 		b.setFont(FontConstants.KEYBOARD_FONT);
-		b.setCenterImage(true);
 		return b;
 	}
 }

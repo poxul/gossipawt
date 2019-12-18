@@ -133,7 +133,7 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 
 	}
 
-	private final ListenerSet<ButtonFaceListener> listenerList = new ListenerSet<ButtonFaceListener>(new ButtonFaceProcessor());
+	private final ListenerSet<ButtonFaceListener> listenerList = new ListenerSet<>(new ButtonFaceProcessor());
 
 	protected static final Logger logger = MyLogger.getLog(DefaultButtonFace.class);
 	private boolean isPressedRequested = false;
@@ -264,7 +264,7 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 		return isSelected;
 	}
 
-	void _onButtonPressed() {
+	public void _onButtonPressed() {
 		if (!isDisabled()) {
 			if (setPressed(true)) {
 				onButtonPressed();
@@ -277,7 +277,7 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 		// NOP
 	}
 
-	void _onButtonReleased(boolean doAction) {
+	public void _onButtonReleased(boolean doAction) {
 		if (setPressed(false)) {
 			if (doAction) {
 				onButtonReleased();
