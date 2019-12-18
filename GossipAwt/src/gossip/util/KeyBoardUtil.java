@@ -1,8 +1,6 @@
 package gossip.util;
 
 import java.awt.Dimension;
-import java.awt.Image;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +21,6 @@ import gossip.config.InputItemConstants;
 import gossip.inputelement.InputItemId;
 import gossip.key.MyKey;
 import gossip.keyboard.KeyBoardDefinition;
-import gossip.lib.file.FileNameUtil.PathResource;
-import gossip.lib.file.FileService;
 import gossip.lib.panel.MyButton;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
@@ -93,7 +89,7 @@ public class KeyBoardUtil {
 	 */
 	public static MyButton createBackspaceButton() {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_BACKSPACE);
-		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE));
+		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE));
 		MyButton button = KeyBoardUtil.createMyButton();
 		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_BACKSPACE);
 		button.setCenterImage(true);
@@ -101,14 +97,9 @@ public class KeyBoardUtil {
 		return button;
 	}
 
-	private static Image getImage(String name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public static MyButton createCursorLeftButton() {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_LEFT);
-		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT));
+		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT));
 
 		MyButton button = KeyBoardUtil.createMyButton();
 		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
@@ -120,7 +111,7 @@ public class KeyBoardUtil {
 
 	public static MyButton createCursorRightButton() {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_RIGHT);
-		buttonFace.setOverlay(getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT));
+		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT));
 
 		MyButton button = KeyBoardUtil.createMyButton();
 		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
@@ -174,7 +165,7 @@ public class KeyBoardUtil {
 	public static MyButton createShiftButton() {
 		MyButton button = KeyBoardUtil.createMyButton();
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_SHIFT);
-		buttonFace.setOverlay(getImage(ImageConstants.OVERLAY_SHIFT));
+		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.OVERLAY_SHIFT));
 		button.setCenterImage(true);
 		button.addFace(buttonFace);
 		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_SHIFT);
@@ -244,22 +235,18 @@ public class KeyBoardUtil {
 
 	private static String getKeyBoardDefinitionFileName(Locale locale) {
 		if (alphaNumDefinitionFiles.isEmpty()) {
-			String path = getDefinitionFile("KeyBoards.xml");
+			String path = ResourcesUtil.getDefinitionFileName("KeyBoards.xml");
 			Document doc = FileLoaderUtil.getDocFromXml(path);
 			LanguageUtil.parseKeyBoardDefinitionFiles(doc, alphaNumDefinitionFiles);
 		}
 
 		String name = alphaNumDefinitionFiles.get(locale);
-		return getDefinitionFile(name);
-	}
-
-	private static String getDefinitionFile(String name) {
-		return FileService.getPath(PathResource.RESOURCE) + "xml" + File.separatorChar + "keys" + File.separatorChar + name;
+		return ResourcesUtil.getDefinitionFileName(name);
 	}
 
 	private static String getNumPadDefinitionFileName(Locale locale, String type) {
 		if (numDefinitionFiles.isEmpty()) {
-			String path = getDefinitionFile("NumPads.xml");
+			String path = ResourcesUtil.getDefinitionFileName("NumPads.xml");
 			Document doc = FileLoaderUtil.getDocFromXml(path);
 			LanguageUtil.parseNumPadDefinitionFiles(doc, numDefinitionFiles);
 		}

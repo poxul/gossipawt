@@ -1,13 +1,31 @@
 package gossip.util;
 
+import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Iterator;
+
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
+
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 
 import gossip.lib.file.FileUtil;
+import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.manager.DocumentManagerUtil;
 import gossip.util.xml.XmlHelper;
 
 public class FileLoaderUtil {
+
+	private static final Logger logger = MyLogger.getLog(FileLoaderUtil.class);
+
+	private static final String IMG_TYPE_PNG = "png";
 
 	public static Document getDocFromXml(String name) {
 		return getDocFromXml(name, false);
@@ -33,7 +51,11 @@ public class FileLoaderUtil {
 			if (!StringUtil.isNullOrEmpty(xmlString)) {
 				document = XmlHelper.parseXmlDocument(xmlString);
 				DocumentManagerUtil.getDocumentManager().put(name, document);
+			} else {
+				logger.error("invalid or empty file : {}", name);
 			}
+		} else {
+			logger.error("can not read document: {}", name);
 		}
 		return document;
 	}
@@ -50,6 +72,51 @@ public class FileLoaderUtil {
 			builder.append(s);
 		}
 		return builder.toString();
+	}
+
+	public static BufferedImage readBufferedImage(InputStream input, String imgType) {
+		logger.debug("start read image ={}", imgType);
+		BufferedImage image = null;
+		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName(imgType);
+		ImageReader imageReader = readers.next();
+		ImageInputStream iis = null;
+		if (imageReader != null) {
+			try {
+				iis = ImageIO.createImageInputStream(input);
+				imageReader.setInput(iis, true);
+				image = imageReader.read(0);
+			} catch (Exception e) {
+				logger.error(e.getMessage(), e);
+				return null;
+			} finally {
+				try {
+					if (iis != null) {
+						iis.close();
+					}
+				} catch (IOException e) {
+					logger.error(e.getMessage(), e);
+				}
+				imageReader.dispose();
+			}
+		} else {
+			logger.error("no reader for image type ={}", imgType);
+		}
+		logger.debug("read end ={}", imgType);
+		return image;
+	}
+
+	public static BufferedImage readBufferedImage(String filename, String imgType) {
+		try (InputStream is = new FileInputStream(filename)) {
+			DataInputStream stream = new DataInputStream(new BufferedInputStream(is, 8 * 1024));
+			return readBufferedImage(stream, imgType);
+		} catch (IOException e) {
+			logger.error("File not found: {}", filename);
+			return null;
+		}
+	}
+
+	public static BufferedImage readBufferedPngImage(String name) {
+		return readBufferedImage(name, IMG_TYPE_PNG);
 	}
 
 }
