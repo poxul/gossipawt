@@ -2,6 +2,8 @@ package chatView;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.chatview.JPanelChatView;
 import gossip.data.AwtBroker;
+import gossip.data.MyProfileId;
+import gossip.data.OperatorSayMessage;
 import gossip.data.device.DeviceData.ApplicationType;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.panel.ComponentUtil;
@@ -42,6 +46,11 @@ public class ChatViewTest {
 
 	private JPanelChatView createContentPane() {
 		JPanelChatView panel = new JPanelChatView();
+		// dummy message
+		MyProfileId sender = new MyProfileId(new UUID(0, 1));
+		OperatorSayMessage m = new OperatorSayMessage(sender, "lala", new Date());
+		panel.addMessage(m);
+		// dummy message end
 		return panel;
 	}
 

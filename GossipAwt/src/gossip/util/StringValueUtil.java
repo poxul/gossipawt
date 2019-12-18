@@ -4,6 +4,7 @@ import java.rmi.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import gossip.data.AwtBroker;
 import gossip.data.MyProfile;
 import gossip.data.MyProfileId;
 import gossip.data.device.DeviceData;
@@ -117,15 +118,11 @@ public class StringValueUtil {
 	}
 
 	public static String getName(MyProfileId id) {
-		// TODO
-//		MyProfile p = FxBroker.get().getController().getMyProfile(id);
-//		return p == null ? "???" : p.getName() + "@" + p.getHostName();
-		return null;
+		MyProfile p = AwtBroker.get().getController().getMyProfile(id);
+		return p == null ? "???" : p.getName() + "@" + p.getHostName();
 	}
 
 	private static final String DATE_TIME_FORMAT_WITH_SECONDS = "yyyy-MM-dd HH:mm:ss";
-
-	private static final long DAY_IN_MS = 1000l * 60 * 60 * 24;
 
 	public static String buildTimeStirng(Date date) {
 		SimpleDateFormat dateFormater = new SimpleDateFormat(DATE_TIME_FORMAT_WITH_SECONDS);

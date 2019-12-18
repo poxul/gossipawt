@@ -13,5 +13,6 @@ public class FontConstants {
 	public static final Font ALERT_BOX_FONT = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 	public static final Font KEYBOARD_PAD_FONT = new Font(FONT_NAME, Font.PLAIN, FONT_SIZE);
 	public static final Font KEYBOARD_FONT = new Font(FONT_NAME, Font.BOLD, FONT_SIZE);
+	public static final Font CHAT_FONT = new Font(FONT_NAME, Font.BOLD, FONT_SIZE);
 
 }

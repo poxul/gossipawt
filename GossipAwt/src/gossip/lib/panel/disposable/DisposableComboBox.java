@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 
 import gossip.event.SelectionChangeListener;
 
-public class DisposableComboBox extends JComboBox implements Disposable{
+public class DisposableComboBox<T> extends JComboBox<T> implements Disposable{
 
 	/**
 	 * 

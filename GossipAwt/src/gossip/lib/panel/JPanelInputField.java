@@ -20,6 +20,7 @@ import gossip.event.KeyBoardEvent;
 import gossip.event.KeyBoardEvent.KeyBoardResultType;
 import gossip.event.KeyBoardListener;
 import gossip.lib.panel.disposable.JPanelDisposable;
+import gossip.lib.panel.disposable.JTextFieldDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 

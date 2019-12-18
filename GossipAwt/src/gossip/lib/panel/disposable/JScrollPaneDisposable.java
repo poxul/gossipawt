@@ -1,12 +1,10 @@
-package gossip.lib.panel;
+package gossip.lib.panel.disposable;
 
 import java.awt.Component;
 
+import javax.swing.JEditorPane;
 import javax.swing.JScrollPane;
-
-import gossip.lib.panel.disposable.ContainerDisposer;
-import gossip.lib.panel.disposable.Disposable;
-import gossip.lib.panel.disposable.JPanelDisposable;
+import javax.swing.JTable;
 
 public class JScrollPaneDisposable extends JScrollPane implements Disposable {
 
@@ -19,7 +17,23 @@ public class JScrollPaneDisposable extends JScrollPane implements Disposable {
 	 * 
 	 * @param comp
 	 */
+	public JScrollPaneDisposable(JTable comp) {
+		super(comp);
+	}
+
+	/**
+	 * 
+	 * @param comp
+	 */
 	public JScrollPaneDisposable(JPanelDisposable comp) {
+		super(comp);
+	}
+
+	/**
+	 * 
+	 * @param comp
+	 */
+	public JScrollPaneDisposable(JEditorPane comp) {
 		super(comp);
 	}
 

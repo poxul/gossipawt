@@ -1,11 +1,9 @@
-package gossip.lib.panel;
+package gossip.lib.panel.disposable;
 
 import javax.swing.JTextField;
 
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
-import gossip.lib.panel.disposable.ContainerDisposer;
-import gossip.lib.panel.disposable.Disposable;
 import gossip.lib.util.StringUtil;
 
 public class JTextFieldDisposable extends JTextField implements Disposable {

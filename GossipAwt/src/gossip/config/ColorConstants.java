@@ -23,4 +23,7 @@ public class ColorConstants {
 
 	public static final long DEFAULT_MASK_ALPHA_MASK = 0xFF;
 
+	public static final Color EDIT_VIEW_BACKGROUND = Color.LIGHT_GRAY;
+	public static final Color EDIT_VIEW_TEXT = Color.BLUE;
+
 }
