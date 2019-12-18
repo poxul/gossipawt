@@ -3,17 +3,11 @@ package gossip.event;
 public class KeyBoardResultEvent extends KeyBoardEvent {
 
 	private final String result;
-	private Object value;
 	private Object selection;
 
-	public KeyBoardResultEvent(final KeyBoardResultType type, final String result, final Object value) {
+	public KeyBoardResultEvent(final KeyBoardResultType type, final String result) {
 		super(type);
 		this.result = result;
-		this.value = value;
-	}
-
-	public KeyBoardResultEvent(final KeyBoardResultType type, final String result) {
-		this(type, result, null);
 	}
 
 	/**
@@ -21,14 +15,6 @@ public class KeyBoardResultEvent extends KeyBoardEvent {
 	 */
 	public String getResult() {
 		return result;
-	}
-
-	public Object getValue() {
-		return value;
-	}
-
-	public void setValue(final Object value) {
-		this.value = value;
 	}
 
 	/**
@@ -51,6 +37,7 @@ public class KeyBoardResultEvent extends KeyBoardEvent {
 
 	@Override
 	public String toString() {
-		return "KeyBoardResultEvent type:" + getType().name();
+		return "KeyBoardResultEvent [result=" + result + ", selection=" + selection + super.toString() + "]";
 	}
+
 }

@@ -13,5 +13,6 @@ public class DimensionConstants {
 
 	public static final Dimension PREFERRED_SIZE_BACKSPACE_PANEL = new Dimension(80, BUTTON_HEIGHT_KEYBOARD);
 	public static final Dimension DEFAULT_KEY_DIMENSION = new Dimension(BUTTON_WIDTH_KEYBOARD, BUTTON_HEIGHT_KEYBOARD);
+	public static final Dimension INPUT_KEYBOARD_SIZE = new Dimension(200, 40);
 
 }

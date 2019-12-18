@@ -13,10 +13,8 @@ public interface InputPanelInterface extends InputPanelModel {
 	/**
 	 * @return the quetionText
 	 */
-	public abstract String getQuetionText();
+	public abstract String getInputLabelText();
 
-	public abstract void setQuestionText(String text);
-
-	public abstract void setHeadlineText(String text);
+	public abstract void setInputLabelText(String text);
 
 }

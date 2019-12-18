@@ -42,6 +42,7 @@ public class JPanelUserKeyboardTest {
 	private JPanelKeyBoard createContentPane() {
 		JPanelKeyBoard panel = new JPanelKeyBoard();
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
+		panel.addKeyBoardResultListener(event -> logger.info("keyboard end result: {}", event));
 		return panel;
 	}
 

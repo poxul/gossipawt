@@ -2,7 +2,6 @@ package gossip.lib.panel;
 
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.Insets;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -18,8 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.config.FontConstants;
 import gossip.event.KeyBoardEvent;
-import gossip.event.KeyBoardListener;
 import gossip.event.KeyBoardEvent.KeyBoardResultType;
+import gossip.event.KeyBoardListener;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
@@ -27,6 +26,9 @@ import gossip.lib.util.StringUtil;
 
 public abstract class JPanelInputField extends JPanelDisposable implements InputInterface {
 
+	private static final Color INPUT_SELECTION_COLOR = Color.LIGHT_GRAY;
+	private static final Color INPUT_TEXT_COLOR = Color.BLACK;
+	
 	private static final String PASSWORD_INPUT = "PasswordInput";
 	private static final String NORMAL_INPUT = "NormalInput";
 	/**
@@ -285,11 +287,11 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 		if (textFieldNormal == null) {
 			textFieldNormal = new JTextFieldDisposable();
 			textFieldNormal.setOpaque(true);
-			textFieldNormal.setForeground(Color.BLACK);
+			textFieldNormal.setForeground(INPUT_TEXT_COLOR);
 			textFieldNormal.setFont(FontConstants.INPUTPANEL_NUMPAD_INPUT_FONT);
 			textFieldNormal.setHorizontalAlignment(SwingConstants.RIGHT);
 			textFieldNormal.setBorder(BorderFactory.createEmptyBorder());
-			textFieldNormal.setSelectionColor(Color.LIGHT_GRAY);
+			textFieldNormal.setSelectionColor(INPUT_SELECTION_COLOR);
 			textFieldNormal.addKeyListener(inputKeyListener);
 		}
 		return textFieldNormal;
@@ -299,12 +301,11 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 		if (textFieldPassword == null) {
 			textFieldPassword = new JPasswordFieldDisposeable();
 			textFieldPassword.setOpaque(true);
-			textFieldPassword.setForeground(Color.BLACK);
+			textFieldPassword.setForeground(INPUT_TEXT_COLOR);
 			textFieldPassword.setFont(FontConstants.INPUTPANEL_NUMPAD_INPUT_FONT);
 			textFieldPassword.setHorizontalAlignment(SwingConstants.RIGHT);
 			textFieldPassword.setBorder(BorderFactory.createEmptyBorder());
-			textFieldPassword.setSelectionColor(Color.LIGHT_GRAY);
-			textFieldPassword.setMargin(new Insets(10, 0, 0, 40));
+			textFieldPassword.setSelectionColor(INPUT_SELECTION_COLOR);
 			textFieldPassword.addKeyListener(inputKeyListener);
 		}
 		return textFieldPassword;

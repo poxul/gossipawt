@@ -1,11 +1,9 @@
 package gossip.keyboard;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.HierarchyEvent;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -16,11 +14,11 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.logging.log4j.Logger;
 
+import gossip.config.DimensionConstants;
 import gossip.event.KeyBoardEvent.KeyBoardResultType;
 import gossip.event.KeyBoardResultEvent;
 import gossip.event.KeyBoardResultListener;
 import gossip.event.KeyListenerInterface;
-import gossip.inputelement.InputItemId;
 import gossip.key.MyKey;
 import gossip.keyboard.JPanelKeyLine.InputMode;
 import gossip.lib.job.ServiceJobAWTDefault;
@@ -29,15 +27,11 @@ import gossip.lib.panel.DefaultAlertSupport;
 import gossip.lib.panel.JPanelAlertBox;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
-import gossip.manager.LanguageManager;
 import gossip.rule.InputRule.SEVERITY;
 import gossip.util.DisposableUtil;
 import gossip.util.KeyBoardUtil;
 
 public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterface {
-
-	
-
 
 	private static final long serialVersionUID = 6151024246312574475L;
 
@@ -56,6 +50,8 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	}
 
 	public static final Logger logger = MyLogger.getLog(JPanelKeyBoard.class);
+
+	
 
 	/*
 	 * Buchstaben Info -password -icon (Overlay Name) -Headline Text -Question Text
@@ -94,6 +90,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private void cancel() {
 		logger.info("Keyboard cancel");
 		fireKeyBoardResultEvent(new KeyBoardResultEvent(KeyBoardResultType.ON_CANCEL, getInput().getInputText()));
+		cleanInput();
 	}
 
 	@Override
@@ -107,9 +104,11 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 			KeyBoardResultEvent event = new KeyBoardResultEvent(KeyBoardResultType.ON_ENTER, getInput().getInputText());
 			event.setSelection(getModeSelected());
 			fireKeyBoardResultEvent(event);
+			cleanInput();
 		} else {
 			logger.info("Keyboard enter blocked");
 		}
+		
 	}
 
 	private void fireKeyBoardResultEvent(KeyBoardResultEvent event) {
@@ -124,7 +123,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private JPanelInputKeyBoard getInput() {
 		if (input == null) {
 			input = new JPanelInputKeyBoard();
-			input.setPreferredSize(new Dimension(200, 40));
+			input.setPreferredSize(DimensionConstants.INPUT_KEYBOARD_SIZE);
 			input.addKeyBoardEventListener(event -> {
 				switch (event.getType()) {
 				case ON_CANCEL:
@@ -161,7 +160,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 
 	protected void verify() {
 		// TODO Auto-generated method stub
-
+		logger.info("verify changed text");
 	}
 
 	private KeyListenerInterface keyBoardListener = (key, text) -> {
@@ -259,7 +258,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	 * @return the quetionText
 	 */
 	@Override
-	public String getQuetionText() {
+	public String getInputLabelText() {
 		return getInput().getName();
 	}
 
@@ -269,7 +268,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		postInit();
 		addHierarchyListener(e -> {
 			if ((HierarchyEvent.SHOWING_CHANGED & e.getChangeFlags()) != 0 && isShowing()) {
-				updateLanguage(LanguageManager.getLocale());
 				requestTextInputFocus();
 			}
 		});
@@ -361,7 +359,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	 * @param quetionText the quetionText to set
 	 */
 	@Override
-	public void setQuestionText(String quetionText) {
+	public void setInputLabelText(String quetionText) {
 		getInput().setInputName(quetionText);
 	}
 
@@ -371,10 +369,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		if (this.isEnterBlocked != isEnterBlocked) {
 			this.isEnterBlocked = isEnterBlocked;
 		}
-	}
-
-	public void updateLanguage(Locale locale) {
-
 	}
 
 	private JPanelAlertBox getAlertPanel() {
@@ -395,10 +389,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		alertSupport.setAlertSeverity(severity);
 	}
 
-	public void setOverlayId(InputItemId overlayId) {
-
-	}
-
 	@Override
 	public void dispose() {
 		super.dispose();
@@ -409,12 +399,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 			keyLineList.clear();
 		}
 		alertSupport.dispose();
-	}
-
-	@Override
-	public void setHeadlineText(String text) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
