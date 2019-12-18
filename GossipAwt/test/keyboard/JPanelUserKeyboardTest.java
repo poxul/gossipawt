@@ -13,6 +13,7 @@ import org.apache.logging.log4j.Logger;
 import gossip.data.device.DeviceData.ApplicationType;
 import gossip.keyboard.JPanelKeyBoard;
 import gossip.lib.file.FileNameUtil;
+import gossip.lib.panel.ComponentUtil;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
@@ -47,11 +48,11 @@ public class JPanelUserKeyboardTest {
 	}
 
 	protected void createGui(JPanel panel) {
-		frame = new JFrame("Keyboard-test-frame");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame = ComponentUtil.createFrame();
+		frame.setAlwaysOnTop(true);
 		frame.setContentPane(panel);
 		frame.setBackground(Color.DARK_GRAY);
-		frame.setPreferredSize(new Dimension(800, 300));
+		frame.setPreferredSize(new Dimension(720, 240));
 		frame.pack();
 		frame.setVisible(true);
 	}

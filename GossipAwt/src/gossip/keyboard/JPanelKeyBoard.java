@@ -123,7 +123,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private JPanelInputKeyBoard getInput() {
 		if (input == null) {
 			input = new JPanelInputKeyBoard();
-			input.setPreferredSize(DimensionConstants.INPUT_KEYBOARD_SIZE);
+			input.setPreferredSize(DimensionConstants.INPUT_PANEL_SIZE);
 			input.addKeyBoardEventListener(event -> {
 				switch (event.getType()) {
 				case ON_CANCEL:

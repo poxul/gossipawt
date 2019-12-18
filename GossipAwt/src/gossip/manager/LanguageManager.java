@@ -34,7 +34,7 @@ public class LanguageManager {
 		}
 
 		public String getLocaleText(InputItemId itemId) {
-			return itemId == null ? ":X:" : itemId.toString();
+			return itemId == null ? "" : itemId.toString();
 		}
 
 	}
