@@ -19,7 +19,6 @@ import javax.swing.border.LineBorder;
 
 import gossip.util.DrawingUtil;
 
-
 public class RoundedLineBorder extends LineBorder {
 
 	private class SetableRectangle extends Rectangle {
@@ -121,8 +120,6 @@ public class RoundedLineBorder extends LineBorder {
 		return insets;
 	}
 
-
-
 	private Paint getPaint() {
 		if (paint == null || isChangted) {
 			if (lineColor.equals(color2)) {
@@ -136,7 +133,7 @@ public class RoundedLineBorder extends LineBorder {
 
 	private Shape getShape() {
 		if (isChangted || shape == null) {
-			shape = new RoundRectangle2D.Float(0, 0, rect.width - thickness, rect.height - thickness, arc, arc);
+			shape = new RoundRectangle2D.Float(0, 0, rect.width, rect.height, arc, arc);
 		}
 		return shape;
 	}

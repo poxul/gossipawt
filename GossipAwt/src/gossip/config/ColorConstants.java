@@ -26,4 +26,6 @@ public class ColorConstants {
 	public static final Color EDIT_VIEW_BACKGROUND = Color.LIGHT_GRAY;
 	public static final Color EDIT_VIEW_TEXT = Color.BLUE;
 
+	public static final Color TOAST_BACKGROUND = Color.WHITE;
+
 }

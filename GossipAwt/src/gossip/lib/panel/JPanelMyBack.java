@@ -19,13 +19,13 @@ public class JPanelMyBack extends JPanelDisposable {
 	private final Color topColor;
 	private final Color bottomColor;
 
-	private Border outBorder = BorderFactory.createEmptyBorder(5, 5, 0, 0);
+	private Border outBorder = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 	private Border border;
 
 	private boolean isShaddow;
 
 	public JPanelMyBack(Color topColor, Color bottomColor) {
-		this(topColor, bottomColor, BorderFactory.createEmptyBorder(0, 0, 3, 5), true);
+		this(topColor, bottomColor, BorderFactory.createEmptyBorder(0, 0, 0, 0), true);
 	}
 
 	public JPanelMyBack(Color topColor, Color bottomColor, Border border) {
