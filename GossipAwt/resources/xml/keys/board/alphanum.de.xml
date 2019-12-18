@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?>
+<gs:KeyBoard xmlns:gs="uri:gossip" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <gs:KeySet>
-    <!--Deutsch ** German Keyboard Layout-->
+    <!--Deutsch ** German Keyboard Layout -->
     <gs:KeyLine id="0">
       <gs:Key>
         <gs:Value id="0">#U+005E</gs:Value>
@@ -123,6 +124,9 @@
         <gs:Value id="0">#SHIFT</gs:Value>
         <gs:Value id="1">#SHIFT</gs:Value>
         <gs:Value id="2">#SHIFT</gs:Value>
+        <gs:Size>100</gs:Size>
+        <gs:Color>#00AA88</gs:Color>
+        <gs:DrawColor>#0022FF</gs:DrawColor>
       </gs:Key>
       <gs:Key>
         <gs:Value id="0">#U+0061</gs:Value>
@@ -223,27 +227,55 @@
     </gs:KeyLine>
     <gs:KeyLine id="4">
       <gs:Key>
+        <gs:Value id="0">#BACKSPACE</gs:Value>
+        <gs:Value id="1">#BACKSPACE</gs:Value>
+        <gs:Value id="2">#BACKSPACE</gs:Value>
+        <gs:Size>100</gs:Size>
+        <gs:Color>#00AA88</gs:Color>
+      </gs:Key>
+      <gs:Key>
         <gs:Value id="0">#ALTGR</gs:Value>
         <gs:Value id="1">#ALTGR</gs:Value>
         <gs:Value id="2">#ALTGR</gs:Value>
         <gs:Size>100</gs:Size>
+        <gs:Color>#00AA88</gs:Color>
+        <gs:DrawColor>#0022FF</gs:DrawColor>
       </gs:Key>
       <gs:Key>
         <gs:Value id="0">#SPACE</gs:Value>
         <gs:Value id="1">#SPACE</gs:Value>
         <gs:Value id="1">#SPACE</gs:Value>
-        <gs:Size>400</gs:Size>
+        <gs:Size>200</gs:Size>
       </gs:Key>
       <gs:Key>
         <gs:Value id="0">#LEFT</gs:Value>
         <gs:Value id="1">#LEFT</gs:Value>
         <gs:Value id="2">#LEFT</gs:Value>
+        <gs:Size>40</gs:Size>
+        <gs:Color>#00AA88</gs:Color>
       </gs:Key>
       <gs:Key>
         <gs:Value id="0">#RIGHT</gs:Value>
         <gs:Value id="1">#RIGHT</gs:Value>
         <gs:Value id="2">#RIGHT</gs:Value>
+        <gs:Color>#00AA88</gs:Color>
+        <gs:Size>40</gs:Size>
       </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#EMPTY</gs:Value>
+        <gs:Value id="1">#EMPTY</gs:Value>
+        <gs:Value id="2">#EMPTY</gs:Value>
+        <gs:Color>#5500AA88</gs:Color>
+        <gs:Size>20</gs:Size>
+      </gs:Key>
+      <gs:Key>
+        <gs:Value id="0">#ENTER</gs:Value>
+        <gs:Value id="1">#ENTER</gs:Value>
+        <gs:Value id="2">#ENTER</gs:Value>
+        <gs:Size>150</gs:Size>
+        <gs:Color>#00AA88</gs:Color>
+      </gs:Key>
+
     </gs:KeyLine>
   </gs:KeySet>
 </gs:KeyBoard>

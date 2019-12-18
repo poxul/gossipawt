@@ -82,7 +82,7 @@ public class JPanelKeyLine extends JPanelDisposable {
 		setLayout(new FlowLayout(SwingConstants.TOP, 0, 0));
 		setBorder(BorderFactory.createEmptyBorder());
 		setOpaque(false);
-		setPreferredSize(new Dimension(10, DimensionConstants.BUTTON_HEIGHT_RECT_KEYBOARD));
+		setPreferredSize(new Dimension(10, DimensionConstants.BUTTON_HEIGHT_KEYBOARD));
 
 		for (int i = 0; i < keys.size(); i++) {
 			MyKey keyElement = keys.get(i);
@@ -91,29 +91,33 @@ public class JPanelKeyLine extends JPanelDisposable {
 			String ak = keyElement.getAltKeyText();
 			boolean isLocked = keyElement.isLocked();
 			MyButton button = null;
-			if (k.equals(KeyBoardUtil.BUTTON_NAME_BACKSPACE)) {
-				button = KeyBoardUtil.createBackspaceButton();
+			if (k.equals(KeyBoardUtil.BUTTON_NAME_EMPTY)) {
+				button = KeyBoardUtil.createEmptyButton(keyElement);
+			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_BACKSPACE)) {
+				button = KeyBoardUtil.createBackspaceButton(keyElement);
+			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_ENTER)) {
+				button = KeyBoardUtil.createEnterButton(keyElement);
 			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_SHIFT)) {
-				button = KeyBoardUtil.createShiftButton();
+				button = KeyBoardUtil.createShiftButton(keyElement);
 			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_ALTGR)) {
-				button = KeyBoardUtil.createAltGrButton();
+				button = KeyBoardUtil.createAltGrButton(keyElement);
 			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_SPACE)) {
-				button = KeyBoardUtil.createSpaceButton();
+				button = KeyBoardUtil.createSpaceButton(keyElement);
 			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_CURSOR_LEFT)) {
-				button = KeyBoardUtil.createCursorLeftButton();
+				button = KeyBoardUtil.createCursorLeftButton(keyElement);
 			} else if (k.equals(KeyBoardUtil.BUTTON_NAME_CURSOR_RIGHT)) {
-				button = KeyBoardUtil.createCursorRightButton();
+				button = KeyBoardUtil.createCursorRightButton(keyElement);
 			} else if (k.startsWith("#") && k.length() > 1) {
 				if (isLocked) {
-					button = KeyBoardUtil.createLockedButton(null, k);
+					button = KeyBoardUtil.createLockedButton(null, k, keyElement);
 				} else {
-					button = KeyBoardUtil.createPadButton(null, k);
+					button = KeyBoardUtil.createPadButton(null, k, keyElement);
 				}
 				button.setFont(FontConstants.KEYBOARD_SPECIAL_KEY_FONT);
 				InputItemId id = LanguageManager.createKeyId(k);
 				KeyBoardUtil.setSingleButtonFaceItem(button, id);
 			} else {
-				button = KeyBoardUtil.createPadButton(k, sk, ak);
+				button = KeyBoardUtil.createPadButton(k, sk, ak, keyElement);
 			}
 
 			for (String key : button.getButtonFaceKeySet()) {

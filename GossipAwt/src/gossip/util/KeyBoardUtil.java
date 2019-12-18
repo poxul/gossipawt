@@ -34,6 +34,7 @@ public class KeyBoardUtil {
 	public static final String BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_ALTGR = BUTTON_FACE_NAME_BUTTON_INPUT_CHAR + "AltGr";
 
 	public static final String BUTTON_FACE_NAME_BUTTON_ENTER = "InputEnterFace";
+	public static final String BUTTON_FACE_NAME_BUTTON_EMPTY = "InputEmptyFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_BACKSPACE = "InputBackSpaceFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_LEFT = "InputLeftFace";
 	public static final String BUTTON_FACE_NAME_BUTTON_RIGHT = "InputRightFace";
@@ -72,6 +73,7 @@ public class KeyBoardUtil {
 	public static final String BUTTON_NAME_ENTER = "#ENTER";
 	public static final String BUTTON_NAME_ESC = "#ESC";
 	public static final String BUTTON_NAME_EXIT = "#EXIT";
+	public static final Object BUTTON_NAME_EMPTY = "#EMPTY";
 
 	public static final String BUTTON_NAME_PAGE_NORMAL = "#PAGE1";
 	public static final String BUTTON_NAME_PAGE_SPECIAL = "#PAGE2";
@@ -87,50 +89,63 @@ public class KeyBoardUtil {
 	/**
 	 * 
 	 */
-	public static MyButton createBackspaceButton() {
+	public static MyButton createBackspaceButton(MyKey k) {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_BACKSPACE);
 		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE));
-		MyButton button = KeyBoardUtil.createMyButton();
-		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_BACKSPACE);
-		button.setCenterImage(true);
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		button.addFace(buttonFace);
 		return button;
 	}
 
-	public static MyButton createCursorLeftButton() {
+	/**
+	 * 
+	 */
+	public static MyButton createEnterButton(MyKey k) {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_ENTER);
+		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_ENTER));
+		MyButton button = KeyBoardUtil.createMyButton(k);
+		button.addFace(buttonFace);
+		return button;
+	}
+
+	/**
+	 * 
+	 */
+	public static MyButton createEmptyButton(MyKey k) {
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_EMPTY);
+		MyButton button = KeyBoardUtil.createMyButton(k);
+		button.setEnabled(false);
+		button.addFace(buttonFace);
+		return button;
+	}
+
+	public static MyButton createCursorLeftButton(MyKey k) {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_LEFT);
 		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT));
-
-		MyButton button = KeyBoardUtil.createMyButton();
-		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
-		button.setCenterImage(true);
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		button.addFace(buttonFace);
-		button.setForeground(ColorConstants.TEXT_COLOR);
 		return button;
 	}
 
-	public static MyButton createCursorRightButton() {
+	public static MyButton createCursorRightButton(MyKey k) {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_RIGHT);
 		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT));
-
-		MyButton button = KeyBoardUtil.createMyButton();
-		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_CURSOR);
-		button.setCenterImage(true);
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		button.addFace(buttonFace);
-		button.setForeground(ColorConstants.TEXT_COLOR);
 		return button;
 	}
 
-	public static MyButton createPadButton(String text, String buttonFaceName) {
-		return createPadButton(text, text, text, buttonFaceName, buttonFaceName, buttonFaceName);
+	public static MyButton createPadButton(String text, String buttonFaceName, MyKey k) {
+		return createPadButton(text, text, text, buttonFaceName, buttonFaceName, buttonFaceName, k);
 	}
 
-	public static MyButton createPadButton(String text, String shiftText, String altGrText) {
-		return createPadButton(text, shiftText, altGrText, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_SHIFT, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_ALTGR);
+	public static MyButton createPadButton(String text, String shiftText, String altGrText, MyKey k) {
+		return createPadButton(text, shiftText, altGrText, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_SHIFT, BUTTON_FACE_NAME_BUTTON_INPUT_CHAR_ALTGR,
+				k);
 	}
 
-	private static MyButton createPadButton(String text, String shiftText, String altGrText, String buttonFaceName, String buttonFaceNameShift, String buttonFaceNameGr) {
-		MyButton button = KeyBoardUtil.createMyButton();
+	private static MyButton createPadButton(String text, String shiftText, String altGrText, String buttonFaceName, String buttonFaceNameShift, String buttonFaceNameGr, MyKey k) {
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		if (!StringUtil.isNullOrEmpty(buttonFaceName)) {
 			DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(buttonFaceName);
 			buttonFace.setFixedText(text);
@@ -147,43 +162,36 @@ public class KeyBoardUtil {
 			buttonFaceAltGr.setFixedText(altGrText);
 			button.addFace(buttonFaceAltGr);
 		}
-
-		button.setCenterImage(true);
 		button.setCurrentFace(buttonFaceName);
 		return button;
 	}
 
-	public static MyButton createSpaceButton() {
+	public static MyButton createSpaceButton(MyKey k) {
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_SPACE);
-		MyButton button = KeyBoardUtil.createMyButton();
-		button.setCenterImage(true);
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		button.addFace(buttonFace);
-		button.setPreferredSize(new Dimension(DimensionConstants.BUTTON_FACE_SPACE_WIDTH, DimensionConstants.BUTTON_FACE_SPACE_HEIGHT));
 		return button;
 	}
 
-	public static MyButton createShiftButton() {
-		MyButton button = KeyBoardUtil.createMyButton();
+	public static MyButton createShiftButton(MyKey k) {
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(BUTTON_FACE_NAME_BUTTON_SHIFT);
 		buttonFace.setOverlay(ImageUtil.getImage(ImageConstants.OVERLAY_SHIFT));
-		button.setCenterImage(true);
 		button.addFace(buttonFace);
-		button.setPreferredSize(DimensionConstants.BUTTON_FACE_DIMENSION_SHIFT);
 		return button;
 	}
 
-	public static MyButton createLockedButton(String text, String buttonFaceName) {
-		MyButton button = KeyBoardUtil.createMyButton();
+	public static MyButton createLockedButton(String text, String buttonFaceName, MyKey k) {
+		MyButton button = KeyBoardUtil.createMyButton(k);
 		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(buttonFaceName);
 		buttonFace.setFixedText(text);
 		buttonFace.setMode(ActivationMode.NORMAL);
-		button.setCenterImage(true);
 		button.addFace(buttonFace);
 		return button;
 	}
 
-	public static MyButton createAltGrButton() {
-		return createLockedButton("Alt", BUTTON_FACE_NAME_BUTTON_ALTGR);
+	public static MyButton createAltGrButton(MyKey k) {
+		return createLockedButton("Alt", BUTTON_FACE_NAME_BUTTON_ALTGR, k);
 	}
 
 	private static final Locale LOCALE_DEFAULT = Locale.ENGLISH;
@@ -355,12 +363,28 @@ public class KeyBoardUtil {
 		}
 	}
 
-	public static MyButton createMyButton() {
+	public static MyButton createMyButton(MyKey k) {
 		MyButton b = new MyButton();
-		b.setPreferredSize(DimensionConstants.DEFAULT_KEY_DIMENSION);
-		b.setForeground(ColorConstants.TEXT_COLOR);
-		b.setBackground(ColorConstants.BUTTON_COLOR_DEFAULT);
+		if (k.getSize() > 0) {
+			b.setPreferredSize(new Dimension(k.getSize(), DimensionConstants.BUTTON_HEIGHT_KEYBOARD));
+		} else {
+			b.setPreferredSize(DimensionConstants.DEFAULT_KEY_DIMENSION);
+		}
+
+		if (k.getColor() != null) {
+			b.setBackground(k.getColor());
+		} else {
+			b.setBackground(ColorConstants.BUTTON_COLOR_DEFAULT);
+		}
+
+		if (k.getDrawColor() != null) {
+			b.setForeground(k.getDrawColor());
+		} else {
+			b.setForeground(ColorConstants.TEXT_COLOR);
+		}
+
 		b.setFont(FontConstants.KEYBOARD_FONT);
+		b.setCenterImage(true);
 		return b;
 	}
 }

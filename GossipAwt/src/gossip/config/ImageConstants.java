@@ -10,5 +10,6 @@ public class ImageConstants {
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE = "backspace.png";
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT = "arrow_backward.png";
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT = "arrow_forward.png";
+	public static final String IMAGE_NAME_BUTTON_OVERLAY_ENTER = IMAGE_OVERLAY_NAME_COMMIT;
 	
 }

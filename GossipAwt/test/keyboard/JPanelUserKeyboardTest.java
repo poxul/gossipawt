@@ -50,7 +50,7 @@ public class JPanelUserKeyboardTest {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setContentPane(panel);
 		frame.setBackground(Color.DARK_GRAY);
-		frame.setPreferredSize(new Dimension(670, 256));
+		frame.setPreferredSize(new Dimension(800, 300));
 		frame.pack();
 		frame.setVisible(true);
 	}

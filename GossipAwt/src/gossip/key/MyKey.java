@@ -3,11 +3,11 @@
  */
 package gossip.key;
 
+import java.awt.Color;
+
 import gossip.lib.util.StringUtil;
 
 public class MyKey {
-
-	private static final int BUTTON_WIDTH_RECT_KEYBOARD = 30;
 
 	private String keyText;
 	private String shiftKeyText;
@@ -19,12 +19,16 @@ public class MyKey {
 
 	private boolean isLocked;
 
+	private Color color;
+
+	private Color drawColor;
+
 	public MyKey(MyKey src) {
 		this(src.keyText, src.shiftKeyText, src.altKeyText, src.size, src.isLocked);
 	}
 
 	public MyKey(String keyText, String shiftKeyText, String altKeyText) {
-		this(keyText, shiftKeyText, altKeyText, BUTTON_WIDTH_RECT_KEYBOARD, false);
+		this(keyText, shiftKeyText, altKeyText, 0, false);
 	}
 
 	public MyKey(String keyText, String shiftKeyText, String altKeyText, int size, boolean isLocked) {
@@ -118,6 +122,22 @@ public class MyKey {
 	public String toString() {
 		return "MyKey [keyText=" + keyText + ", shiftKeyText=" + shiftKeyText + ", altKeyText=" + altKeyText + ", overlayName=" + overlayName + ", size=" + size + ", isLocked="
 				+ isLocked + "]";
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setDrawColor(Color drawColor) {
+		this.drawColor = drawColor;
+	}
+
+	public Color getDrawColor() {
+		return drawColor;
 	}
 
 }

@@ -19,4 +19,8 @@ public class ColorConstants {
 	public static final Color ALERT_COLOR_BLOCKING_2 = Color.DARK_GRAY;
 	public static final Color ALERT_COLOR_TEXT = Color.RED;
 
+	public static final long DEFAULT_MASK_COLOR_RGB = 0x00FFFF;
+
+	public static final long DEFAULT_MASK_ALPHA_MASK = 0xFF;
+
 }

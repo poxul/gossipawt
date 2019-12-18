@@ -1,5 +1,6 @@
 package gossip.util;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +34,8 @@ public class LanguageUtil {
 	private static final String ELEMENT_KEY_VALUE = "gs:Value";
 	private static final String ELEMENT_KEY_SIZE = "gs:Size";
 	private static final String ELEMENT_KEY_IS_LOCKED = "gs:Locked";
+	private static final String ELEMENT_KEY_COLOR = "gs:Color";
+	private static final String ELEMENT_KEY_DRAW_COLOR = "gs:DrawColor";
 	private static final String ELEMENT_KEY = "gs:Key";
 	private static final String ELEMENT_KEY_LINE = "gs:KeyLine";
 	private static final String ELEMENT_KEY_SET = "gs:KeySet";
@@ -49,12 +52,8 @@ public class LanguageUtil {
 		NodeList nodeList = node.getChildNodes();
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node subNode = nodeList.item(i);
-			if (subNode != null) {
-				if (!ParseXmlUtil.isPaddingNode(subNode.getNodeName())) {
-					if (StringUtil.compare(subNode.getNodeName(), ELEMENT_KEY_SET)) {
-						return parseKeySet(subNode, keyLineList);
-					}
-				}
+			if (subNode != null && !ParseXmlUtil.isPaddingNode(subNode.getNodeName()) && StringUtil.compare(subNode.getNodeName(), ELEMENT_KEY_SET)) {
+				return parseKeySet(subNode, keyLineList);
 			}
 		}
 		return false;
@@ -78,30 +77,29 @@ public class LanguageUtil {
 						NodeList fileNodes = subNode.getChildNodes();
 						for (int j = 0; j < fileNodes.getLength(); j++) {
 							Node fileNode = fileNodes.item(j);
-							if (!ParseXmlUtil.isPaddingNode(fileNode.getNodeName())) {
-								if (StringUtil.compare(fileNode.getNodeName(), ELEMENT_FILENAME)) {
-									String filename = fileNode.getTextContent();
-									if (!StringUtil.isNullOrEmpty(language) && !StringUtil.isNullOrEmpty(type)) {
-										Locale locale = new Locale(language);
-										Map<String, String> typeMap = map.get(locale);
-										if (typeMap == null) {
-											typeMap = new HashMap<String, String>();
-											map.put(locale, typeMap);
-										}
-										typeMap.put(type, filename);
-									} else {
-										logger.error("Language attribute missing {}", subNode.getNodeName());
+							if (!ParseXmlUtil.isPaddingNode(fileNode.getNodeName()) && StringUtil.compare(fileNode.getNodeName(), ELEMENT_FILENAME)) {
+								String filename = fileNode.getTextContent();
+								if (!StringUtil.isNullOrEmpty(language) && !StringUtil.isNullOrEmpty(type)) {
+									Locale locale = new Locale(language);
+									Map<String, String> typeMap = map.get(locale);
+									if (typeMap == null) {
+										typeMap = new HashMap<>();
+										map.put(locale, typeMap);
 									}
+									typeMap.put(type, filename);
+								} else {
+									logger.error("invalid element name {}", subNode.getNodeName());
 								}
 							}
 						}
 					} else {
-						logger.error("Unknown ELEMENT={}", subNode.getNodeName());
+						logger.error("Unknown element name ={}", subNode.getNodeName());
 					}
 				}
 			}
 		}
 		return true;
+
 	}
 
 	/**
@@ -116,9 +114,12 @@ public class LanguageUtil {
 			return null;
 		}
 		String[] keyStrings = new String[3];
-		int size = ButtonConstants.BUTTON_WIDTH_RECT_KEYBOARD;
+		int size = 0;
 		boolean isLocked = false;
 		NodeList nodeList = node.getChildNodes();
+		Color color = null;
+		Color drawColor = null;
+		// parse
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node subNode = nodeList.item(i);
 			if (subNode != null) {
@@ -127,7 +128,7 @@ public class LanguageUtil {
 						String idString = ParseXmlUtil.getNodeAttribbuteValue(subNode, ATTRIBUTE_KEY_ID);
 						if (!StringUtil.isNullOrEmpty(idString)) {
 							try {
-								int id = Integer.valueOf(idString);
+								int id = Integer.parseInt(idString);
 								if (id < keyStrings.length) {
 									keyStrings[id] = subNode.getTextContent();
 								} else {
@@ -154,6 +155,20 @@ public class LanguageUtil {
 						} catch (Exception e) {
 							MyLogger.printExecption(logger, e);
 						}
+					} else if (StringUtil.compare(subNode.getNodeName(), ELEMENT_KEY_COLOR)) {
+						String colorStr = subNode.getTextContent();
+						try {
+							color = ColorUtil.parseColor(colorStr);
+						} catch (Exception e) {
+							MyLogger.printExecption(logger, e);
+						}
+					} else if (StringUtil.compare(subNode.getNodeName(), ELEMENT_KEY_DRAW_COLOR)) {
+						String colorStr = subNode.getTextContent();
+						try {
+							drawColor = ColorUtil.parseColor(colorStr);
+						} catch (Exception e) {
+							MyLogger.printExecption(logger, e);
+						}
 					}
 				}
 			}
@@ -161,6 +176,8 @@ public class LanguageUtil {
 		MyKey myKey = null;
 		if (!StringUtil.isNullOrEmpty(keyStrings[0])) {
 			myKey = new MyKey(toKeyString(keyStrings[0]), toKeyString(keyStrings[1]), toKeyString(keyStrings[2]), size, isLocked);
+			myKey.setColor(color);
+			myKey.setDrawColor(drawColor);
 		}
 		return myKey;
 	}

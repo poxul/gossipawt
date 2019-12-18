@@ -75,7 +75,6 @@ public class FileLoaderUtil {
 	}
 
 	public static BufferedImage readBufferedImage(InputStream input, String imgType) {
-		logger.info("start read image ={}", imgType);
 		BufferedImage image = null;
 		Iterator<ImageReader> readers = ImageIO.getImageReadersByFormatName(imgType);
 		ImageReader imageReader = readers.next();
@@ -96,6 +95,7 @@ public class FileLoaderUtil {
 	}
 
 	public static BufferedImage readBufferedImage(String filename, String imgType) {
+		logger.info("read image: <{}> {}", filename, imgType);
 		try (InputStream is = new FileInputStream(filename)) {
 			DataInputStream stream = new DataInputStream(new BufferedInputStream(is, 8 * 1024));
 			return readBufferedImage(stream, imgType);
