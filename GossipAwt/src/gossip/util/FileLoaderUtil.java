@@ -6,7 +6,6 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -15,7 +14,6 @@ import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.core.config.Property;
 import org.w3c.dom.Document;
 
 import gossip.data.LanguageMap;
@@ -114,7 +112,7 @@ public class FileLoaderUtil {
 		return readBufferedImage(name, IMG_TYPE_PNG);
 	}
 
-	public static LanguageMap languageMap(String name) {
+	public static LanguageMap readLanguageMap(String name) {
 		LanguageMap map = new LanguageMap();
 		Properties properties = new Properties();
 		try (InputStream is = new BufferedInputStream(new FileInputStream(name))) {
@@ -122,12 +120,7 @@ public class FileLoaderUtil {
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
-
-		Enumeration<Object> enumerator = properties.elements();
-		while (enumerator.hasMoreElements()) {
-			Property p = (Property) enumerator.nextElement();
-			map.put(new InputItemId(p.getName()), p.getValue());
-		}
+		properties.forEach((t, u) -> map.put(new InputItemId((String) t), (String) u));
 		return map;
 	}
 

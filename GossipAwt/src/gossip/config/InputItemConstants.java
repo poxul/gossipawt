@@ -10,5 +10,12 @@ public class InputItemConstants {
 	public static final InputItemId ITEM_KEYBOARD_COMMIT = new InputItemId("item.commit");
 	public static final InputItemId ITEM_KEYBOARD_SAVE = new InputItemId("item.save");
 	public static final InputItemId ITEM_OFF = new InputItemId("item.off");
+	public static final InputItemId ITEM_SERVER_CONNECTION = new InputItemId("headline.server_connection");
+	public static final InputItemId ITEM_CLIENTS = new InputItemId("headline.clients");
+	public static final InputItemId ITEM_VERSION = new InputItemId("headline.version");
+
+	public static InputItemId createKeyId(String k) {
+		return new InputItemId("itemid." + k);
+	}
 
 }

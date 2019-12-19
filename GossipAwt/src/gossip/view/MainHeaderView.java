@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import gossip.config.DimensionConstants;
 import gossip.config.FontConstants;
+import gossip.config.InputItemConstants;
 import gossip.data.AwtBroker;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.manager.LanguageManager;
@@ -100,7 +101,7 @@ public class MainHeaderView extends JPanelDisposable {
 
 	private JCheckBox getServerConnectionCheckBox() {
 		if (serverConnectionCheckBox == null) {
-			serverConnectionCheckBox = new JCheckBox(LanguageManager.getLocaleText(new InputItemId("headline.serverconnection")));
+			serverConnectionCheckBox = new JCheckBox(LanguageManager.getLocaleText(InputItemConstants.ITEM_SERVER_CONNECTION));
 			serverConnectionCheckBox.setOpaque(false);
 			serverConnectionCheckBox.setEnabled(false);
 			serverConnectionCheckBox.setFont(FontConstants.MAIN_HEADLINE_FONT);
