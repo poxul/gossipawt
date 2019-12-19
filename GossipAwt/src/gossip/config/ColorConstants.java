@@ -35,4 +35,6 @@ public class ColorConstants {
 	public static final Color COLOR_TRIGGERED_1 = Color.YELLOW;
 	public static final Color COLOR_TRIGGERED_2 = Color.BLACK;
 
+	public static final Color MAIN_VIEW_BACKGROUND = Color.DARK_GRAY;
+
 }

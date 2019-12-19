@@ -101,6 +101,10 @@ public class JPanelToastView extends JPanelMyBack {
 		getTextField().setText(txt);
 	}
 
+	public void clearState() {
+		updateState(ActuationState.IDLE);
+	}
+	
 	protected void updateState(ActuationState state) {
 		if (this.state != state) {
 			this.state = state;

@@ -3,8 +3,6 @@ package toast;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.Date;
-import java.util.UUID;
 
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -13,21 +11,18 @@ import javax.swing.SwingUtilities;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.chatview.JPanelChatView;
 import gossip.data.AwtBroker;
-import gossip.data.MyProfileId;
-import gossip.data.OperatorSayMessage;
 import gossip.data.device.DeviceData.ApplicationType;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.ComponentUtil;
-import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
 import gossip.toast.ActuatedListener.ActuationState;
 import gossip.toast.JPanelToastView;
+import gossip.view.MainView;
 import toast.LocationUtil.ViewId;
 
 public class ToastViewTest {
@@ -44,27 +39,17 @@ public class ToastViewTest {
 	}
 
 	private JFrame frame;
-	private JPanelDisposable contentPane;
+	private JPanelToastView toastView;
 	private GossipClient gClient;
 	private JDialog dialogChat;
-	private JPanelChatView chatView;
+	private MainView mainView;
 	private boolean isShowChat;
 
 	public ToastViewTest() {
 		// NOP
 	}
 
-	private JPanelChatView createChatView() {
-		JPanelChatView panel = new JPanelChatView();
-		// dummy message
-		MyProfileId sender = new MyProfileId(new UUID(0, 1));
-		OperatorSayMessage m = new OperatorSayMessage(sender, "lala", new Date());
-		panel.addMessage(m);
-		// dummy message end
-		return panel;
-	}
-
-	private JPanelDisposable createContentPane() {
+	private JPanelToastView createToastView() {
 		JPanelToastView panel = new JPanelToastView();
 		panel.setMessage("Hier könnte ihre Werbung stehen und weitere Kleinigkeiten");
 
@@ -87,7 +72,7 @@ public class ToastViewTest {
 		dialog.setUndecorated(true);
 		dialog.setLayout(new BorderLayout());
 		dialog.setPreferredSize(new Dimension(450, 300));
-		dialog.add(getChatView(), BorderLayout.CENTER);
+		dialog.add(getMainView(), BorderLayout.CENTER);
 		dialog.pack();
 		return dialog;
 	}
@@ -103,18 +88,22 @@ public class ToastViewTest {
 		frame.setLocation(LocationUtil.getLocation(ViewId.TOAST, frame.getBounds()));
 	}
 
-	private JPanelChatView getChatView() {
-		if (chatView == null) {
-			chatView = createChatView();
+	private MainView getMainView() {
+		if (mainView == null) {
+			mainView = createMainView();
 		}
-		return chatView;
+		return mainView;
 	}
 
-	private JPanelDisposable getContentPane() {
-		if (contentPane == null) {
-			contentPane = createContentPane();
+	private MainView createMainView() {
+		return new MainView();
+	}
+
+	private JPanelToastView getContentPane() {
+		if (toastView == null) {
+			toastView = createToastView();
 		}
-		return contentPane;
+		return toastView;
 	}
 
 	public JDialog getDialogChat() {
@@ -169,6 +158,9 @@ public class ToastViewTest {
 				JDialog dialog = getDialogChat();
 				dialog.setVisible(mode);
 				dialog.setLocation(LocationUtil.getLocation(ViewId.CHAT, dialog.getBounds()));
+				if (mode) {
+					getContentPane().clearState();
+				}
 				return true;
 			}
 		});

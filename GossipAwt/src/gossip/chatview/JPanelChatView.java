@@ -45,13 +45,7 @@ public class JPanelChatView extends JPanelDisposable {
 	private void init() {
 		// init observation
 		getClientData().addModelChangeListener((source, origin, oldValue, newValue) -> {
-			if (ClientDataModel.SYNC.equals(origin) || ClientDataModel.CLEAR.equals(origin)) {
-				updateClientCount();
-				updateClients();
-			} else if (ClientDataModel.SELECTION.equals(origin)) {
-				updateReceiverCount();
-				updateClients();
-			} else if (ClientDataModel.SAY.equals(origin)) {
+			if (ClientDataModel.SAY.equals(origin)) {
 				if (newValue instanceof OperatorSayMessage) {
 					addMyMessage((OperatorSayMessage) newValue);
 				} else {
@@ -99,21 +93,6 @@ public class JPanelChatView extends JPanelDisposable {
 		} catch (BadLocationException e) {
 			logger.error(e.getMessage(), e);
 		}
-	}
-
-	private void updateReceiverCount() {
-		// TODO Auto-generated method stub
-		logger.info("receiver count changed");
-	}
-
-	private void updateClients() {
-		// TODO Auto-generated method stub
-		logger.info("clients changed");
-	}
-
-	private void updateClientCount() {
-		// TODO Auto-generated method stub
-		logger.info("clients count changed");
 	}
 
 	private void buildView() {
