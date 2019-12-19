@@ -16,7 +16,6 @@ import gossip.data.AwtBroker;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.manager.LanguageManager;
 import gossip.util.StringValueUtil;
-import gossip.view.keyboard.input.InputItemId;
 
 public class MainHeaderView extends JPanelDisposable {
 

@@ -18,6 +18,7 @@ import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.button.DefaultButtonFace.ActivationMode;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.util.KeyBoardUtil;
+import gossip.util.MyButtonUtil;
 import gossip.view.keyboard.input.InputItemId;
 import gossip.view.keyboard.key.MyKey;
 
@@ -115,7 +116,7 @@ public class JPanelKeyLine extends JPanelDisposable {
 				}
 				button.setFont(FontConstants.KEYBOARD_SPECIAL_KEY_FONT);
 				InputItemId id = InputItemConstants.createKeyId(k);
-				KeyBoardUtil.setSingleButtonFaceItem(button, id);
+				MyButtonUtil.setSingleButtonFaceItem(button, id);
 			} else {
 				button = KeyBoardUtil.createPadButton(k, sk, ak, keyElement);
 			}

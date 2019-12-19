@@ -23,6 +23,6 @@ public class DimensionConstants {
 	public static final int HEADLINE_VERSION_WIDTH = 120;
 	public static final int HEADLINE_NUM_CLIENTS_WIDTH = 120;
 
-	public static final int FOOTER_HEIGHT = 40;
+	public static final int FOOTER_HEIGHT = 50;
 
 }

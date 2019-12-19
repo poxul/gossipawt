@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
@@ -22,7 +21,6 @@ import gossip.lib.panel.button.DefaultButtonFace.ActivationMode;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.view.keyboard.KeyBoardDefinition;
-import gossip.view.keyboard.input.InputItemId;
 import gossip.view.keyboard.key.MyKey;
 
 public class KeyBoardUtil {
@@ -355,13 +353,6 @@ public class KeyBoardUtil {
 		def.setInputItem(InputItemConstants.ITEM_DEFAULT);
 		def.setKeyList(KeyBoardUtil.generateNumPadKeys(locale, type));
 		return def;
-	}
-
-	public static void setSingleButtonFaceItem(MyButton button, InputItemId id) {
-		Set<String> set = button.getButtonFaceKeySet();
-		for (String string : set) {
-			button.getButtonFace(string).setInputItemId(id);
-		}
 	}
 
 	public static MyButton createMyButton(MyKey k) {

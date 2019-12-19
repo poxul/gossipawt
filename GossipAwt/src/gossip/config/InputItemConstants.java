@@ -13,6 +13,9 @@ public class InputItemConstants {
 	public static final InputItemId ITEM_SERVER_CONNECTION = new InputItemId("headline.server_connection");
 	public static final InputItemId ITEM_CLIENTS = new InputItemId("headline.clients");
 	public static final InputItemId ITEM_VERSION = new InputItemId("headline.version");
+	
+	public static final InputItemId ITEM_EMOTE_YES = new InputItemId("chat.emoticon.button_yes");
+	public static final InputItemId ITEM_EMOTE_NO = new InputItemId("chat.emoticon.button_no");
 
 	public static InputItemId createKeyId(String k) {
 		return new InputItemId("itemid." + k);

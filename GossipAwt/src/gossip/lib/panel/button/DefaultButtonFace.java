@@ -368,6 +368,7 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 				LanguageManager.addInputElementChangeListener(this, itemId);
 			}
 		}
+		updateButtonText();
 	}
 
 	private synchronized boolean setPressed(boolean isPressed) {
@@ -426,7 +427,7 @@ public class DefaultButtonFace extends DisposablePanelAdatper implements Pressed
 
 	public void setOverlay(Image overlay) {
 		if (overlay != null && !ObjectUtil.compare(this.overlay, overlay)) {
-			this.overlay = ImageUtil.scaleImage(overlay, 40, 40);
+			this.overlay = ImageUtil.scaleImage(overlay, 30, 30);
 		}
 	}
 

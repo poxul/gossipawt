@@ -13,7 +13,6 @@ import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
 import gossip.protobuf.HeaderData.DeviceId;
 import gossip.run.ConfigurationService;
-import gossip.view.keyboard.input.InputItemId;
 
 public class StringValueUtil {
 
