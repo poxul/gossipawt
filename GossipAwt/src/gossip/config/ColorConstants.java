@@ -28,4 +28,11 @@ public class ColorConstants {
 
 	public static final Color TOAST_BACKGROUND = Color.WHITE;
 
+	public static final Color COLOR_UNSELECTED_1 = Color.RED;
+	public static final Color COLOR_UNSELECTED_2 = Color.LIGHT_GRAY;
+	public static final Color COLOR_SELECTED_1 = Color.LIGHT_GRAY;
+	public static final Color COLOR_SELECTED_2 = Color.BLUE;
+	public static final Color COLOR_TRIGGERED_1 = Color.YELLOW;
+	public static final Color COLOR_TRIGGERED_2 = Color.BLACK;
+
 }

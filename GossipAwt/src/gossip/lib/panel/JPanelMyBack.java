@@ -16,8 +16,8 @@ public class JPanelMyBack extends JPanelDisposable {
 
 	private static final int STD_ARC = 3;
 
-	private final Color topColor;
-	private final Color bottomColor;
+	private Color topColor;
+	private Color bottomColor;
 
 	private Border outBorder = BorderFactory.createEmptyBorder(0, 0, 0, 0);
 	private Border border;
@@ -59,6 +59,12 @@ public class JPanelMyBack extends JPanelDisposable {
 	@Override
 	public void setBorder(Border border) {
 		this.border = border;
+		super.setBorder(createBorder());
+	}
+
+	public void setColor(Color c1, Color c2) {
+		this.topColor = c1;
+		this.bottomColor = c2;
 		super.setBorder(createBorder());
 	}
 
