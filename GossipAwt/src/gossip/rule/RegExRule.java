@@ -3,8 +3,8 @@ package gossip.rule;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.StringUtil;
+import gossip.view.keyboard.input.InputItemId;
 
 
 public class RegExRule extends InputRule {

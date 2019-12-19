@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.chatview.JPanelChatView;
 import gossip.data.AwtBroker;
 import gossip.data.MyProfileId;
 import gossip.data.OperatorSayMessage;
@@ -22,6 +21,7 @@ import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
+import gossip.view.chatview.JPanelChatView;
 
 public class ChatViewTest {
 

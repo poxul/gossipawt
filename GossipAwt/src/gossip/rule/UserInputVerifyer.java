@@ -3,8 +3,8 @@ package gossip.rule;
 import java.util.ArrayList;
 import java.util.List;
 
-import gossip.keyboard.input.InputItemId;
-import gossip.keyboard.input.MultiItemHolder;
+import gossip.view.keyboard.input.InputItemId;
+import gossip.view.keyboard.input.MultiItemHolder;
 
 public class UserInputVerifyer extends MultiItemHolder {
 

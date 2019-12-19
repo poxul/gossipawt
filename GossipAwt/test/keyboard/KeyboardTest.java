@@ -11,7 +11,6 @@ import javax.swing.SwingUtilities;
 import org.apache.logging.log4j.Logger;
 
 import gossip.data.device.DeviceData.ApplicationType;
-import gossip.keyboard.JPanelKeyBoard;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.panel.ComponentUtil;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -19,6 +18,7 @@ import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;
+import gossip.view.keyboard.JPanelKeyBoard;
 
 public class KeyboardTest {
 

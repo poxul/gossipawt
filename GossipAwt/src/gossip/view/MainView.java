@@ -6,12 +6,12 @@ import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.chatview.JPanelChatView;
 import gossip.config.ColorConstants;
 import gossip.data.MyProfileId;
 import gossip.data.OperatorSayMessage;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
+import gossip.view.chatview.JPanelChatView;
 
 public class MainView extends JPanelDisposable {
 

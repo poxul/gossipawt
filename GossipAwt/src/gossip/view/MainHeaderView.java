@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import gossip.config.DimensionConstants;
 import gossip.config.FontConstants;
 import gossip.data.AwtBroker;
-import gossip.keyboard.input.InputItemId;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.manager.LanguageManager;
 import gossip.util.StringValueUtil;
+import gossip.view.keyboard.input.InputItemId;
 
 public class MainHeaderView extends JPanelDisposable {
 

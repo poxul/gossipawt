@@ -2,18 +2,34 @@ package gossip.manager;
 
 import java.util.Locale;
 
-import gossip.keyboard.KeyBoardDefinition;
-import gossip.keyboard.input.InputItemChangeListener;
-import gossip.keyboard.input.InputItemId;
+import gossip.data.LanguageMap;
 import gossip.lib.util.StringUtil;
+import gossip.util.FileLoaderUtil;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;
+import gossip.view.keyboard.KeyBoardDefinition;
+import gossip.view.keyboard.input.InputItemChangeListener;
+import gossip.view.keyboard.input.InputItemId;
+import gossip.util.ResourcesUtil;
 
 public class LanguageManager {
 
 	private static class LanguageManagerImpl {
 
 		private Locale locale = Locale.GERMAN;
+
+		private LanguageMap languageMap;
+
+		private void init() {
+
+			String languageFileName = ResourcesUtil.getLanguageFileName(getLocale());
+			languageMap = FileLoaderUtil.languageMap(languageFileName);
+
+		}
+
+		public LanguageManagerImpl() {
+			init();
+		}
 
 		public Locale getLocale() {
 			return locale;
@@ -34,7 +50,7 @@ public class LanguageManager {
 		}
 
 		public String getLocaleText(InputItemId itemId) {
-			return itemId == null ? "" : itemId.toString();
+			return itemId == null ? "" : languageMap.get(itemId);
 		}
 
 	}

@@ -1,7 +1,7 @@
 package gossip.rule;
 
-import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.StringUtil;
+import gossip.view.keyboard.input.InputItemId;
 
 public class InputRuleUMinValue extends InputRuleNumber<Long> {
 

@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import gossip.keyboard.key.MyKey;
+import gossip.view.keyboard.key.MyKey;
 
 
 public class KeyLineListsCache {

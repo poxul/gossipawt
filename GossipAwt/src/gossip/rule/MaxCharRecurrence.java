@@ -1,6 +1,6 @@
 package gossip.rule;
 
-import gossip.keyboard.input.InputItemId;
+import gossip.view.keyboard.input.InputItemId;
 
 public class MaxCharRecurrence extends RegExRule {
 

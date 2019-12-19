@@ -4,9 +4,9 @@ import java.util.HashMap;
 
 import gossip.data.MyProfile;
 import gossip.data.device.DeviceData.ApplicationType;
+import gossip.data.model.MySimpleMap;
+import gossip.data.model.MySimpleModel;
 import gossip.lib.data.ModelChangeListener;
-import gossip.manager.model.MySimpleMap;
-import gossip.manager.model.MySimpleModel;
 import gossip.util.StringValueUtil;
 
 public class ObservableClientProfile {

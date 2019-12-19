@@ -12,11 +12,11 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import gossip.keyboard.key.MyKey;
-import gossip.keyboard.key.MyKeyBlackList;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.util.xml.ParseXmlUtil;
+import gossip.view.keyboard.key.MyKey;
+import gossip.view.keyboard.key.MyKeyBlackList;
 
 public class LanguageUtil {
 	private static final Logger logger = MyLogger.getLog(LanguageUtil.class);

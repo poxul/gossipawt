@@ -6,20 +6,25 @@ import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Enumeration;
 import java.util.Iterator;
+import java.util.Properties;
 
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 import javax.imageio.stream.ImageInputStream;
 
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Property;
 import org.w3c.dom.Document;
 
+import gossip.data.LanguageMap;
 import gossip.lib.file.FileUtil;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.manager.DocumentManagerUtil;
 import gossip.util.xml.XmlHelper;
+import gossip.view.keyboard.input.InputItemId;
 
 public class FileLoaderUtil {
 
@@ -107,6 +112,23 @@ public class FileLoaderUtil {
 
 	public static BufferedImage readBufferedPngImage(String name) {
 		return readBufferedImage(name, IMG_TYPE_PNG);
+	}
+
+	public static LanguageMap languageMap(String name) {
+		LanguageMap map = new LanguageMap();
+		Properties properties = new Properties();
+		try (InputStream is = new BufferedInputStream(new FileInputStream(name))) {
+			properties.load(is);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+		}
+
+		Enumeration<Object> enumerator = properties.elements();
+		while (enumerator.hasMoreElements()) {
+			Property p = (Property) enumerator.nextElement();
+			map.put(new InputItemId(p.getName()), p.getValue());
+		}
+		return map;
 	}
 
 }

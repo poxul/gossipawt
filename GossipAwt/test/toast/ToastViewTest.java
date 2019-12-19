@@ -20,9 +20,9 @@ import gossip.lib.panel.ComponentUtil;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
-import gossip.toast.ActuatedListener.ActuationState;
-import gossip.toast.JPanelToastView;
 import gossip.view.MainView;
+import gossip.view.toast.JPanelToastView;
+import gossip.view.toast.ActuatedListener.ActuationState;
 import toast.LocationUtil.ViewId;
 
 public class ToastViewTest {

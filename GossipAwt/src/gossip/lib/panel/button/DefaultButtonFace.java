@@ -7,8 +7,6 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.event.ListenerSet;
 import gossip.event.ListenerSet.ListenerSetProcessor;
-import gossip.keyboard.input.InputItemChangeListener;
-import gossip.keyboard.input.InputItemId;
 import gossip.event.PressedReleasedListener;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
@@ -19,6 +17,8 @@ import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
 import gossip.util.ImageUtil;
 import gossip.util.ObjectUtil;
+import gossip.view.keyboard.input.InputItemChangeListener;
+import gossip.view.keyboard.input.InputItemId;
 
 public class DefaultButtonFace extends DisposablePanelAdatper implements PressedReleasedListener, DisableListener, InputItemChangeListener {
 

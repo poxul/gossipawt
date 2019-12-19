@@ -16,14 +16,14 @@ import gossip.config.DimensionConstants;
 import gossip.config.FontConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
-import gossip.keyboard.KeyBoardDefinition;
-import gossip.keyboard.input.InputItemId;
-import gossip.keyboard.key.MyKey;
 import gossip.lib.panel.button.DefaultButtonFace;
 import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.button.DefaultButtonFace.ActivationMode;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
+import gossip.view.keyboard.KeyBoardDefinition;
+import gossip.view.keyboard.input.InputItemId;
+import gossip.view.keyboard.key.MyKey;
 
 public class KeyBoardUtil {
 

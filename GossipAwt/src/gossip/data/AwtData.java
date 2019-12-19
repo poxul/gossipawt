@@ -10,12 +10,12 @@ import java.util.Set;
 import gossip.data.MyProfile;
 import gossip.data.MyProfileId;
 import gossip.data.OperatorSayMessage;
+import gossip.data.model.MySimpleList;
+import gossip.data.model.MySimpleMap;
+import gossip.data.model.MySimpleModel;
+import gossip.data.model.MySimpleSet;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
-import gossip.manager.model.MySimpleList;
-import gossip.manager.model.MySimpleMap;
-import gossip.manager.model.MySimpleModel;
-import gossip.manager.model.MySimpleSet;
 
 public class AwtData {
 

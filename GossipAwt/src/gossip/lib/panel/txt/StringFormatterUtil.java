@@ -13,11 +13,11 @@ import java.util.UnknownFormatConversionException;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.keyboard.input.InputItemId;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
 import gossip.util.DrawingUtil;
+import gossip.view.keyboard.input.InputItemId;
 
 public class StringFormatterUtil {
 
