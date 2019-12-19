@@ -100,7 +100,7 @@ public class MainHeaderView extends JPanelDisposable {
 
 	private JCheckBox getServerConnectionCheckBox() {
 		if (serverConnectionCheckBox == null) {
-			serverConnectionCheckBox = new JCheckBox(LanguageManager.getLocaleText(new InputItemId("headline.serverconnection")));
+			serverConnectionCheckBox = new JCheckBox(LanguageManager.getLocaleText(new InputItemId("headline.server_connection")));
 			serverConnectionCheckBox.setOpaque(false);
 			serverConnectionCheckBox.setEnabled(false);
 			serverConnectionCheckBox.setFont(FontConstants.MAIN_HEADLINE_FONT);

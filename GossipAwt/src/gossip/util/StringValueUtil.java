@@ -12,6 +12,7 @@ import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
 import gossip.protobuf.HeaderData.DeviceId;
 import gossip.run.ConfigurationService;
+import gossip.view.keyboard.input.InputItemId;
 
 public class StringValueUtil {
 
@@ -91,7 +92,7 @@ public class StringValueUtil {
 
 	public static String buildClientsString(int num) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LanguageManager.getString("headline.clients"));
+		sb.append(LanguageManager.getLocaleText(new InputItemId("headline.clients")));
 		sb.append(": ");
 		sb.append(num);
 		return sb.toString();
@@ -99,7 +100,7 @@ public class StringValueUtil {
 
 	public static String buildVersionString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(LanguageManager.getString("headline.version"));
+		sb.append(LanguageManager.getLocaleText(new InputItemId("headline.version")));
 		sb.append(" ");
 		DeviceData dd = ConfigurationService.getDeviceData();
 		sb.append(dd.getVersionString());

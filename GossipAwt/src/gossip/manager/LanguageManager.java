@@ -12,7 +12,7 @@ import gossip.view.keyboard.input.InputItemChangeListener;
 import gossip.view.keyboard.input.InputItemId;
 import gossip.util.ResourcesUtil;
 
-public class LanguageManager {
+public class LanguageManager implements MyManager {
 
 	private static class LanguageManagerImpl {
 
@@ -21,14 +21,8 @@ public class LanguageManager {
 		private LanguageMap languageMap;
 
 		private void init() {
-
 			String languageFileName = ResourcesUtil.getLanguageFileName(getLocale());
-			languageMap = FileLoaderUtil.languageMap(languageFileName);
-
-		}
-
-		public LanguageManagerImpl() {
-			init();
+			languageMap = FileLoaderUtil.readLanguageMap(languageFileName);
 		}
 
 		public Locale getLocale() {
@@ -50,6 +44,9 @@ public class LanguageManager {
 		}
 
 		public String getLocaleText(InputItemId itemId) {
+			if (languageMap == null) {
+				init(); // TODO
+			}
 			return itemId == null ? "" : languageMap.get(itemId);
 		}
 
@@ -113,7 +110,14 @@ public class LanguageManager {
 		return StringUtil.isNullOrEmpty(str);
 	}
 
-	public static Object getString(String string) {
+	@Override
+	public void postInit() {
+		// TODO Auto-generated method stub
+		instance.init();
+	}
+
+	@Override
+	public String getManagerId() {
 		// TODO Auto-generated method stub
 		return null;
 	}
