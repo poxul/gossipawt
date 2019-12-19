@@ -1,5 +1,5 @@
 
-package toast;
+package gossip.config;
 
 import java.awt.Dimension;
 import java.awt.Point;

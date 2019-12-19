@@ -1,4 +1,4 @@
-package toast;
+package gossip.run;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -26,16 +26,16 @@ import gossip.view.MainView;
 import gossip.view.toast.JPanelToastView;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
-public class ToastViewTest {
+public class GossipAwt {
 
-	private static Logger logger = MyLogger.getLog(ToastViewTest.class);
+	private static Logger logger = MyLogger.getLog(GossipAwt.class);
 
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		ToastViewTest test = new ToastViewTest();
+		GossipAwt test = new GossipAwt();
 		test.initView();
 	}
 
@@ -46,7 +46,7 @@ public class ToastViewTest {
 	private MainView mainView;
 	private boolean isShowChat;
 
-	public ToastViewTest() {
+	public GossipAwt() {
 		// NOP
 	}
 
