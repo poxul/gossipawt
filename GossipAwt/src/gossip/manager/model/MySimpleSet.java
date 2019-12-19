@@ -23,4 +23,8 @@ public class MySimpleSet<V> extends DataModelBase {
 		fireModelChanged("removed", value, null);
 	}
 
+	public int size() {
+		return set.size();
+	}
+
 }

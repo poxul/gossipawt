@@ -23,4 +23,8 @@ public class MySimpleList<V> extends DataModelBase {
 		fireModelChanged("removed", value, null);
 	}
 
+	public int size() {
+		return list.size();
+	}
+
 }

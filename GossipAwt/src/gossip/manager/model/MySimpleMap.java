@@ -29,14 +29,17 @@ public class MySimpleMap<K, V> extends DataModelBase {
 
 	public void remove(K key) {
 		V oldValue = map.remove(key);
-		if( oldValue != null ) {
+		if (oldValue != null) {
 			fireModelChanged("removed", oldValue, null);
 		}
 	}
 
 	public boolean containsKey(K key) {
-		// TODO Auto-generated method stub
 		return map.containsKey(key);
+	}
+
+	public int size() {
+		return map.size();
 	}
 
 }
