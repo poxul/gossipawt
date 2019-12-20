@@ -24,6 +24,8 @@ public class DimensionConstants {
 	public static final int HEADLINE_NUM_CLIENTS_WIDTH = 120;
 
 	public static final int FOOTER_HEIGHT = 50;
+	
 	public static final Dimension CHAT_DIALOG_DIMENSION = new Dimension(600, 350);
+	public static final Dimension KEYBOARD_DIALOG_DIMENSION = new Dimension(750, 250);
 
 }

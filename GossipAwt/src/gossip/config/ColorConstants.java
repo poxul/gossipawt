@@ -37,4 +37,6 @@ public class ColorConstants {
 
 	public static final Color MAIN_VIEW_BACKGROUND = Color.DARK_GRAY;
 
+	public static final Color KEYBOARD_BACKGROUND = MAIN_VIEW_BACKGROUND;
+
 }

@@ -1,18 +1,22 @@
 package gossip.view;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.DimensionConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
+import gossip.config.LocationUtil;
+import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
+import gossip.lib.job.ServiceJobAWTDefault;
+import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.button.ButtonFaceListener;
 import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -51,29 +55,10 @@ public class MainFooterView extends JPanelDisposable {
 
 	private JPanelDisposable dialogsPanel;
 
+	private JDialog dialogKeyboard;
+
 	public MainFooterView() {
 		init();
-	}
-
-	protected void function(String name) {
-		if (StringUtil.compare(name, InputItemConstants.ITEM_DICTIONARY.nameValue())) {
-			showDictionary(true);
-		} else if (StringUtil.compare(name, InputItemConstants.ITEM_KEYBOARD.nameValue())) {
-			showKeyboard(true);
-		} else {
-			logger.error("unknown function: {}", name);
-		}
-
-	}
-
-	private void showKeyboard(boolean b) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	private void showDictionary(boolean b) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	/**
@@ -87,6 +72,29 @@ public class MainFooterView extends JPanelDisposable {
 		setLayout(new BoxLayout(this, BoxLayout.LINE_AXIS));
 		add(getPanelEmotes());
 		add(getPanelDialogs());
+	}
+
+	// TOD Keyboard dialog class
+	private JDialog createDialogKeyBoard() {
+		return  KeyboardDialog.createDialogKeyBoard();
+	}
+
+	protected void function(String name) {
+		if (StringUtil.compare(name, InputItemConstants.ITEM_DICTIONARY.nameValue())) {
+			showDictionary(true);
+		} else if (StringUtil.compare(name, InputItemConstants.ITEM_KEYBOARD.nameValue())) {
+			showKeyboard(true);
+		} else {
+			logger.error("unknown function: {}", name);
+		}
+
+	}
+
+	public JDialog getDialogKeyboard() {
+		if (dialogKeyboard == null) {
+			dialogKeyboard = createDialogKeyBoard();
+		}
+		return dialogKeyboard;
 	}
 
 	/**
@@ -107,10 +115,6 @@ public class MainFooterView extends JPanelDisposable {
 			dialogsPanel.add(button);
 		}
 		return dialogsPanel;
-	}
-
-	private void init() {
-		buildView();
 	}
 
 	/**
@@ -136,12 +140,34 @@ public class MainFooterView extends JPanelDisposable {
 		return emotesPanel;
 	}
 
+	private void init() {
+		buildView();
+	}
+
 	protected void send(String txt) {
 		logger.info("send: {}", txt);
 		/**
 		 * transmit message
 		 */
 		AwtBroker.get().getController().say(txt);
+	}
+
+	private void showDictionary(boolean b) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private void showKeyboard(boolean mode) {
+		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
+
+			@Override
+			public Boolean startJob() {
+				JDialog dialog = getDialogKeyboard();
+				dialog.setVisible(mode);
+				dialog.setLocation(LocationUtil.getLocation(ViewId.KEYBOARD, dialog.getBounds()));
+				return true;
+			}
+		});
 	}
 
 }
