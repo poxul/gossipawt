@@ -16,6 +16,10 @@ public class InputItemConstants {
 	
 	public static final InputItemId ITEM_EMOTE_YES = new InputItemId("chat.emoticon.button_yes");
 	public static final InputItemId ITEM_EMOTE_NO = new InputItemId("chat.emoticon.button_no");
+	public static final InputItemId ITEM_EMOTE_OK = new InputItemId("chat.emoticon.button_ok");
+	public static final InputItemId ITEM_EMOTE_KO = new InputItemId("chat.emoticon.button_ko");
+	public static final InputItemId ITEM_DICTIONARY = new InputItemId("chat.function.dictionary");
+	public static final InputItemId ITEM_KEYBOARD= new InputItemId("chat.function.keyboard");
 
 	public static InputItemId createKeyId(String k) {
 		return new InputItemId("itemid." + k);

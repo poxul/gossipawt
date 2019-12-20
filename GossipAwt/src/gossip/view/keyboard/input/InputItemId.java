@@ -34,6 +34,10 @@ public class InputItemId {
 		return true;
 	}
 
+	public String nameValue() {
+		return name;
+	}
+
 	@Override
 	public String toString() {
 		return "InputItemId [name=" + name + "]";

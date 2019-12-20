@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import org.apache.logging.log4j.Logger;
 
+import gossip.config.DimensionConstants;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
@@ -72,7 +73,7 @@ public class GossipAwt {
 		JDialog dialog = new JDialog();
 		dialog.setUndecorated(true);
 		dialog.setLayout(new BorderLayout());
-		dialog.setPreferredSize(new Dimension(450, 300));
+		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
 		dialog.add(getMainView(), BorderLayout.CENTER);
 		dialog.pack();
 		return dialog;

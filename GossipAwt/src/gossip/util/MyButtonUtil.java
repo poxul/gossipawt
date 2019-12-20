@@ -11,7 +11,7 @@ public class MyButtonUtil {
 
 	public static MyButton createSimpleButton(InputItemId id, String imageName, ButtonFaceListener listener) {
 		MyButton button = new MyButton();
-		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace("simple");
+		DefaultButtonFace buttonFace = DefaultButtonFace.createButtonFace(id.nameValue());
 		buttonFace.addButtonFaceListener(listener);
 		buttonFace.setInputItemId(id);
 		buttonFace.setOverlay(ImageUtil.getImage(imageName));

@@ -90,6 +90,7 @@ public class JPanelChatView extends JPanelDisposable {
 		try {
 			Document doc = getEditPane().getDocument();
 			doc.insertString(doc.getLength(), s, null);
+			// FIXME scroll to end !
 		} catch (BadLocationException e) {
 			logger.error(e.getMessage(), e);
 		}
