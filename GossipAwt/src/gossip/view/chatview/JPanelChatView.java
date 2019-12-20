@@ -55,7 +55,7 @@ public class JPanelChatView extends JPanelDisposable {
 				if (newValue instanceof OperatorSayMessage) {
 					addIncommingMessage((OperatorSayMessage) newValue);
 				} else {
-					logger.error("invalid say event {}", newValue);
+					logger.error("invalid incomming event {}", newValue);
 				}
 			} else {
 				logger.warn("unhandled event {} {}", origin, newValue);

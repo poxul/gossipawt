@@ -77,13 +77,11 @@ public class MainFooterView extends JPanelDisposable {
 	}
 
 	protected void send(String txt) {
-		// TODO Auto-generated method stub
 		logger.info("send: {}", txt);
 		/**
 		 * transmit message
 		 */
 		AwtBroker.get().getController().say(txt);
-
 	}
 
 }
