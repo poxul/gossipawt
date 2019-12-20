@@ -1,6 +1,7 @@
 package gossip.view.toast;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -12,8 +13,10 @@ import javax.swing.BorderFactory;
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
+import gossip.data.AwtBroker;
 import gossip.lib.panel.JPanelMyBack;
 import gossip.lib.panel.MyTextField;
+import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.util.MyLogger;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
@@ -27,7 +30,7 @@ public class JPanelToastView extends JPanelMyBack {
 
 	private final List<ActuatedListener> actuatedListenerList = new ArrayList<>();
 
-	private ActuationState state = ActuationState.IDLE;
+	private ActuationState state =ActuationState.UNKNOWN;
 
 	public JPanelToastView() {
 		super(ColorConstants.COLOR_UNSELECTED_1, ColorConstants.COLOR_UNSELECTED_2, BorderFactory.createEmptyBorder(0, 0, 0, 0), false);
@@ -89,6 +92,10 @@ public class JPanelToastView extends JPanelMyBack {
 				}
 			}
 		});
+		
+		AwtBroker.get().getData().getServerConnectedProperty().addModelChangeListener((source, origin, oldValue, newValue) -> updateConnectionState());
+		updateConnectionState();
+		updateState(ActuationState.IDLE);
 	}
 
 	public void removeActuatedListener(ActuatedListener listener) {
@@ -104,7 +111,17 @@ public class JPanelToastView extends JPanelMyBack {
 	public void clearState() {
 		updateState(ActuationState.IDLE);
 	}
-	
+
+	private void updateConnectionState() {
+		boolean isConnected = AwtBroker.get().getData().getServerConnectedProperty().getValue();
+		if (isConnected) {
+			setBorder(BorderFactory.createEmptyBorder());
+		} else {
+			RoundedLineBorder border = new RoundedLineBorder(Color.BLACK, Color.GRAY, 2, 3, false);
+			setBorder(border);
+		}
+	}
+
 	protected void updateState(ActuationState state) {
 		if (this.state != state) {
 			this.state = state;
