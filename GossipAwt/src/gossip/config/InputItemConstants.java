@@ -25,4 +25,9 @@ public class InputItemConstants {
 		return new InputItemId("itemid." + k);
 	}
 
+	public static final InputItemId[] CLIENT_TABEL_NAMES = { new InputItemId("clients_table.selected"), new InputItemId("clients_table.name"),
+			new InputItemId("clients_table.host"), new InputItemId("clients_table.comment"),
+	
+	};
+
 }

@@ -1,5 +1,6 @@
 package gossip.data.model;
 
+import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
 
@@ -42,4 +43,7 @@ public class MySimpleMap<K, V> extends DataModelBase {
 		return map.size();
 	}
 
+	public Collection<V> getCollection() {
+		return map.values();
+	}
 }
