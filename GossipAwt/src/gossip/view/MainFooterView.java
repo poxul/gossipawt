@@ -54,7 +54,6 @@ public class MainFooterView extends JPanelDisposable {
 	};
 
 	private JPanelDisposable dialogsPanel;
-
 	private JDialog dialogKeyboard;
 
 	public MainFooterView() {
