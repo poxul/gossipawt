@@ -108,6 +108,7 @@ public class DictionaryTableModel extends AbstractTableModel {
 				val.selectProperty().setValue((Boolean) aValue);
 			}
 		}
+
 	}
 
 }
