@@ -30,7 +30,10 @@ public class JPanelDictionaryTab extends JPanelDisposable {
 
 	private JTable table;
 
-	public JPanelDictionaryTab() {
+	private final ApplicationType filterType;
+
+	public JPanelDictionaryTab(ApplicationType filterType) {
+		this.filterType = filterType;
 		init();
 	}
 
@@ -39,7 +42,6 @@ public class JPanelDictionaryTab extends JPanelDisposable {
 		buildView();
 	}
 
-	
 	private void buildView() {
 		setLayout(new BorderLayout());
 		setOpaque(true);
@@ -67,8 +69,7 @@ public class JPanelDictionaryTab extends JPanelDisposable {
 	}
 
 	private TableModel getModel() {
-		return new DictionaryTableModel(AwtBroker.get().getData().getClients(), ApplicationType.DESKTOP);
+		return new DictionaryTableModel(AwtBroker.get().getData().getClients(), filterType);
 	}
-	
 
 }
