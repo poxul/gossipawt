@@ -23,6 +23,7 @@ import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.util.MyButtonUtil;
+import gossip.view.MainView.ViewController;
 
 public class MainFooterView extends JPanelDisposable {
 
@@ -56,7 +57,10 @@ public class MainFooterView extends JPanelDisposable {
 	private JPanelDisposable dialogsPanel;
 	private JDialog dialogKeyboard;
 
-	public MainFooterView() {
+	private final ViewController viewController;
+
+	public MainFooterView(ViewController viewController) {
+		this.viewController = viewController;
 		init();
 	}
 
@@ -75,7 +79,7 @@ public class MainFooterView extends JPanelDisposable {
 
 	// TOD Keyboard dialog class
 	private JDialog createDialogKeyBoard() {
-		return  KeyboardDialog.createDialogKeyBoard();
+		return KeyboardDialog.createDialogKeyBoard();
 	}
 
 	protected void function(String name) {
@@ -152,8 +156,11 @@ public class MainFooterView extends JPanelDisposable {
 	}
 
 	private void showDictionary(boolean b) {
-		// TODO Auto-generated method stub
-
+		if (b) {
+			viewController.showDictionary();
+		} else {
+			viewController.showChat();
+		}
 	}
 
 	private void showKeyboard(boolean mode) {
