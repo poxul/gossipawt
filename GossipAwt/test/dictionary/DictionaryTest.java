@@ -17,7 +17,7 @@ import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
-import gossip.view.dictionary.JPanelDictionary;
+import gossip.view.dictionary.JPanelDictionaryTab;
 
 public class DictionaryTest {
 
@@ -40,8 +40,8 @@ public class DictionaryTest {
 		// NOP
 	}
 
-	private JPanelDictionary createContentPane() {
-		JPanelDictionary panel = new JPanelDictionary();
+	private JPanelDictionaryTab createContentPane() {
+		JPanelDictionaryTab panel = new JPanelDictionaryTab();
 		return panel;
 	}
 

@@ -8,6 +8,7 @@ import javax.swing.table.AbstractTableModel;
 import gossip.config.InputItemConstants;
 import gossip.data.MyProfileId;
 import gossip.data.ObservableClientProfile;
+import gossip.data.device.DeviceData.ApplicationType;
 import gossip.data.model.MySimpleMap;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
@@ -25,19 +26,30 @@ public class DictionaryTableModel extends AbstractTableModel {
 	 * 
 	 */
 
-	private List<ObservableClientProfile> profiles;
+	private final List<ObservableClientProfile> profiles = new ArrayList<>();
 
-	public DictionaryTableModel(MySimpleMap<MyProfileId, ObservableClientProfile> clients) {
+	private final ApplicationType filterType;
+
+	public DictionaryTableModel(MySimpleMap<MyProfileId, ObservableClientProfile> clients, ApplicationType type) {
 		this.clients = clients;
-		clients.addModelChangeListener((source, origin, oldValue, newValue) -> updateTable());
+		this.filterType = type;
+		clients.addModelChangeListener((source, origin, oldValue, newValue) -> updateFilterList());
+		updateFilterList();
 	}
 
-	private void updateTable() {
+	private void updateFilterList() {
 		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("") {
 
 			@Override
 			public Boolean startJob() {
-				profiles = new ArrayList<>(clients.getCollection());
+				profiles.clear();
+
+				for (ObservableClientProfile c : clients.getCollection()) {
+					if (c.getMyProfile().getType() == filterType) {
+						profiles.add(c);
+					}
+				}
+
 				fireTableDataChanged();
 				return true;
 			}

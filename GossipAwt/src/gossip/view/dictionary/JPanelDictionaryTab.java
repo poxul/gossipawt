@@ -12,24 +12,25 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
 import gossip.data.AwtBroker;
+import gossip.data.device.DeviceData.ApplicationType;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.panel.disposable.JScrollPaneDisposable;
 import gossip.lib.util.MyLogger;
 
-public class JPanelDictionary extends JPanelDisposable {
+public class JPanelDictionaryTab extends JPanelDisposable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger logger = MyLogger.getLog(JPanelDictionary.class);
+	private static final Logger logger = MyLogger.getLog(JPanelDictionaryTab.class);
 
 	private JScrollPaneDisposable scrollPane;
 
 	private JTable table;
 
-	public JPanelDictionary() {
+	public JPanelDictionaryTab() {
 		init();
 	}
 
@@ -38,6 +39,7 @@ public class JPanelDictionary extends JPanelDisposable {
 		buildView();
 	}
 
+	
 	private void buildView() {
 		setLayout(new BorderLayout());
 		setOpaque(true);
@@ -65,7 +67,8 @@ public class JPanelDictionary extends JPanelDisposable {
 	}
 
 	private TableModel getModel() {
-		return new DictionaryTableModel(AwtBroker.get().getData().getClients());
+		return new DictionaryTableModel(AwtBroker.get().getData().getClients(), ApplicationType.DESKTOP);
 	}
+	
 
 }
