@@ -51,11 +51,11 @@ public class ViewController implements ActuatedListener {
 		this.client = gClient;
 	}
 
-	public void showDictionary() {
+	public void showDictionaryTab() {
 		getMainView().switchView(MainView.DICTIONARY_VIEW);
 	}
 
-	public void showChat() {
+	public void showChatTab() {
 		getMainView().switchView(MainView.CHAT_VIEW);
 	}
 
@@ -90,6 +90,10 @@ public class ViewController implements ActuatedListener {
 	private void toggleDialog() {
 		isShowChat = !isShowChat;
 		showChatDialog(isShowChat);
+		showKeyboard(isShowChat);
+		if( isShowChat ) {
+			showChatTab();
+		}
 	}
 
 	private MainView getMainView() {

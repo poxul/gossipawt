@@ -138,9 +138,9 @@ public class MainFooterView extends JPanelDisposable {
 
 	private void showDictionary(boolean b) {
 		if (b) {
-			viewController.showDictionary();
+			viewController.showDictionaryTab();
 		} else {
-			viewController.showChat();
+			viewController.showChatTab();
 		}
 	}
 
