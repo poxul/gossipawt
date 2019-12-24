@@ -20,11 +20,11 @@ import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.util.MyLogger;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
-public class JPanelToastView extends JPanelMyBack {
+public class JPanelToastButton extends JPanelMyBack {
 
 	private static final long serialVersionUID = 1L;
 
-	private static Logger logger = MyLogger.getLog(JPanelToastView.class);
+	private static Logger logger = MyLogger.getLog(JPanelToastButton.class);
 
 	private MyTextField textField;
 
@@ -32,7 +32,7 @@ public class JPanelToastView extends JPanelMyBack {
 
 	private ActuationState state =ActuationState.UNKNOWN;
 
-	public JPanelToastView() {
+	public JPanelToastButton() {
 		super(ColorConstants.COLOR_UNSELECTED_1, ColorConstants.COLOR_UNSELECTED_2, BorderFactory.createEmptyBorder(0, 0, 0, 0), false);
 		init();
 	}

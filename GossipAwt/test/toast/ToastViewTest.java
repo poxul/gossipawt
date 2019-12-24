@@ -24,7 +24,7 @@ import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
 import gossip.view.MainView;
 import gossip.view.ViewController;
-import gossip.view.toast.JPanelToastView;
+import gossip.view.toast.JPanelToastButton;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
 public class ToastViewTest {
@@ -41,7 +41,7 @@ public class ToastViewTest {
 	}
 
 	private JFrame frame;
-	private JPanelToastView toastView;
+	private JPanelToastButton toastView;
 	private GossipClient gClient;
 	private JDialog dialogChat;
 	private MainView mainView;
@@ -51,8 +51,8 @@ public class ToastViewTest {
 		// NOP
 	}
 
-	private JPanelToastView createToastView() {
-		JPanelToastView panel = new JPanelToastView();
+	private JPanelToastButton createToastView() {
+		JPanelToastButton panel = new JPanelToastButton();
 		panel.setMessage("Hier könnte ihre Werbung stehen und weitere Kleinigkeiten");
 
 		panel.addActuatedListener(state -> {
@@ -101,7 +101,7 @@ public class ToastViewTest {
 		return new MainView(new ViewController(gClient));
 	}
 
-	private JPanelToastView getContentPane() {
+	private JPanelToastButton getContentPane() {
 		if (toastView == null) {
 			toastView = createToastView();
 		}

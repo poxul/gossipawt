@@ -31,5 +31,6 @@ public class InputItemConstants {
 
 	public static final InputItemId ITEM_APPLICATION_DESCTOP = new InputItemId("dictionary.tab.desctop");
 	public static final InputItemId ITEM_APPLICATION_MACHINE = new InputItemId("dictionary.tab.machine");
+	public static final InputItemId ITEM_TOAST_BUTTON = new InputItemId("toast.button");
 
 }
