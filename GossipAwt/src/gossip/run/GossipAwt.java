@@ -2,6 +2,7 @@ package gossip.run;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.Properties;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -12,28 +13,55 @@ import org.apache.logging.log4j.Logger;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
+import gossip.data.device.DeviceIdUtil;
 import gossip.data.device.DeviceData.ApplicationType;
+import gossip.lib.exception.ConfigurationException;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.panel.ComponentUtil;
+import gossip.lib.util.CmdLineUtil;
 import gossip.lib.util.MyLogger;
+import gossip.lib.util.StringUtil;
 import gossip.view.ViewController;
 
 public class GossipAwt {
 
 	private static Logger logger = MyLogger.getLog(GossipAwt.class);
 
+	private static final String HELP_TEXT = "\n\tCommand line options :" + "\n\t --base <path> | -b <path>" + "\n\t [--host 127.0.0.1][-h localhost]"
+			+ "\n\t [--port 45049][-p 12345]" + "\n";
+
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GossipAwt test = new GossipAwt();
-		test.initView();
+		GossipAwt awtView = new GossipAwt();
+
+		DeviceIdUtil.setType(ApplicationType.MACHINE);
+		Properties prop = new Properties();
+		try {
+			CmdLineUtil.parseCmd(args, prop);
+		} catch (ConfigurationException e) {
+			logger.error(HELP_TEXT);
+			System.exit(-1);
+		}
+		String basePath = prop.getProperty("base");
+		String hostName = prop.getProperty("host");
+		String strPort = prop.getProperty("port");
+
+		if (StringUtil.isNullOrEmpty(hostName) || StringUtil.isNullOrEmpty(basePath)) {
+			logger.error(HELP_TEXT);
+			System.exit(-1);
+		}
+		int port = CmdLineUtil.parsePortNumber(strPort);
+		hostName = CmdLineUtil.parseHostName(hostName);
+		logger.info("client started (base)={}, (server)={}, (port)={}", basePath, hostName, port);
+		// go go go
+		awtView.initView(basePath, hostName, port);
 	}
 
 	private JFrame frame;
 	private GossipClient gClient;
-
 
 	public GossipAwt() {
 		// NOP
@@ -70,18 +98,14 @@ public class GossipAwt {
 		AwtBroker.get().getController().init(gClient);
 	}
 
-	public void initView() {
-
-		String basePath = "/home/mila/git/gossipawt/GossipAwt";
-
-		logger.debug("**************************DEBUG******************************************************");
+	public void initView(String basePath, String host, int port) {
 		try {
 			ConfigurationService.initConfigurationService(basePath, ApplicationType.MACHINE, new FileNameUtil());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			System.exit(-2);
 		}
-		initClient("localhost", 45049);
+		initClient(host, port);
 
 		ViewController viewController = new ViewController(gClient);
 
