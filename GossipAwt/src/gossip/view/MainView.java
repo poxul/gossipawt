@@ -2,14 +2,10 @@ package gossip.view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.util.Date;
-import java.util.UUID;
 
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
-import gossip.data.MyProfileId;
-import gossip.data.OperatorSayMessage;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
@@ -73,11 +69,6 @@ public class MainView extends JPanelDisposable {
 
 	private JPanelChatView createChatView() {
 		JPanelChatView panel = new JPanelChatView();
-		// dummy message
-		MyProfileId sender = new MyProfileId(new UUID(0, 1));
-		OperatorSayMessage m = new OperatorSayMessage(sender, "hallo wer da?", new Date());
-		panel.addMessage(m);
-		// dummy message end
 		return panel;
 	}
 

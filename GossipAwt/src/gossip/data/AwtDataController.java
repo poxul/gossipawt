@@ -135,5 +135,4 @@ public class AwtDataController {
 	public MyProfile getMyProfile(MyProfileId id) {
 		return getClientData().getMyProfileOf(id);
 	}
-
 }

@@ -203,4 +203,8 @@ public class AwtData {
 		return osmStack;
 	}
 
+	public void clearUnread() {
+		numMessagesProperty.setValue(0);
+	}
+
 }

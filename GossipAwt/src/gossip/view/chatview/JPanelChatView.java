@@ -1,6 +1,9 @@
 package gossip.view.chatview;
 
 import java.awt.BorderLayout;
+import java.awt.Graphics;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
@@ -15,7 +18,7 @@ import gossip.config.ColorConstants;
 import gossip.config.FontConstants;
 import gossip.data.AwtBroker;
 import gossip.data.OperatorSayMessage;
-import gossip.data.client.ClientDataModel;
+import gossip.data.model.MySimpleList;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.panel.disposable.JScrollPaneDisposable;
 import gossip.lib.util.MyLogger;
@@ -34,45 +37,10 @@ public class JPanelChatView extends JPanelDisposable {
 
 	private JTextPane jPanelTextPane;
 
+	private MySimpleList<OperatorSayMessage> messageStack;
+
 	public JPanelChatView() {
 		init();
-	}
-
-	private ClientDataModel getClientData() {
-		return AwtBroker.get().getController().getClientData();
-	}
-
-	private void init() {
-		// init observation
-		getClientData().addModelChangeListener((source, origin, oldValue, newValue) -> {
-			if (ClientDataModel.SAY.equals(origin)) {
-				if (newValue instanceof OperatorSayMessage) {
-					addMyMessage((OperatorSayMessage) newValue);
-				} else {
-					logger.error("invalid say event {}", newValue);
-				}
-			} else if (ClientDataModel.INCOMMING.equals(origin)) {
-				if (newValue instanceof OperatorSayMessage) {
-					addIncommingMessage((OperatorSayMessage) newValue);
-				} else {
-					logger.error("invalid incomming event {}", newValue);
-				}
-			} else {
-				logger.warn("unhandled event {} {}", origin, newValue);
-			}
-		});
-
-		buildView();
-	}
-
-	private void addMyMessage(OperatorSayMessage m) {
-		logger.info("add message: {}", m);
-		addMessage(m);
-	}
-
-	private void addIncommingMessage(OperatorSayMessage m) {
-		logger.info("add incomming message: {}", m);
-		addMessage(m);
 	}
 
 	public void addMessage(OperatorSayMessage m) {
@@ -91,6 +59,7 @@ public class JPanelChatView extends JPanelDisposable {
 			Document doc = getEditPane().getDocument();
 			doc.insertString(doc.getLength(), s, null);
 			// FIXME scroll to end !
+			clearUnread();
 		} catch (BadLocationException e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -101,6 +70,10 @@ public class JPanelChatView extends JPanelDisposable {
 		setOpaque(true);
 		setBackground(ColorConstants.EDIT_VIEW_BACKGROUND);
 		add(getScrollPane(), BorderLayout.CENTER);
+	}
+
+	protected void clearUnread() {
+		AwtBroker.get().getData().clearUnread();
 	}
 
 	private JTextPane getEditPane() {
@@ -137,6 +110,38 @@ public class JPanelChatView extends JPanelDisposable {
 
 		}
 		return scrollPane;
+	}
+	
+	private void init() {
+		// init observation
+		buildView();
+
+		messageStack = AwtBroker.get().getData().getOsmStack();
+
+		for (OperatorSayMessage m : messageStack.values()) {
+			addMessage(m);
+		}
+
+		messageStack.addModelChangeListener((source, origin, oldValue, newValue) -> {
+			if (newValue instanceof OperatorSayMessage) {
+				addMessage((OperatorSayMessage) newValue);
+			}
+		});
+
+		addComponentListener(new ComponentAdapter() {
+			
+			@Override
+			public void componentShown(ComponentEvent e) {
+				clearUnread();
+			}
+			
+		});
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		// TODO Draw hide and add button
+		super.paint(g);
 	}
 
 	protected void updateView() {

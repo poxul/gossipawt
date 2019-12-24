@@ -1,5 +1,6 @@
 package gossip.data.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gossip.lib.data.DataModelBase;
@@ -27,4 +28,11 @@ public class MySimpleList<V> extends DataModelBase {
 		return list.size();
 	}
 
+	public List<V> values() {
+		return new ArrayList<>(list);
+	}
+
+	public V get(int idx) {
+		return list.get(idx);
+	}
 }
