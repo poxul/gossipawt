@@ -1,13 +1,17 @@
 package gossip.view.chatview;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
 import gossip.data.OperatorSayMessage;
+import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.util.StringValueUtil;
 
@@ -16,7 +20,7 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	private static final long serialVersionUID = 1L;
 
 	private JLabel name;
-	private JLabel message;
+	private JTextField message;
 
 	public OperatorSayMessageCellRenderer() {
 		init();
@@ -29,15 +33,16 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 		return name;
 	}
 
-	private JLabel getLabelMessage() {
+	private JTextField getLabelMessage() {
 		if (message == null) {
-			message = new JLabel();
+			message = new JTextField();
 		}
 		return message;
 	}
 
 	private void init() {
 		setLayout(new BorderLayout());
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 5, 2), new RoundedLineBorder(Color.BLACK, Color.GRAY, 1, 4)));
 		add(getLabelName(), BorderLayout.NORTH);
 		add(getLabelMessage(), BorderLayout.CENTER);
 	}
