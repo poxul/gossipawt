@@ -22,54 +22,44 @@ public class MainView extends JPanelDisposable {
 
 	private static final Logger logger = MyLogger.getLog(MainView.class);
 
-	private static final String CHAT_VIEW = "chat";
-	private static final String DICTIONARY_VIEW = "dictionary";
+	static final String CHAT_VIEW = "chat";
+	static final String DICTIONARY_VIEW = "dictionary";
 
-	
-	public class ViewController {
-		
-		public void showDictionary() {
-			switchView( DICTIONARY_VIEW);
-		}
-		
-		public void showChat() {
-			switchView( CHAT_VIEW);
-		}
-		
-		public boolean isChatView() {
-			return StringUtil.compare(CHAT_VIEW, viewName);
-		}
-		
-	}
-	
-	private ViewController viewController = new ViewController();
-	
-	/*
+	private final ViewController viewController;
+
+	/**
 	 * Main
 	 */
 	private JPanelChatView chatView;
 
-	/*
+	/**
 	 * Footer
 	 */
 	private MainFooterView footerView;
 
-	/*
+	/**
 	 * Headline
 	 */
 	private MainHeaderView headlineView;
 
-	/*
+	/**
 	 * Center view
 	 */
 	private JPanelDisposable view;
 	private CardLayout cardLayout = new CardLayout();
 
+	/**
+	 * Panel that shows possible chat clients
+	 */
 	private JPanelDictionary dictionary;
 
+	/*
+	 * Modle data
+	 */
 	private String viewName = CHAT_VIEW;
 
-	public MainView() {
+	public MainView(ViewController viewController) {
+		this.viewController = viewController;
 		init();
 	}
 
@@ -91,30 +81,6 @@ public class MainView extends JPanelDisposable {
 		return panel;
 	}
 
-	private JPanelDisposable getView() {
-		if (view == null) {
-			view = new JPanelDisposable();
-			view.setLayout(cardLayout);
-			view.add(getChatView(), CHAT_VIEW);
-			view.add(getDictionaryView(), DICTIONARY_VIEW);
-		}
-		return view;
-	}
-
-	public void switchView(String name) {
-		if (!StringUtil.compare(viewName, name)) {
-			cardLayout.show(getView(), name);
-			viewName = name;
-		}
-	}
-
-	private JPanelDictionary getDictionaryView() {
-		if (dictionary == null) {
-			dictionary = new JPanelDictionary();
-		}
-		return dictionary;
-	}
-
 	private MainFooterView createFooterView() {
 		MainFooterView panel = new MainFooterView(viewController);
 		logger.info("create footer");
@@ -134,6 +100,13 @@ public class MainView extends JPanelDisposable {
 		return chatView;
 	}
 
+	private JPanelDictionary getDictionaryView() {
+		if (dictionary == null) {
+			dictionary = new JPanelDictionary();
+		}
+		return dictionary;
+	}
+
 	private MainFooterView getFooterView() {
 		if (footerView == null) {
 			footerView = createFooterView();
@@ -148,8 +121,29 @@ public class MainView extends JPanelDisposable {
 		return headlineView;
 	}
 
+	private JPanelDisposable getView() {
+		if (view == null) {
+			view = new JPanelDisposable();
+			view.setLayout(cardLayout);
+			view.add(getChatView(), CHAT_VIEW);
+			view.add(getDictionaryView(), DICTIONARY_VIEW);
+		}
+		return view;
+	}
+
 	private void init() {
 		buildView();
+	}
+
+	public boolean isChatView() {
+		return StringUtil.compare(CHAT_VIEW, viewName);
+	}
+
+	public void switchView(String name) {
+		if (!StringUtil.compare(viewName, name)) {
+			cardLayout.show(getView(), name);
+			viewName = name;
+		}
 	}
 
 }

@@ -1,31 +1,22 @@
 package gossip.run;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import org.apache.logging.log4j.Logger;
 
-import gossip.config.DimensionConstants;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
 import gossip.data.device.DeviceData.ApplicationType;
 import gossip.lib.file.FileNameUtil;
-import gossip.lib.job.ServiceJobAWTDefault;
-import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.ComponentUtil;
 import gossip.lib.util.MyLogger;
-import gossip.run.ConfigurationService;
-import gossip.run.GossipClient;
-import gossip.view.MainView;
-import gossip.view.toast.JPanelToastView;
-import gossip.view.toast.ActuatedListener.ActuationState;
+import gossip.view.ViewController;
 
 public class GossipAwt {
 
@@ -41,42 +32,11 @@ public class GossipAwt {
 	}
 
 	private JFrame frame;
-	private JPanelToastView toastView;
 	private GossipClient gClient;
-	private JDialog dialogChat;
-	private MainView mainView;
-	private boolean isShowChat;
+
 
 	public GossipAwt() {
 		// NOP
-	}
-
-	private JPanelToastView createToastView() {
-		JPanelToastView panel = new JPanelToastView();
-		panel.setMessage("Hier könnte ihre Werbung stehen und weitere Kleinigkeiten");
-
-		panel.addActuatedListener(state -> {
-			if (state == ActuationState.TRIGGERED) {
-				toggleDialog();
-			}
-		});
-
-		return panel;
-	}
-
-	private void toggleDialog() {
-		isShowChat = !isShowChat;
-		showDialog(isShowChat);
-	}
-
-	private JDialog createDialogChat() {
-		JDialog dialog = new JDialog();
-		dialog.setUndecorated(true);
-		dialog.setLayout(new BorderLayout());
-		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
-		dialog.add(getMainView(), BorderLayout.CENTER);
-		dialog.pack();
-		return dialog;
 	}
 
 	protected void createGui(JPanel panel) {
@@ -88,31 +48,6 @@ public class GossipAwt {
 		frame.pack();
 		frame.setVisible(true);
 		frame.setLocation(LocationUtil.getLocation(ViewId.TOAST, frame.getBounds()));
-	}
-
-	private MainView getMainView() {
-		if (mainView == null) {
-			mainView = createMainView();
-		}
-		return mainView;
-	}
-
-	private MainView createMainView() {
-		return new MainView();
-	}
-
-	private JPanelToastView getContentPane() {
-		if (toastView == null) {
-			toastView = createToastView();
-		}
-		return toastView;
-	}
-
-	public JDialog getDialogChat() {
-		if (dialogChat == null) {
-			dialogChat = createDialogChat();
-		}
-		return dialogChat;
 	}
 
 	public JFrame getFrame() {
@@ -147,25 +82,12 @@ public class GossipAwt {
 			System.exit(-2);
 		}
 		initClient("localhost", 45049);
+
+		ViewController viewController = new ViewController(gClient);
+
 		initData();
 
-		SwingUtilities.invokeLater(() -> createGui(getContentPane()));
-	}
-
-	protected void showDialog(boolean mode) {
-		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
-
-			@Override
-			public Boolean startJob() {
-				JDialog dialog = getDialogChat();
-				dialog.setVisible(mode);
-				dialog.setLocation(LocationUtil.getLocation(ViewId.CHAT, dialog.getBounds()));
-				if (mode) {
-					getContentPane().clearState();
-				}
-				return true;
-			}
-		});
+		SwingUtilities.invokeLater(() -> createGui(viewController.getToadtView()));
 	}
 
 }

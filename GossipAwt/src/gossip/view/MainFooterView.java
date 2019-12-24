@@ -5,25 +5,19 @@ import java.awt.FlowLayout;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.JDialog;
 
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.DimensionConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
-import gossip.config.LocationUtil;
-import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
-import gossip.lib.job.ServiceJobAWTDefault;
-import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.button.ButtonFaceListener;
 import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
 import gossip.util.MyButtonUtil;
-import gossip.view.MainView.ViewController;
 
 public class MainFooterView extends JPanelDisposable {
 
@@ -55,7 +49,6 @@ public class MainFooterView extends JPanelDisposable {
 	};
 
 	private JPanelDisposable dialogsPanel;
-	private JDialog dialogKeyboard;
 
 	private final ViewController viewController;
 
@@ -77,11 +70,6 @@ public class MainFooterView extends JPanelDisposable {
 		add(getPanelDialogs());
 	}
 
-	// TOD Keyboard dialog class
-	private JDialog createDialogKeyBoard() {
-		return KeyboardDialog.createDialogKeyBoard();
-	}
-
 	protected void function(String name) {
 		if (StringUtil.compare(name, InputItemConstants.ITEM_DICTIONARY.nameValue())) {
 			showDictionary(true);
@@ -91,13 +79,6 @@ public class MainFooterView extends JPanelDisposable {
 			logger.error("unknown function: {}", name);
 		}
 
-	}
-
-	public JDialog getDialogKeyboard() {
-		if (dialogKeyboard == null) {
-			dialogKeyboard = createDialogKeyBoard();
-		}
-		return dialogKeyboard;
 	}
 
 	/**
@@ -163,17 +144,8 @@ public class MainFooterView extends JPanelDisposable {
 		}
 	}
 
-	private void showKeyboard(boolean mode) {
-		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
-
-			@Override
-			public Boolean startJob() {
-				JDialog dialog = getDialogKeyboard();
-				dialog.setVisible(mode);
-				dialog.setLocation(LocationUtil.getLocation(ViewId.KEYBOARD, dialog.getBounds()));
-				return true;
-			}
-		});
+	private void showKeyboard(boolean b) {
+		viewController.showKeyboard(b);
 	}
 
 }

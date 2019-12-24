@@ -15,29 +15,31 @@ import gossip.util.KeyBoardUtil.KeyBoardType;
 import gossip.view.keyboard.JPanelKeyBoard;
 
 public class KeyboardDialog extends JDialog {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	private static final Logger logger = MyLogger.getLog(KeyboardDialog.class);
 
-	
-	public static KeyboardDialog createDialogKeyBoard() {
-		return new KeyboardDialog();
+	public static KeyboardDialog createDialogKeyBoard(ViewController viewController) {
+		return new KeyboardDialog(viewController);
 	}
 
 	private JPanelKeyBoard keyBoardPanel;
-	
-	public KeyboardDialog() {
+
+	private ViewController viewController;
+
+	public KeyboardDialog(ViewController viewController) {
+		this.viewController = viewController;
 		init();
 	}
-	
+
 	private void init() {
 		setUndecorated(true);
 		setLayout(new BorderLayout());
 		setPreferredSize(DimensionConstants.KEYBOARD_DIALOG_DIMENSION);
 		add(getKeyBoardView(), BorderLayout.CENTER);
 		setBackground(ColorConstants.KEYBOARD_BACKGROUND);
-		pack();		
+		pack();
 	}
 
 	private JPanelKeyBoard getKeyBoardView() {
@@ -46,12 +48,15 @@ public class KeyboardDialog extends JDialog {
 		}
 		return keyBoardPanel;
 	}
-	
+
 	private JPanelKeyBoard createKeyBoard() {
 		JPanelKeyBoard panel = new JPanelKeyBoard();
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
-		panel.addKeyBoardResultListener(event -> logger.info("keyboard end result: {}", event));
+		panel.addKeyBoardResultListener(event -> {
+			logger.info("keyboard end result: {}", event);
+			viewController.onKeyboard(event);
+		});
 		return panel;
 	}
-	
+
 }

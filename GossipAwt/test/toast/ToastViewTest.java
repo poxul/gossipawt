@@ -23,6 +23,7 @@ import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
 import gossip.view.MainView;
+import gossip.view.ViewController;
 import gossip.view.toast.JPanelToastView;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
@@ -97,7 +98,7 @@ public class ToastViewTest {
 	}
 
 	private MainView createMainView() {
-		return new MainView();
+		return new MainView(new ViewController(gClient));
 	}
 
 	private JPanelToastView getContentPane() {
