@@ -23,6 +23,8 @@ public class AwtData {
 
 	private final MySimpleModel<Integer> numConnectedProperty = new MySimpleModel<>(0);
 
+	private final MySimpleModel<Integer> numMessagesProperty = new MySimpleModel<>(0);
+
 	private final MySimpleModel<Integer> numReceiverProperty = new MySimpleModel<>(0);
 
 	private final MySimpleModel<String> myNameProperty = new MySimpleModel<>();
@@ -86,6 +88,10 @@ public class AwtData {
 		return numConnectedProperty;
 	}
 
+	public MySimpleModel<Integer> getNumMessagesProperty() {
+		return numMessagesProperty;
+	}
+
 	public void setConnections(final Collection<MyProfile> collection) {
 		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("scp") {
 
@@ -97,7 +103,6 @@ public class AwtData {
 		});
 	}
 
-	
 	private void upateClientsList(Collection<MyProfile> collection) {
 
 		Set<MyProfileId> keys = clients.keySet();
@@ -191,6 +196,7 @@ public class AwtData {
 
 	public void addMessage(OperatorSayMessage osm) {
 		osmStack.add(osm);
+		numMessagesProperty.setValue(numMessagesProperty.getValue() + 1);
 	}
 
 	public MySimpleList<OperatorSayMessage> getOsmStack() {

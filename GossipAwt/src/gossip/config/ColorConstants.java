@@ -39,4 +39,10 @@ public class ColorConstants {
 
 	public static final Color KEYBOARD_BACKGROUND = MAIN_VIEW_BACKGROUND;
 
+	public static final Color TOAST_BUTTON_CIRCLE_TEXT_COLOR= Color.DARK_GRAY;
+
+	public static final Color TOAST_BUTTON_CIRCLE_COLOR_DISCONNECTED = Color.BLACK;
+
+	public static final Color TOAST_BUTTON_CIRCLE_COLOR_CONNECTED = Color.GREEN;
+
 }

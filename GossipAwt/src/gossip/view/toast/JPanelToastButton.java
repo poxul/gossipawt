@@ -1,8 +1,11 @@
 package gossip.view.toast;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -18,6 +21,7 @@ import gossip.lib.panel.JPanelMyBack;
 import gossip.lib.panel.MyTextField;
 import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.util.MyLogger;
+import gossip.util.DrawingUtil;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
 public class JPanelToastButton extends JPanelMyBack {
@@ -30,7 +34,17 @@ public class JPanelToastButton extends JPanelMyBack {
 
 	private final List<ActuatedListener> actuatedListenerList = new ArrayList<>();
 
-	private ActuationState state =ActuationState.UNKNOWN;
+	private ActuationState state = ActuationState.UNKNOWN;
+
+	/**
+	 * State of server connection
+	 */
+	private boolean isConnected;
+
+	/**
+	 * unread messages
+	 */
+	private int messageCount = 0;
 
 	public JPanelToastButton() {
 		super(ColorConstants.COLOR_UNSELECTED_1, ColorConstants.COLOR_UNSELECTED_2, BorderFactory.createEmptyBorder(0, 0, 0, 0), false);
@@ -65,6 +79,39 @@ public class JPanelToastButton extends JPanelMyBack {
 		return textField;
 	}
 
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+
+		Graphics2D g2d = DrawingUtil.getGraphics2d(g);
+		try {
+			if (isConnected) {
+				if (messageCount > 0) {
+					g2d.setColor(ColorConstants.TOAST_BUTTON_CIRCLE_COLOR_CONNECTED);
+					g2d.setStroke(new BasicStroke(2));
+					g2d.drawOval(2, 2, 20, 20);
+					g2d.setColor(ColorConstants.TOAST_BUTTON_CIRCLE_TEXT_COLOR);
+					String num = String.valueOf(messageCount);
+					if (messageCount > 25) {
+						g2d.drawString("XX", 4, 17);
+					} else if (messageCount > 9) {
+						g2d.drawString(num, 4, 17);
+					} else {
+						g2d.drawString(num, 8, 17);
+					}
+				} else {
+					g2d.setColor(ColorConstants.TOAST_BUTTON_CIRCLE_COLOR_CONNECTED);
+					g2d.fillOval(7, 7, 10, 10);
+				}
+			} else {
+				g2d.setColor(ColorConstants.TOAST_BUTTON_CIRCLE_COLOR_DISCONNECTED);
+				g2d.drawOval(7, 7, 10, 10);
+			}
+		} finally {
+			g2d.dispose();
+		}
+	}
+
 	private void init() {
 		buildView();
 
@@ -92,10 +139,18 @@ public class JPanelToastButton extends JPanelMyBack {
 				}
 			}
 		});
-		
+
 		AwtBroker.get().getData().getServerConnectedProperty().addModelChangeListener((source, origin, oldValue, newValue) -> updateConnectionState());
+		
+		AwtBroker.get().getData().getNumMessagesProperty().addModelChangeListener((source, origin, oldValue, newValue) -> updateMessagesCount());
+		
 		updateConnectionState();
 		updateState(ActuationState.IDLE);
+	}
+
+	protected void updateMessagesCount() {
+		messageCount = AwtBroker.get().getData().getNumMessagesProperty().getValue();
+		repaint();
 	}
 
 	public void removeActuatedListener(ActuatedListener listener) {
@@ -113,7 +168,7 @@ public class JPanelToastButton extends JPanelMyBack {
 	}
 
 	private void updateConnectionState() {
-		boolean isConnected = AwtBroker.get().getData().getServerConnectedProperty().getValue();
+		isConnected = AwtBroker.get().getData().getServerConnectedProperty().getValue();
 		if (isConnected) {
 			setBorder(BorderFactory.createEmptyBorder());
 		} else {
