@@ -23,7 +23,7 @@ public class ColorConstants {
 
 	public static final long DEFAULT_MASK_ALPHA_MASK = 0xFF;
 
-	public static final Color EDIT_VIEW_BACKGROUND = Color.LIGHT_GRAY;
+	public static final Color EDIT_VIEW_BACKGROUND = new Color(0x00CC33);
 	public static final Color EDIT_VIEW_TEXT = Color.BLUE;
 
 	public static final Color TOAST_BACKGROUND = Color.WHITE;
@@ -44,5 +44,13 @@ public class ColorConstants {
 	public static final Color TOAST_BUTTON_CIRCLE_COLOR_DISCONNECTED = Color.BLACK;
 
 	public static final Color TOAST_BUTTON_CIRCLE_COLOR_CONNECTED = Color.GREEN;
+
+	public static final Color BACKGROUND_COLOR_CHAT_LABEL = Color.LIGHT_GRAY;
+
+	public static final Color BACKGROUND_COLOR_CHAT_MESSAGE = Color.LIGHT_GRAY;
+
+	public static final Color FRAME_COLOR_CHAT_1 = Color.DARK_GRAY;
+
+	public static final Color FRAME_COLOR_CHAT_2 = Color.DARK_GRAY;
 
 }

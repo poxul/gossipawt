@@ -70,6 +70,7 @@ public class GossipAwt {
 	protected void createGui(JPanel panel) {
 		frame = ComponentUtil.createFrame();
 		frame.setAlwaysOnTop(true);
+		frame.setOpacity(0.5f);
 		frame.setContentPane(panel);
 		frame.setBackground(Color.DARK_GRAY);
 		frame.setPreferredSize(new Dimension(120, 25));

@@ -6,8 +6,11 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 import javax.swing.JList;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ListDataEvent;
+import javax.swing.event.ListDataListener;
 
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +18,8 @@ import gossip.config.ColorConstants;
 import gossip.data.AwtBroker;
 import gossip.data.OperatorSayMessage;
 import gossip.data.model.MySimpleList;
+import gossip.lib.job.ServiceJobAWTDefault;
+import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.panel.disposable.JScrollPaneDisposable;
 import gossip.lib.util.MyLogger;
@@ -32,6 +37,8 @@ public class JPanelChatView extends JPanelDisposable {
 
 	private JList<OperatorSayMessage> messageList;
 
+	private MessageListModel listModel;
+
 	public JPanelChatView() {
 		init();
 	}
@@ -40,8 +47,20 @@ public class JPanelChatView extends JPanelDisposable {
 		logger.info("message: {}", m);
 		if (isShowing()) {
 			clearUnread();
-			// TODO SCROLL TO BOTTOM
 		}
+	}
+
+	public void scrollToBottom() {
+		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("scroll to bottom") {
+
+			@Override
+			public Boolean startJob() {
+				JScrollBar bar = scrollPane.getVerticalScrollBar();
+				bar.setValue(bar.getMaximum());
+				return true;
+			}
+		});
+
 	}
 
 	private void buildView() {
@@ -59,12 +78,40 @@ public class JPanelChatView extends JPanelDisposable {
 		if (messageList == null) {
 			messageList = new JList<>(getMessageListModel());
 			messageList.setEnabled(false);
+			messageList.setOpaque(false);
 			messageList.setCellRenderer(new OperatorSayMessageCellRenderer());
 		}
 		return messageList;
 	}
 
 	private MessageListModel getMessageListModel() {
+		if (listModel == null) {
+			listModel = createMessageListModel();
+			listModel.addListDataListener(new ListDataListener() {
+
+				@Override
+				public void intervalRemoved(ListDataEvent e) {
+					// Not Fired!
+					scrollToBottom();
+				}
+
+				@Override
+				public void intervalAdded(ListDataEvent e) {
+					// Not fired !
+					scrollToBottom();
+				}
+
+				@Override
+				public void contentsChanged(ListDataEvent e) {
+					// NOP
+					scrollToBottom();
+				}
+			});
+		}
+		return listModel;
+	}
+
+	private MessageListModel createMessageListModel() {
 		return new MessageListModel(AwtBroker.get().getData().getOsmStack());
 	}
 
@@ -73,7 +120,6 @@ public class JPanelChatView extends JPanelDisposable {
 			scrollPane = new JScrollPaneDisposable(getMessageList());
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-			scrollPane.setOpaque(false);
 			scrollPane.getViewport().setOpaque(false);
 		}
 		return scrollPane;

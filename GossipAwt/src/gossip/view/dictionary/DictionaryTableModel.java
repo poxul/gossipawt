@@ -58,7 +58,7 @@ public class DictionaryTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		return clients.size();
+		return profiles.size();
 	}
 
 	@Override
@@ -87,6 +87,11 @@ public class DictionaryTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
+
+		if (profiles.isEmpty() || profiles.size() <= rowIndex) {
+			return null;
+		}
+
 		ObservableClientProfile val = profiles.get(rowIndex);
 		if (val != null) {
 			switch (columnIndex) {

@@ -1,7 +1,6 @@
 package gossip.view.chatview;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.BorderFactory;
@@ -10,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
+import gossip.config.ColorConstants;
 import gossip.data.OperatorSayMessage;
 import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -29,6 +29,7 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	private JLabel getLabelName() {
 		if (name == null) {
 			name = new JLabel();
+			name.setBackground(ColorConstants.BACKGROUND_COLOR_CHAT_LABEL);
 		}
 		return name;
 	}
@@ -36,13 +37,16 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	private JTextField getLabelMessage() {
 		if (message == null) {
 			message = new JTextField();
+			message.setBackground(ColorConstants.BACKGROUND_COLOR_CHAT_MESSAGE);
 		}
 		return message;
 	}
 
 	private void init() {
 		setLayout(new BorderLayout());
-		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 5, 2), new RoundedLineBorder(Color.BLACK, Color.GRAY, 1, 4)));
+		setOpaque(false);
+		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createEmptyBorder(2, 2, 5, 2),
+				new RoundedLineBorder(ColorConstants.FRAME_COLOR_CHAT_1, ColorConstants.FRAME_COLOR_CHAT_2, 1, 4)));
 		add(getLabelName(), BorderLayout.NORTH);
 		add(getLabelMessage(), BorderLayout.CENTER);
 	}
@@ -66,7 +70,7 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	public void setName(OperatorSayMessage m) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(StringValueUtil.getName(m.getSender()));
-		sb.append("\t");
+		sb.append("                                ");
 		sb.append(StringValueUtil.buildTimeStirng(m.getDate()));
 		getLabelName().setText(sb.toString());
 	}

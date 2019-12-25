@@ -14,13 +14,16 @@ public class MessageListModel extends AbstractListModel<OperatorSayMessage> {
 	public MessageListModel(MySimpleList<OperatorSayMessage> messageStack) {
 		this.messageStack = messageStack;
 		messageStack.addModelChangeListener((source, origin, oldValue, newValue) -> onChange());
+
+		messageStack.addModelChangeListener((source, origin, oldValue, newValue) -> fireContentsChanged(source, 0, getSize()));
+
 	}
 
 	private static final long serialVersionUID = 1L;
 
 	private void onChange() {
 		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("message list changed") {
-			
+
 			@Override
 			public Boolean startJob() {
 				fireContentsChanged(this, 0, getSize());
