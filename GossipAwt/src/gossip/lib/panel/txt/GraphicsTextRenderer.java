@@ -13,8 +13,8 @@ import java.awt.Rectangle;
 import javax.swing.SwingConstants;
 
 import gossip.lib.panel.txt.StringFormatterUtil.Alignment;
+import gossip.lib.util.ObjectUtil;
 import gossip.lib.util.StringUtil;
-import gossip.util.ObjectUtil;
 
 public class GraphicsTextRenderer implements ButtonTextUiInterface {
 

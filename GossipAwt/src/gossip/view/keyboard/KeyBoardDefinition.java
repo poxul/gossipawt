@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import gossip.lib.util.ObjectUtil;
 import gossip.lib.util.StringUtil;
-import gossip.util.ObjectUtil;
 import gossip.view.keyboard.input.InputItemId;
 import gossip.view.keyboard.key.MyKey;
 

@@ -13,9 +13,9 @@ import java.awt.geom.Rectangle2D;
 import gossip.config.ColorConstants;
 import gossip.lib.panel.txt.GraphicsTextRenderer;
 import gossip.lib.panel.txt.StringFormatterUtil;
+import gossip.lib.util.ObjectUtil;
 import gossip.lib.util.StringUtil;
 import gossip.util.DrawingUtil;
-import gossip.util.ObjectUtil;
 
 public class MyTextField extends AbstractMyTextField {
 

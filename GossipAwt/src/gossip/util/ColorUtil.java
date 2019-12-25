@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
 import gossip.lib.util.MyLogger;
+import gossip.lib.util.NumberUtil;
 import gossip.lib.util.StringUtil;
 
 public class ColorUtil {

@@ -1,7 +1,7 @@
 package gossip.data.model;
 
 import gossip.lib.data.DataModelBase;
-import gossip.util.ObjectUtil;
+import gossip.lib.util.ObjectUtil;
 
 public class MySimpleModel<T> extends DataModelBase {
 
