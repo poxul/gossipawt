@@ -39,18 +39,17 @@ public class ColorConstants {
 
 	public static final Color KEYBOARD_BACKGROUND = MAIN_VIEW_BACKGROUND;
 
-	public static final Color TOAST_BUTTON_CIRCLE_TEXT_COLOR= Color.DARK_GRAY;
-
+	public static final Color TOAST_BUTTON_CIRCLE_TEXT_COLOR = Color.DARK_GRAY;
 	public static final Color TOAST_BUTTON_CIRCLE_COLOR_DISCONNECTED = Color.BLACK;
-
 	public static final Color TOAST_BUTTON_CIRCLE_COLOR_CONNECTED = Color.GREEN;
 
 	public static final Color BACKGROUND_COLOR_CHAT_LABEL = Color.LIGHT_GRAY;
-
 	public static final Color BACKGROUND_COLOR_CHAT_MESSAGE = Color.LIGHT_GRAY;
 
 	public static final Color FRAME_COLOR_CHAT_1 = Color.DARK_GRAY;
-
 	public static final Color FRAME_COLOR_CHAT_2 = Color.DARK_GRAY;
+
+	public static final Color BUTTON_COLOR_HIDE = new Color(0.8f, 0.0f, 0.0f, 0.7f);
+	public static final Color BUTTON_COLOR_ADD = new Color(0.0f, 0.0f, 0.8f, 0.7f);
 
 }
