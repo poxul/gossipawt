@@ -98,7 +98,7 @@ public class ToastViewTest {
 	}
 
 	private MainView createMainView() {
-		return new MainView(new ViewController(gClient, null));
+		return new MainView(new ViewController(gClient, null), null);
 	}
 
 	private JPanelToastButton getContentPane() {

@@ -22,7 +22,7 @@ public class AwtData {
 	private final MySimpleModel<Boolean> serverConnectedProperty = new MySimpleModel<>(false);
 
 	private final MySimpleModel<Boolean> showChatProperty = new MySimpleModel<>(false);
-	
+
 	private final MySimpleModel<Boolean> showKeyboardProperty = new MySimpleModel<>(false);
 
 	private final MySimpleModel<Integer> numConnectedProperty = new MySimpleModel<>(0);
@@ -32,6 +32,8 @@ public class AwtData {
 	private final MySimpleModel<Integer> numReceiverProperty = new MySimpleModel<>(0);
 
 	private final MySimpleModel<String> myNameProperty = new MySimpleModel<>();
+
+	private final MySimpleModel<String> mainTabProperty = new MySimpleModel<>();
 
 	private final MySimpleMap<MyProfileId, ObservableClientProfile> clients = new MySimpleMap<>(new HashMap<MyProfileId, ObservableClientProfile>());
 
@@ -239,6 +241,10 @@ public class AwtData {
 
 	public MySimpleModel<Boolean> getShowKeyboardProperty() {
 		return showKeyboardProperty;
+	}
+
+	public MySimpleModel<String> getMainTabProperty() {
+		return mainTabProperty;
 	}
 
 }

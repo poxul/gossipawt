@@ -14,6 +14,7 @@ public class InputItemConstants {
 	public static final InputItemId ITEM_CLIENTS = new InputItemId("headline.clients");
 	public static final InputItemId ITEM_VERSION = new InputItemId("headline.version");
 
+	public static final InputItemId ITEM_CHAT = new InputItemId("chat");
 	public static final InputItemId ITEM_EMOTE_YES = new InputItemId("chat.emoticon.button_yes");
 	public static final InputItemId ITEM_EMOTE_NO = new InputItemId("chat.emoticon.button_no");
 	public static final InputItemId ITEM_EMOTE_OK = new InputItemId("chat.emoticon.button_ok");

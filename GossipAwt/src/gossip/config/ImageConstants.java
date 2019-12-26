@@ -20,5 +20,6 @@ public class ImageConstants {
 
 	public static final String IMAGE_NAME_BUTTON_HIDE_CHAT = "cancel.png";
 	public static final String IMAGE_NAME_BUTTON_ADD_MESSAGE = "add.png";
+	public static final String IMAGE_NAME_BUTTON_CHAT = "chat.png";
 
 }

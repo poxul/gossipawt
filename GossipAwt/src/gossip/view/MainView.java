@@ -6,6 +6,7 @@ import java.awt.CardLayout;
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
+import gossip.data.AwtData;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.lib.util.StringUtil;
@@ -54,8 +55,11 @@ public class MainView extends JPanelDisposable {
 	 */
 	private String viewName = CHAT_VIEW;
 
-	public MainView(ViewController viewController) {
+	private final AwtData data;
+
+	public MainView(ViewController viewController, AwtData data) {
 		this.viewController = viewController;
+		this.data = data;
 		init();
 	}
 
@@ -73,7 +77,7 @@ public class MainView extends JPanelDisposable {
 	}
 
 	private MainFooterView createFooterView() {
-		MainFooterView panel = new MainFooterView(viewController);
+		MainFooterView panel = new MainFooterView(viewController, data);
 		logger.info("create footer");
 		return panel;
 	}
@@ -124,6 +128,11 @@ public class MainView extends JPanelDisposable {
 
 	private void init() {
 		buildView();
+		data.getMainTabProperty().addModelChangeListener((source, origin, oldValue, newValue) -> {
+			String name = data.getMainTabProperty().getValue();
+			switchView(name);
+		});
+
 	}
 
 	public boolean isChatView() {

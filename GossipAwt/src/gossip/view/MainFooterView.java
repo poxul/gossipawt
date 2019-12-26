@@ -12,6 +12,7 @@ import gossip.config.DimensionConstants;
 import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
 import gossip.data.AwtBroker;
+import gossip.data.AwtData;
 import gossip.lib.panel.button.ButtonFaceListener;
 import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -51,11 +52,14 @@ public class MainFooterView extends JPanelDisposable {
 	private JPanelDisposable dialogsPanel;
 
 	private final ViewController viewController;
+	private final AwtData data;
 
-	private boolean isKb;
+	private MyButton buttonDictionary;
+	private MyButton buttonChat;
 
-	public MainFooterView(ViewController viewController) {
+	public MainFooterView(ViewController viewController, AwtData data) {
 		this.viewController = viewController;
+		this.data = data;
 		init();
 	}
 
@@ -75,9 +79,8 @@ public class MainFooterView extends JPanelDisposable {
 	protected void function(String name) {
 		if (StringUtil.compare(name, InputItemConstants.ITEM_DICTIONARY.nameValue())) {
 			showDictionary(true);
-		} else if (StringUtil.compare(name, InputItemConstants.ITEM_KEYBOARD.nameValue())) {
-			isKb = !isKb;
-			showKeyboard(isKb);
+		} else if (StringUtil.compare(name, InputItemConstants.ITEM_CHAT.nameValue())) {
+			showDictionary(false);
 		} else {
 			logger.error("unknown function: {}", name);
 		}
@@ -92,16 +95,28 @@ public class MainFooterView extends JPanelDisposable {
 	private JPanelDisposable getPanelDialogs() {
 		if (dialogsPanel == null) {
 			dialogsPanel = new JPanelDisposable();
-			dialogsPanel.setLayout(new FlowLayout());
+			dialogsPanel.setLayout(new BoxLayout(dialogsPanel, BoxLayout.LINE_AXIS));
 			dialogsPanel.setPreferredSize(new Dimension(150, DimensionConstants.FOOTER_HEIGHT));
 			dialogsPanel.setOpaque(false);
-			MyButton button = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_DICTIONARY, ImageConstants.IMAGE_NAME_BUTTON_DICTIONARY,
-					functionListener);
-			dialogsPanel.add(button);
-			button = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_KEYBOARD, ImageConstants.IMAGE_NAME_BUTTON_KEYBOARD, functionListener);
-			dialogsPanel.add(button);
+			dialogsPanel.add(getButtonDictionary());
+			dialogsPanel.add(getButtonChat());
 		}
 		return dialogsPanel;
+	}
+
+	private MyButton getButtonDictionary() {
+		if (buttonDictionary == null) {
+			buttonDictionary = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_DICTIONARY, ImageConstants.IMAGE_NAME_BUTTON_DICTIONARY,
+					functionListener);
+		}
+		return buttonDictionary;
+	}
+
+	private MyButton getButtonChat() {
+		if (buttonChat== null) {
+			buttonChat = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_CHAT, ImageConstants.IMAGE_NAME_BUTTON_CHAT, functionListener);
+		}
+		return buttonChat;
 	}
 
 	/**
@@ -129,6 +144,25 @@ public class MainFooterView extends JPanelDisposable {
 
 	private void init() {
 		buildView();
+		data.getMainTabProperty().addModelChangeListener((source, origin, oldValue, newValue) -> {
+			if (newValue instanceof String) {
+				setButtonDictionaryState((String) newValue);
+			}
+		});
+
+		setButtonDictionaryState(data.getMainTabProperty().getValue());
+	}
+
+	private void setButtonDictionaryState(String state) {
+		if (StringUtil.compare(state, MainView.DICTIONARY_VIEW)) {
+			getButtonDictionary().setVisible(false);
+			getButtonChat().setVisible(true);
+		} else if (StringUtil.compare(state, MainView.CHAT_VIEW)) {
+			getButtonDictionary().setVisible(true);
+			getButtonChat().setVisible(false);
+		} else {
+			logger.warn("unknown state: {}", state);
+		}
 	}
 
 	protected void send(String txt) {
@@ -145,10 +179,6 @@ public class MainFooterView extends JPanelDisposable {
 		} else {
 			viewController.showChatTab();
 		}
-	}
-
-	private void showKeyboard(boolean b) {
-		viewController.showKeyboard(b);
 	}
 
 }

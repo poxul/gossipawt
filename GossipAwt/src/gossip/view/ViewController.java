@@ -77,22 +77,21 @@ public class ViewController implements ActuatedListener {
 
 				@Override
 				public Boolean startJob() {
-					boolean isShowKeyboard= data.getShowKeyboardProperty().getValue();
+					boolean isShowKeyboard = data.getShowKeyboardProperty().getValue();
 					doShowKeyboard(isShowKeyboard);
 					return true;
 				}
 			});
 		});
 
-		
 	}
 
 	public void showDictionaryTab() {
-		getMainView().switchView(MainView.DICTIONARY_VIEW);
+		data.getMainTabProperty().setValue(MainView.DICTIONARY_VIEW);
 	}
 
 	public void showChatTab() {
-		getMainView().switchView(MainView.CHAT_VIEW);
+		data.getMainTabProperty().setValue(MainView.CHAT_VIEW);
 	}
 
 	public void showKeyboard(boolean mode) {
@@ -146,7 +145,7 @@ public class ViewController implements ActuatedListener {
 	}
 
 	private MainView createMainView() {
-		return new MainView(this);
+		return new MainView(this, data);
 	}
 
 	private void showChatDialog(boolean mode) {
