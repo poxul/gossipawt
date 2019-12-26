@@ -1,7 +1,10 @@
 package gossip.lib.panel.flatbutton;
 
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.SwingUtilities;
 
 public abstract class MouseListenerButton implements MouseListener {
 
@@ -9,15 +12,19 @@ public abstract class MouseListenerButton implements MouseListener {
 
 	private boolean isArmed;
 
-	public MouseListenerButton(FlatButton button) {
+	private final Component destination;
+
+	public MouseListenerButton(FlatButton button, Component destination) {
 		super();
 		this.button = button;
+		this.destination = destination;
 	}
 
 	public abstract void onTrigger();
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		e = SwingUtilities.convertMouseEvent(e.getComponent(), e, destination);
 		if (isArmed && button.contains(e.getPoint())) {
 			isArmed = false;
 			onTrigger();
@@ -26,8 +33,11 @@ public abstract class MouseListenerButton implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
+		e = SwingUtilities.convertMouseEvent(e.getComponent(), e, destination);
 		if (button.contains(e.getPoint())) {
 			isArmed = true;
+		}else {
+			isArmed = false;
 		}
 	}
 
