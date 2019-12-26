@@ -17,6 +17,8 @@ import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
 import gossip.data.AwtBroker;
+import gossip.lib.job.ServiceJobAWTDefault;
+import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.JPanelMyBack;
 import gossip.lib.panel.MyTextField;
 import gossip.lib.panel.RoundedLineBorder;
@@ -141,9 +143,9 @@ public class JPanelToastButton extends JPanelMyBack {
 		});
 
 		AwtBroker.get().getData().getServerConnectedProperty().addModelChangeListener((source, origin, oldValue, newValue) -> updateConnectionState());
-		
+
 		AwtBroker.get().getData().getNumMessagesProperty().addModelChangeListener((source, origin, oldValue, newValue) -> updateMessagesCount());
-		
+
 		updateConnectionState();
 		updateState(ActuationState.IDLE);
 	}
@@ -169,15 +171,23 @@ public class JPanelToastButton extends JPanelMyBack {
 
 	private void updateConnectionState() {
 		isConnected = AwtBroker.get().getData().getServerConnectedProperty().getValue();
-		if (isConnected) {
-			setBorder(BorderFactory.createEmptyBorder());
-		} else {
-			RoundedLineBorder border = new RoundedLineBorder(Color.BLACK, Color.GRAY, 2, 3, false);
-			setBorder(border);
-		}
+		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("") {
+
+			@Override
+			public Boolean startJob() {
+				if (isConnected) {
+					setBorder(BorderFactory.createEmptyBorder());
+				} else {
+					RoundedLineBorder border = new RoundedLineBorder(Color.BLACK, Color.GRAY, 2, 3, false);
+					setBorder(border);
+				}
+				return true;
+			}
+		});
 	}
 
 	protected void updateState(ActuationState state) {
+		logger.info("update state: {}", state);
 		if (this.state != state) {
 			this.state = state;
 			switch (state) {

@@ -21,6 +21,7 @@ import gossip.config.ImageConstants;
 import gossip.data.AwtBroker;
 import gossip.data.OperatorSayMessage;
 import gossip.data.model.MySimpleList;
+import gossip.data.model.MySimpleModel;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -115,6 +116,8 @@ public class JPanelChatView extends JPanelDisposable {
 	private FlatButton buttonHide;
 	private FlatButton buttonAdd;
 
+	private MySimpleModel<Boolean> isKeyboard;
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPaneDisposable(getMessageList()) {
@@ -143,9 +146,11 @@ public class JPanelChatView extends JPanelDisposable {
 								int yPos = DrawableFlatButton.BUTTON_GAP;
 								buttonHide.draw(g2d, xPos, yPos);
 
-								xPos = getWidth() - DrawableFlatButton.BUTTON_GAP - DrawableFlatButton.BUTTON_DIAMETER;
-								yPos = getHeight() - (DrawableFlatButton.BUTTON_DIAMETER + DrawableFlatButton.BUTTON_GAP);
-								buttonAdd.draw(g2d, xPos, yPos);
+								if (!isKeyboard.getValue()) {
+									xPos = getWidth() - DrawableFlatButton.BUTTON_GAP - DrawableFlatButton.BUTTON_DIAMETER;
+									yPos = getHeight() - (DrawableFlatButton.BUTTON_DIAMETER + DrawableFlatButton.BUTTON_GAP);
+									buttonAdd.draw(g2d, xPos, yPos);
+								}
 							} finally {
 								g2d.dispose();
 							}
@@ -196,6 +201,10 @@ public class JPanelChatView extends JPanelDisposable {
 	private void init() {
 		// init observation
 		buildView();
+
+		 isKeyboard = AwtBroker.get().getData().getShowKeyboardProperty();
+		 isKeyboard.addModelChangeListener((source, origin, oldValue, newValue) -> repaint());
+
 		MySimpleList<OperatorSayMessage> messageStack = AwtBroker.get().getData().getOsmStack();
 		messageStack.addModelChangeListener((source, origin, oldValue, newValue) -> {
 			if (newValue instanceof OperatorSayMessage) {

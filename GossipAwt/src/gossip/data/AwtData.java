@@ -21,6 +21,10 @@ public class AwtData {
 
 	private final MySimpleModel<Boolean> serverConnectedProperty = new MySimpleModel<>(false);
 
+	private final MySimpleModel<Boolean> showChatProperty = new MySimpleModel<>(false);
+	
+	private final MySimpleModel<Boolean> showKeyboardProperty = new MySimpleModel<>(false);
+
 	private final MySimpleModel<Integer> numConnectedProperty = new MySimpleModel<>(0);
 
 	private final MySimpleModel<Integer> numMessagesProperty = new MySimpleModel<>(0);
@@ -43,6 +47,28 @@ public class AwtData {
 			@Override
 			public Boolean startJob() {
 				serverConnectedProperty.setValue(isConnected);
+				return true;
+			}
+		});
+	}
+
+	public void setShowChat(boolean isShowing) {
+		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("sscp") {
+
+			@Override
+			public Boolean startJob() {
+				showChatProperty.setValue(isShowing);
+				return true;
+			}
+		});
+	}
+
+	public void setShowKeyBoard(boolean isShowing) {
+		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("sskp") {
+
+			@Override
+			public Boolean startJob() {
+				showKeyboardProperty.setValue(isShowing);
 				return true;
 			}
 		});
@@ -205,6 +231,14 @@ public class AwtData {
 
 	public void clearUnread() {
 		numMessagesProperty.setValue(0);
+	}
+
+	public MySimpleModel<Boolean> getShowChatProperty() {
+		return showChatProperty;
+	}
+
+	public MySimpleModel<Boolean> getShowKeyboardProperty() {
+		return showKeyboardProperty;
 	}
 
 }

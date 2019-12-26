@@ -108,9 +108,9 @@ public class GossipAwt {
 		}
 		initClient(host, port);
 
-		ViewController viewController = new ViewController(gClient);
 
 		initData();
+		ViewController viewController = new ViewController(gClient, AwtBroker.get().getData());
 
 		SwingUtilities.invokeLater(() -> createGui(viewController.getToadtView()));
 	}

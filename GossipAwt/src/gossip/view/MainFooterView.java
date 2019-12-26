@@ -52,6 +52,8 @@ public class MainFooterView extends JPanelDisposable {
 
 	private final ViewController viewController;
 
+	private boolean isKb;
+
 	public MainFooterView(ViewController viewController) {
 		this.viewController = viewController;
 		init();
@@ -74,7 +76,8 @@ public class MainFooterView extends JPanelDisposable {
 		if (StringUtil.compare(name, InputItemConstants.ITEM_DICTIONARY.nameValue())) {
 			showDictionary(true);
 		} else if (StringUtil.compare(name, InputItemConstants.ITEM_KEYBOARD.nameValue())) {
-			showKeyboard(true);
+			isKb = !isKb;
+			showKeyboard(isKb);
 		} else {
 			logger.error("unknown function: {}", name);
 		}
