@@ -21,6 +21,7 @@ import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.run.GossipClient;
+import gossip.view.ViewController;
 import gossip.view.chatview.JPanelChatView;
 
 public class ChatViewTest {
@@ -45,7 +46,7 @@ public class ChatViewTest {
 	}
 
 	private JPanelChatView createContentPane() {
-		JPanelChatView panel = new JPanelChatView();
+		JPanelChatView panel = new JPanelChatView(new ViewController(gClient));
 		// dummy message
 		MyProfileId sender = new MyProfileId(new UUID(0, 1));
 		OperatorSayMessage m = new OperatorSayMessage(sender, "lala", new Date());

@@ -68,7 +68,7 @@ public class MainView extends JPanelDisposable {
 	}
 
 	private JPanelChatView createChatView() {
-		JPanelChatView panel = new JPanelChatView();
+		JPanelChatView panel = new JPanelChatView(viewController);
 		return panel;
 	}
 

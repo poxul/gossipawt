@@ -23,7 +23,6 @@ public class ViewController implements ActuatedListener {
 	 */
 	private JDialog dialogChat;
 
-
 	/**
 	 * Dialog to enter text
 	 */
@@ -33,9 +32,9 @@ public class ViewController implements ActuatedListener {
 	 * Main panel in chat view
 	 */
 	private MainView mainView;
-	
+
 	/**
-	 * Button you can not hide 
+	 * Button you can not hide
 	 */
 	private JPanelToastButton toastButton;
 
@@ -88,11 +87,17 @@ public class ViewController implements ActuatedListener {
 	}
 
 	private void toggleDialog() {
-		isShowChat = !isShowChat;
-		showChatDialog(isShowChat);
-		showKeyboard(isShowChat);
-		if( isShowChat ) {
-			showChatTab();
+		showChat(!isShowChat);
+	}
+
+	public void showChat(boolean mode) {
+		if (isShowChat != mode) {
+			isShowChat = mode;
+			showChatDialog(isShowChat);
+			showKeyboard(isShowChat);
+			if (isShowChat) {
+				showChatTab();
+			}
 		}
 	}
 
