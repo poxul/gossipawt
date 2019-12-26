@@ -4,13 +4,17 @@ import java.awt.BorderLayout;
 
 import javax.swing.JDialog;
 
+import org.apache.logging.log4j.Logger;
+
 import gossip.config.DimensionConstants;
 import gossip.config.InputItemConstants;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
+import gossip.data.AwtData;
 import gossip.event.KeyBoardResultEvent;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
+import gossip.lib.util.MyLogger;
 import gossip.manager.LanguageManager;
 import gossip.run.GossipClient;
 import gossip.view.toast.ActuatedListener;
@@ -18,6 +22,7 @@ import gossip.view.toast.JPanelToastButton;
 
 public class ViewController implements ActuatedListener {
 
+	private static final Logger logger = MyLogger.getLog(ViewController.class);
 	/**
 	 * Main chat dialog
 	 */
@@ -38,16 +43,37 @@ public class ViewController implements ActuatedListener {
 	 */
 	private JPanelToastButton toastButton;
 
-	/**
-	 * Chat view sate
-	 */
-	private boolean isShowChat;
-
 	@SuppressWarnings("unused")
 	private final GossipClient client;
 
-	public ViewController(GossipClient gClient) {
+	private AwtData data;
+
+	public ViewController(GossipClient gClient, AwtData data) {
 		this.client = gClient;
+		this.data = data;
+		init();
+	}
+
+	private void init() {
+		data.getShowChatProperty().addModelChangeListener((source, origin, oldValue, newValue) -> {
+
+			ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("") {
+
+				@Override
+				public Boolean startJob() {
+					boolean isShowChat = data.getShowChatProperty().getValue();
+					showChatDialog(isShowChat);
+					showKeyboard(isShowChat);
+					if (isShowChat) {
+						showChatTab();
+					}
+
+					return true;
+				}
+			});
+
+		});
+
 	}
 
 	public void showDictionaryTab() {
@@ -87,18 +113,13 @@ public class ViewController implements ActuatedListener {
 	}
 
 	private void toggleDialog() {
-		showChat(!isShowChat);
+		logger.info("toggle dialog");
+		showChat(!data.getShowChatProperty().getValue());
 	}
 
-	public void showChat(boolean mode) {
-		if (isShowChat != mode) {
-			isShowChat = mode;
-			showChatDialog(isShowChat);
-			showKeyboard(isShowChat);
-			if (isShowChat) {
-				showChatTab();
-			}
-		}
+	public void showChat(final boolean mode) {
+		logger.info("show chat: {}", mode);
+		data.getShowChatProperty().setValue(mode);
 	}
 
 	private MainView getMainView() {
@@ -112,20 +133,26 @@ public class ViewController implements ActuatedListener {
 		return new MainView(this);
 	}
 
-	protected void showChatDialog(boolean mode) {
-		ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
-
-			@Override
-			public Boolean startJob() {
-				JDialog dialog = getDialogChat();
-				dialog.setVisible(mode);
-				dialog.setLocation(LocationUtil.getLocation(ViewId.CHAT, dialog.getBounds()));
-				if (mode) {
-					getToadtView().clearState();
-				}
-				return true;
+	private void showChatDialog(boolean mode) {
+		if (!mode) {
+			if (dialogChat != null) {
+				dialogChat.setVisible(false);
 			}
-		});
+		} else {
+			ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
+
+				@Override
+				public Boolean startJob() {
+					JDialog dialog = getDialogChat();
+					dialog.setVisible(mode);
+					dialog.setLocation(LocationUtil.getLocation(ViewId.CHAT, dialog.getBounds()));
+					if (mode) {
+						getToadtView().clearState();
+					}
+					return true;
+				}
+			});
+		}
 	}
 
 	public JPanelToastButton getToadtView() {
@@ -146,7 +173,7 @@ public class ViewController implements ActuatedListener {
 		return LanguageManager.getLocaleText(InputItemConstants.ITEM_TOAST_BUTTON);
 	}
 
-	public JDialog getDialogChat() {
+	private JDialog getDialogChat() {
 		if (dialogChat == null) {
 			dialogChat = createDialogChat();
 		}
@@ -163,7 +190,7 @@ public class ViewController implements ActuatedListener {
 		return dialog;
 	}
 
-	public JDialog getDialogKeyboard() {
+	private JDialog getDialogKeyboard() {
 		if (keyboardDialog == null) {
 			keyboardDialog = createDialogKeyBoard();
 		}

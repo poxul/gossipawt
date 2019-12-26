@@ -46,7 +46,7 @@ public class ChatViewTest {
 	}
 
 	private JPanelChatView createContentPane() {
-		JPanelChatView panel = new JPanelChatView(new ViewController(gClient));
+		JPanelChatView panel = new JPanelChatView(new ViewController(gClient, null));
 		// dummy message
 		MyProfileId sender = new MyProfileId(new UUID(0, 1));
 		OperatorSayMessage m = new OperatorSayMessage(sender, "lala", new Date());
