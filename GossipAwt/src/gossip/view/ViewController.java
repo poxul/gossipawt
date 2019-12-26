@@ -54,84 +54,6 @@ public class ViewController implements ActuatedListener {
 		init();
 	}
 
-	private JDialog createDialogChat() {
-		JDialog dialog = new JDialog();
-		dialog.setUndecorated(true);
-		dialog.setLayout(new BorderLayout());
-		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
-		dialog.add(getMainView(), BorderLayout.CENTER);
-		dialog.pack();
-		return dialog;
-	}
-
-	private JDialog createDialogKeyBoard() {
-		return KeyboardDialog.createDialogKeyBoard(this);
-	}
-
-	private MainView createMainView() {
-		return new MainView(this);
-	}
-
-	private JPanelToastButton createToastButton() {
-		JPanelToastButton panel = new JPanelToastButton();
-		panel.setMessage(getToastButtonMessage());
-		panel.addActuatedListener(this);
-		return panel;
-	}
-
-	public void doShowKeyboard(boolean mode) {
-		if (keyboardDialog != null) {
-			doShowKeyboardIntern(mode);
-		} else if (mode) {
-			ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
-
-				@Override
-				public Boolean startJob() {
-					doShowKeyboardIntern(mode);
-					return true;
-				}
-			});
-		}
-	}
-
-	private void doShowKeyboardIntern(boolean mode) {
-		JDialog dialog = getDialogKeyboard();
-		dialog.setVisible(mode);
-		dialog.setLocation(LocationUtil.getLocation(ViewId.KEYBOARD, dialog.getBounds()));
-	}
-
-	private JDialog getDialogChat() {
-		if (dialogChat == null) {
-			dialogChat = createDialogChat();
-		}
-		return dialogChat;
-	}
-
-	private JDialog getDialogKeyboard() {
-		if (keyboardDialog == null) {
-			keyboardDialog = createDialogKeyBoard();
-		}
-		return keyboardDialog;
-	}
-
-	private MainView getMainView() {
-		if (mainView == null) {
-			mainView = createMainView();
-		}
-		return mainView;
-	}
-
-	public JPanelToastButton getToadtView() {
-		if (toastButton == null) {
-			toastButton = createToastButton();
-		}
-		return toastButton;
-	}
-
-	private String getToastButtonMessage() {
-		return LanguageManager.getLocaleText(InputItemConstants.ITEM_TOAST_BUTTON);
-	}
-
 	private void init() {
 		data.getShowChatProperty().addModelChangeListener((source, origin, oldValue, newValue) -> {
 			ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("") {
@@ -165,6 +87,40 @@ public class ViewController implements ActuatedListener {
 		
 	}
 
+	public void showDictionaryTab() {
+		getMainView().switchView(MainView.DICTIONARY_VIEW);
+	}
+
+	public void showChatTab() {
+		getMainView().switchView(MainView.CHAT_VIEW);
+	}
+
+	public void showKeyboard(boolean mode) {
+		logger.info("show chat: {}", mode);
+		data.getShowKeyboardProperty().setValue(mode);
+	}
+
+	public void doShowKeyboard(boolean mode) {
+		if (keyboardDialog != null) {
+			doShowKeyboardIntern(mode);
+		} else if (mode) {
+			ServiceJobAWTUtil.invokeAWT(new ServiceJobAWTDefault("view dialog: " + mode) {
+
+				@Override
+				public Boolean startJob() {
+					doShowKeyboardIntern(mode);
+					return true;
+				}
+			});
+		}
+	}
+
+	private void doShowKeyboardIntern(boolean mode) {
+		JDialog dialog = getDialogKeyboard();
+		dialog.setVisible(mode);
+		dialog.setLocation(LocationUtil.getLocation(ViewId.KEYBOARD, dialog.getBounds()));
+	}
+
 	@Override
 	public void onActuated(ActuationState state) {
 		if (state == ActuationState.TRIGGERED) {
@@ -172,13 +128,25 @@ public class ViewController implements ActuatedListener {
 		}
 	}
 
-	public void onKeyboard(KeyBoardResultEvent event) {
-		// TODO handle keyboard result
+	private void toggleDialog() {
+		logger.info("toggle dialog");
+		showChat(!data.getShowChatProperty().getValue());
 	}
 
 	public void showChat(final boolean mode) {
 		logger.info("show chat: {}", mode);
 		data.getShowChatProperty().setValue(mode);
+	}
+
+	private MainView getMainView() {
+		if (mainView == null) {
+			mainView = createMainView();
+		}
+		return mainView;
+	}
+
+	private MainView createMainView() {
+		return new MainView(this);
 	}
 
 	private void showChatDialog(boolean mode) {
@@ -203,22 +171,54 @@ public class ViewController implements ActuatedListener {
 		}
 	}
 
-	public void showChatTab() {
-		getMainView().switchView(MainView.CHAT_VIEW);
+	public JPanelToastButton getToadtView() {
+		if (toastButton == null) {
+			toastButton = createToastButton();
+		}
+		return toastButton;
 	}
 
-	public void showDictionaryTab() {
-		getMainView().switchView(MainView.DICTIONARY_VIEW);
+	private JPanelToastButton createToastButton() {
+		JPanelToastButton panel = new JPanelToastButton();
+		panel.setMessage(getToastButtonMessage());
+		panel.addActuatedListener(this);
+		return panel;
 	}
 
-	public void showKeyboard(boolean mode) {
-		logger.info("show chat: {}", mode);
-		data.getShowKeyboardProperty().setValue(mode);
+	private String getToastButtonMessage() {
+		return LanguageManager.getLocaleText(InputItemConstants.ITEM_TOAST_BUTTON);
 	}
 
-	private void toggleDialog() {
-		logger.info("toggle dialog");
-		showChat(!data.getShowChatProperty().getValue());
+	private JDialog getDialogChat() {
+		if (dialogChat == null) {
+			dialogChat = createDialogChat();
+		}
+		return dialogChat;
+	}
+
+	private JDialog createDialogChat() {
+		JDialog dialog = new JDialog();
+		dialog.setUndecorated(true);
+		dialog.setLayout(new BorderLayout());
+		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
+		dialog.add(getMainView(), BorderLayout.CENTER);
+		dialog.pack();
+		return dialog;
+	}
+
+	private JDialog getDialogKeyboard() {
+		if (keyboardDialog == null) {
+			keyboardDialog = createDialogKeyBoard();
+		}
+		return keyboardDialog;
+	}
+
+	private JDialog createDialogKeyBoard() {
+		return KeyboardDialog.createDialogKeyBoard(this);
+	}
+
+	public void onKeyboard(KeyBoardResultEvent event) {
+		// TODO handle keyboard result
 	}
 
 }
