@@ -1,5 +1,7 @@
 package gossip.view.dictionary;
 
+import static javax.swing.SwingConstants.TOP;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JTabbedPane;
@@ -12,6 +14,7 @@ import gossip.data.device.DeviceData.ApplicationType;
 import gossip.lib.panel.disposable.JPanelDisposable;
 import gossip.lib.util.MyLogger;
 import gossip.manager.LanguageManager;
+import gossip.view.ViewController;
 
 public class JPanelDictionary extends JPanelDisposable {
 
@@ -22,7 +25,10 @@ public class JPanelDictionary extends JPanelDisposable {
 
 	private static final Logger logger = MyLogger.getLog(JPanelDictionary.class);
 
-	public JPanelDictionary() {
+	private ViewController viewController;
+
+	public JPanelDictionary(ViewController viewController) {
+		this.viewController = viewController;
 		init();
 	}
 
@@ -35,14 +41,14 @@ public class JPanelDictionary extends JPanelDisposable {
 		setLayout(new BorderLayout());
 		setOpaque(true);
 		setBackground(ColorConstants.EDIT_VIEW_BACKGROUND);
-		JTabbedPane tabpane = new JTabbedPane(JTabbedPane.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
+		JTabbedPane tabpane = new JTabbedPane(TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
 		tabpane.addTab(LanguageManager.getLocaleText(InputItemConstants.ITEM_APPLICATION_MACHINE), createDictionaryTab(ApplicationType.MACHINE));
 		tabpane.addTab(LanguageManager.getLocaleText(InputItemConstants.ITEM_APPLICATION_DESCTOP), createDictionaryTab(ApplicationType.DESKTOP));
 		add(tabpane, BorderLayout.CENTER);
 	}
 
 	private JPanelDictionaryTab createDictionaryTab(ApplicationType filterType) {
-		return new JPanelDictionaryTab(filterType);
+		return new JPanelDictionaryTab(filterType, viewController);
 	}
 
 }

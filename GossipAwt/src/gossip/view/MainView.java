@@ -97,7 +97,7 @@ public class MainView extends JPanelDisposable {
 
 	private JPanelDictionary getDictionaryView() {
 		if (dictionary == null) {
-			dictionary = new JPanelDictionary();
+			dictionary = new JPanelDictionary(viewController);
 		}
 		return dictionary;
 	}
