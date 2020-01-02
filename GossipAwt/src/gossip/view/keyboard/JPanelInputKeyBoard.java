@@ -35,14 +35,7 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 
 	private DrawableFlatButton buttonHide;
 
-	/*
-	 * TODO - Shift lock marker - Address Anzeige (###)
-	 * 
-	 */
-
 	private final ViewController viewController;
-
-	private MySimpleSet<MyProfileId> selected;
 
 	public JPanelInputKeyBoard(ViewController viewController) {
 		super();
@@ -51,7 +44,7 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 	}
 
 	private void initObserver() {
-		selected = AwtBroker.get().getData().getSelected();
+		MySimpleSet<MyProfileId> selected = AwtBroker.get().getData().getSelected();
 		selected.addModelChangeListener((source, origin, oldValue, newValue) -> updateInputLabel(selected.values()));
 		updateInputLabel(selected.values());
 	}
@@ -115,7 +108,6 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 		} finally {
 			g2d.dispose();
 		}
-
 	}
 
 	protected void functionHide() {
