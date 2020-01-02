@@ -7,9 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import gossip.data.MyProfile;
-import gossip.data.MyProfileId;
-import gossip.data.OperatorSayMessage;
 import gossip.data.model.MySimpleList;
 import gossip.data.model.MySimpleMap;
 import gossip.data.model.MySimpleModel;
@@ -225,6 +222,23 @@ public class AwtData {
 	public void addMessage(OperatorSayMessage osm) {
 		osmStack.add(osm);
 		numMessagesProperty.setValue(numMessagesProperty.getValue() + 1);
+		if (selected.isEmpty()) {
+			checkSelected(osm.getSender());
+		}
+	}
+
+	/**
+	 * Select client
+	 * 
+	 * @param id
+	 */
+	private void checkSelected(MyProfileId id) {
+		if (id != null) {
+			ObservableClientProfile cl = clients.get(id);
+			if (cl != null) {
+				cl.selectProperty().setValue(true);
+			}
+		}
 	}
 
 	public MySimpleList<OperatorSayMessage> getOsmStack() {
@@ -250,5 +264,5 @@ public class AwtData {
 	public MySimpleSet<MyProfileId> getSelected() {
 		return selected;
 	}
-	
+
 }

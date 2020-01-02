@@ -33,4 +33,8 @@ public class MySimpleSet<V> extends DataModelBase {
 		return new ArrayList<>(set);
 	}
 
+	public boolean isEmpty() {
+		return set.isEmpty();
+	}
+
 }
