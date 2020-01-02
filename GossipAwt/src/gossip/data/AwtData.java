@@ -247,4 +247,8 @@ public class AwtData {
 		return mainTabProperty;
 	}
 
+	public MySimpleSet<MyProfileId> getSelected() {
+		return selected;
+	}
+	
 }

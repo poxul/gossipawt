@@ -28,6 +28,7 @@ import gossip.lib.util.MyLogger;
 import gossip.rule.InputRule.SEVERITY;
 import gossip.util.DisposableUtil;
 import gossip.util.KeyBoardUtil;
+import gossip.view.ViewController;
 import gossip.view.keyboard.JPanelKeyLine.InputMode;
 import gossip.view.keyboard.key.MyKey;
 
@@ -67,10 +68,12 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	private InputMode mode = InputMode.NORMAL;
 
 	private JPanelDisposable keyPanel;
-
 	private Object modeSelected;
 
-	public JPanelKeyBoard() {
+	private final ViewController viewController;
+
+	public JPanelKeyBoard(ViewController viewController) {
+		this.viewController = viewController;
 		init();
 	}
 
@@ -122,7 +125,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 
 	private JPanelInputKeyBoard getInput() {
 		if (input == null) {
-			input = new JPanelInputKeyBoard();
+			input = new JPanelInputKeyBoard(viewController);
 			input.setPreferredSize(DimensionConstants.INPUT_PANEL_SIZE);
 			input.addKeyBoardEventListener(event -> {
 				switch (event.getType()) {

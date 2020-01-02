@@ -1,5 +1,7 @@
 package gossip.data.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 import gossip.lib.data.DataModelBase;
@@ -25,6 +27,10 @@ public class MySimpleSet<V> extends DataModelBase {
 
 	public int size() {
 		return set.size();
+	}
+
+	public Collection<V> values() {
+		return new ArrayList<>(set);
 	}
 
 }

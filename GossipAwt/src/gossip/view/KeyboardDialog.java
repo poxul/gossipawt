@@ -50,7 +50,7 @@ public class KeyboardDialog extends JDialog {
 	}
 
 	private JPanelKeyBoard createKeyBoard() {
-		JPanelKeyBoard panel = new JPanelKeyBoard();
+		JPanelKeyBoard panel = new JPanelKeyBoard(viewController);
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
 		panel.addKeyBoardResultListener(event -> {
 			logger.info("keyboard end result: {}", event);
