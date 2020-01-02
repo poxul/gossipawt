@@ -200,6 +200,7 @@ public class ViewController implements ActuatedListener {
 	private JDialog createDialogChat() {
 		JDialog dialog = new JDialog();
 		dialog.setUndecorated(true);
+		dialog.setAlwaysOnTop(true);
 		dialog.setLayout(new BorderLayout());
 		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
 		dialog.add(getMainView(), BorderLayout.CENTER);

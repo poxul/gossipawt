@@ -35,6 +35,7 @@ public class KeyboardDialog extends JDialog {
 
 	private void init() {
 		setUndecorated(true);
+		setAlwaysOnTop(true);
 		setLayout(new BorderLayout());
 		setPreferredSize(DimensionConstants.KEYBOARD_DIALOG_DIMENSION);
 		add(getKeyBoardView(), BorderLayout.CENTER);

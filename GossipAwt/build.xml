@@ -86,6 +86,7 @@
 		</chmod>
 		<!-- start -->
 		<copy file="${resources}/gossip_awt.sh" todir="${dist_bin}" />
+		<copy file="${resources}/log4j2.xml" todir="${dist_bin}" />
 		<!-- doc -->
 		<copy file="${resources}/readme.txt" tofile="${dist}/readme.txt" />
 

@@ -1,7 +1,8 @@
 #!/bin/bash
 #
+# You have to start this script bevore startin the HMI
 # 
-version="V01.05"
+version="V01.06"
 #   
 # 29.11.2019 
 #
@@ -11,7 +12,7 @@ version="V01.05"
 #
 # Script logging output file
 application_home_dir="${HOME}/.gossip"
-application_base_dir="/opt/GossipAwt"
+application_base_dir="/fwa/GossipAwt"
 log_dir="${application_home_dir}/log"
 log_file="${log_dir}/out.txt"
 
@@ -172,7 +173,6 @@ fi
 
 # Java Environment
 JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
-#JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64/"
 PATH=$JAVA_HOME/bin:$PATH
 
 # Test java
