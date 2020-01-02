@@ -1,4 +1,4 @@
-package gossip.view.chatview;
+package gossip.lib.panel.scroll;
 
 import java.awt.Component;
 import java.awt.Container;

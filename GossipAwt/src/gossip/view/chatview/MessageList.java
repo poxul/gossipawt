@@ -13,24 +13,12 @@ class MessageList extends JList<OperatorSayMessage> {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("unused")
 	private final ViewController viewController;
-
-
-	private DragToScrollListener dragToScrollListener;
 
 	public MessageList(ListModel<OperatorSayMessage> model, ViewController viewController) {
 		super(model);
 		this.viewController = viewController;
-		init();
 	}
 
-	
-	private void init() {
-
-		dragToScrollListener = new DragToScrollListener(this);
-		
-		
-	}
-
-	
 }
