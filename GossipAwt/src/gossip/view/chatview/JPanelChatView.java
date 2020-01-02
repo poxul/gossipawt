@@ -1,11 +1,15 @@
 package gossip.view.chatview;
 
+import static java.awt.Adjustable.VERTICAL;
+
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JList;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
@@ -82,6 +86,11 @@ public class JPanelChatView extends JPanelDisposable {
 			messageList.setEnabled(false);
 			messageList.setOpaque(false);
 			messageList.setCellRenderer(new OperatorSayMessageCellRenderer());
+
+			DragToScrollListener scrollListener = new DragToScrollListener(messageList);
+			messageList.addMouseListener(scrollListener);
+			messageList.addMouseMotionListener(scrollListener);
+
 		}
 		return messageList;
 	}
@@ -146,7 +155,7 @@ public class JPanelChatView extends JPanelDisposable {
 								int yPos = DrawableFlatButton.BUTTON_GAP;
 								buttonHide.draw(g2d, xPos, yPos);
 
-								if (!isKeyboard.getValue()) {
+								if (!isKeyboard.getValue().booleanValue()) {
 									xPos = getWidth() - DrawableFlatButton.BUTTON_GAP - DrawableFlatButton.BUTTON_DIAMETER;
 									yPos = getHeight() - (DrawableFlatButton.BUTTON_DIAMETER + DrawableFlatButton.BUTTON_GAP);
 									buttonAdd.draw(g2d, xPos, yPos);
@@ -186,6 +195,11 @@ public class JPanelChatView extends JPanelDisposable {
 				}
 			});
 
+			FwaScrollBar b = new FwaScrollBar(VERTICAL, new FwaScrollBarUIFlat(new Dimension(10, 10)), new Dimension(15, 15));
+			b.setOpaque(false);
+			b.setBorder(BorderFactory.createEmptyBorder());
+			b.setAutoscrolls(false);
+			scrollPane.setVerticalScrollBar(b);
 		}
 		return scrollPane;
 	}
@@ -202,8 +216,8 @@ public class JPanelChatView extends JPanelDisposable {
 		// init observation
 		buildView();
 
-		 isKeyboard = AwtBroker.get().getData().getShowKeyboardProperty();
-		 isKeyboard.addModelChangeListener((source, origin, oldValue, newValue) -> repaint());
+		isKeyboard = AwtBroker.get().getData().getShowKeyboardProperty();
+		isKeyboard.addModelChangeListener((source, origin, oldValue, newValue) -> repaint());
 
 		MySimpleList<OperatorSayMessage> messageStack = AwtBroker.get().getData().getOsmStack();
 		messageStack.addModelChangeListener((source, origin, oldValue, newValue) -> {
