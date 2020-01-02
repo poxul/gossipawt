@@ -22,23 +22,23 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 
 	private MyTextField jLabelInputName;
 
+	private JPanelDisposable jPanelEditBox;
+
+	
+	/*
+	 * TODO
+	 * - Hide button
+	 * - Send icon 
+	 * - Shift lock marker
+	 * - Address Anzeige (###)
+	 * 
+	 */
+	
 	public JPanelInputKeyBoard() {
 		super();
 	}
 
-	private JPanelDisposable jPanelEditBox;
-
-	private JPanelDisposable getJPanelEditBox() {
-		if (jPanelEditBox == null) {
-			jPanelEditBox = new JPanelDisposable();
-			jPanelEditBox.setLayout(new BoxLayout(jPanelEditBox, BoxLayout.PAGE_AXIS));
-			jPanelEditBox.setOpaque(false);
-			jPanelEditBox.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			jPanelEditBox.add(getJPanelInputCard());
-		}
-		return jPanelEditBox;
-	}
-
+	@Override
 	protected void buildView() {
 		setLayout(new BorderLayout());
 		setOpaque(false);
@@ -69,6 +69,17 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 			jLabelInputName.setForeground(ColorConstants.TEXT_COLOR);
 		}
 		return jLabelInputName;
+	}
+
+	private JPanelDisposable getJPanelEditBox() {
+		if (jPanelEditBox == null) {
+			jPanelEditBox = new JPanelDisposable();
+			jPanelEditBox.setLayout(new BoxLayout(jPanelEditBox, BoxLayout.PAGE_AXIS));
+			jPanelEditBox.setOpaque(false);
+			jPanelEditBox.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+			jPanelEditBox.add(getJPanelInputCard());
+		}
+		return jPanelEditBox;
 	}
 
 	public void setInputName(String text) {
