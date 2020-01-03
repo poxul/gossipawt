@@ -107,14 +107,13 @@ public class MainFooterView extends JPanelDisposable {
 
 	private MyButton getButtonDictionary() {
 		if (buttonDictionary == null) {
-			buttonDictionary = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_DICTIONARY, ImageConstants.IMAGE_NAME_BUTTON_DICTIONARY,
-					functionListener);
+			buttonDictionary = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_DICTIONARY, ImageConstants.IMAGE_NAME_BUTTON_DICTIONARY, functionListener);
 		}
 		return buttonDictionary;
 	}
 
 	private MyButton getButtonChat() {
-		if (buttonChat== null) {
+		if (buttonChat == null) {
 			buttonChat = MyButtonUtil.createSimpleButton(InputItemConstants.ITEM_CHAT, ImageConstants.IMAGE_NAME_BUTTON_CHAT, functionListener);
 		}
 		return buttonChat;
@@ -163,6 +162,8 @@ public class MainFooterView extends JPanelDisposable {
 			getButtonChat().setVisible(false);
 		} else {
 			logger.warn("unknown state: {}", state);
+			getButtonDictionary().setVisible(true);
+			getButtonChat().setVisible(false);
 		}
 	}
 

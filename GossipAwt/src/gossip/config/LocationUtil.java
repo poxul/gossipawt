@@ -24,10 +24,10 @@ public class LocationUtil {
 			p = new Point(screenSize.width - 100 - bounds.width, 0);
 			break;
 		case CHAT:
-			p = new Point(screenSize.width - 10 - bounds.width, 40);
+			p = new Point(screenSize.width - 10 - bounds.width, 30);
 			break;
 		case KEYBOARD:
-			p = new Point(screenSize.width - bounds.width, screenSize.height - bounds.height - 40);
+			p = new Point(screenSize.width - bounds.width - 10, screenSize.height - bounds.height - 130);
 			break;
 		default:
 			p = new Point(screenSize.width - bounds.width, screenSize.height - bounds.height);

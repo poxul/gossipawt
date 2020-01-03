@@ -249,6 +249,7 @@ public class JPanelChatView extends JPanelDisposable {
 				bar.setValue(bar.getMaximum());
 				return true;
 			}
+
 		});
 
 	}
