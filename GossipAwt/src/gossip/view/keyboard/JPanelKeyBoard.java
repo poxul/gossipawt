@@ -1,6 +1,7 @@
 package gossip.view.keyboard;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.HierarchyEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import javax.swing.event.DocumentListener;
 
 import org.apache.logging.log4j.Logger;
 
+import gossip.config.ColorConstants;
 import gossip.config.DimensionConstants;
 import gossip.event.KeyBoardEvent.KeyBoardResultType;
 import gossip.event.KeyBoardResultEvent;
@@ -51,8 +53,6 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 	}
 
 	public static final Logger logger = MyLogger.getLog(JPanelKeyBoard.class);
-
-	
 
 	/*
 	 * Buchstaben Info -password -icon (Overlay Name) -Headline Text -Question Text
@@ -111,7 +111,7 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 		} else {
 			logger.info("Keyboard enter blocked");
 		}
-		
+
 	}
 
 	private void fireKeyBoardResultEvent(KeyBoardResultEvent event) {
@@ -232,7 +232,8 @@ public class JPanelKeyBoard extends JPanelDisposable implements InputPanelInterf
 			mainPanel = new JPanelDisposable();
 			mainPanel.setLayout(new BorderLayout());
 			mainPanel.setBorder(BorderFactory.createEmptyBorder(3, 3, 3, 3));
-			mainPanel.setOpaque(false);
+			mainPanel.setOpaque(true);
+			mainPanel.setBackground(ColorConstants.KEYBOARD_BACKGROUND);
 
 			JPanel p0 = new JPanelDisposable();
 

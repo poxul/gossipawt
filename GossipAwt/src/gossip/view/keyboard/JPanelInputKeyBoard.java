@@ -119,7 +119,7 @@ public class JPanelInputKeyBoard extends JPanelInputField {
 			jLabelInputName = new MyTextField("###", DimensionConstants.INPUT_LABEL_WIDTH, DimensionConstants.INPUT_LABEL_HEIGHT);
 			jLabelInputName.setOpaque(false);
 			jLabelInputName.setFont(FontConstants.INPUTPANEL_NAME_FONT);
-			jLabelInputName.setForeground(ColorConstants.TEXT_COLOR);
+			jLabelInputName.setForeground(ColorConstants.TEXT_COLOR_LABEL);
 		}
 		return jLabelInputName;
 	}

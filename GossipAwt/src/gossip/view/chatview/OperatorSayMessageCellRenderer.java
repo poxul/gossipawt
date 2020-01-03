@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.ListCellRenderer;
 
 import gossip.config.ColorConstants;
+import gossip.config.FontConstants;
 import gossip.data.OperatorSayMessage;
 import gossip.lib.panel.RoundedLineBorder;
 import gossip.lib.panel.disposable.JPanelDisposable;
@@ -29,6 +30,7 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	private JLabel getLabelName() {
 		if (name == null) {
 			name = new JLabel();
+			name.setFont(FontConstants.CHAT_LABEL_FONT);
 			name.setBackground(ColorConstants.BACKGROUND_COLOR_CHAT_LABEL);
 		}
 		return name;
@@ -37,6 +39,7 @@ public class OperatorSayMessageCellRenderer extends JPanelDisposable implements 
 	private JTextField getLabelMessage() {
 		if (message == null) {
 			message = new JTextField();
+			message.setFont(FontConstants.CHAT_MESSAGE_FONT);
 			message.setBackground(ColorConstants.BACKGROUND_COLOR_CHAT_MESSAGE);
 		}
 		return message;
