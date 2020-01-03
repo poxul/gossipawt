@@ -13,6 +13,7 @@ import gossip.config.ImageConstants;
 import gossip.config.InputItemConstants;
 import gossip.data.AwtBroker;
 import gossip.data.AwtData;
+import gossip.lib.panel.button.ButtonFaceAdapter;
 import gossip.lib.panel.button.ButtonFaceListener;
 import gossip.lib.panel.button.MyButton;
 import gossip.lib.panel.disposable.JPanelDisposable;

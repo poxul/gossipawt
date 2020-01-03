@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +17,17 @@ import javax.swing.BorderFactory;
 import org.apache.logging.log4j.Logger;
 
 import gossip.config.ColorConstants;
+import gossip.config.PathConstants;
 import gossip.data.AwtBroker;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
+import gossip.lib.job.ServiceJobUtil;
 import gossip.lib.panel.JPanelMyBack;
 import gossip.lib.panel.MyTextField;
 import gossip.lib.panel.RoundedLineBorder;
+import gossip.lib.pipe.MyPipeObserver;
 import gossip.lib.util.MyLogger;
+import gossip.lib.util.StringUtil;
 import gossip.util.DrawingUtil;
 import gossip.view.toast.ActuatedListener.ActuationState;
 
@@ -148,6 +153,21 @@ public class JPanelToastButton extends JPanelMyBack {
 
 		updateConnectionState();
 		updateState(ActuationState.IDLE);
+
+		File file = new File(PathConstants.GOSSIP_TRGGER_FILE);
+		MyPipeObserver obs = new MyPipeObserver(file) {
+
+			@Override
+			public void received(String line) {
+				logger.info("received line: {}", line);
+				if (!StringUtil.isNullOrEmpty(line)) {
+					toggleState();
+				}
+			}
+
+		};
+
+		ServiceJobUtil.execute(obs);
 	}
 
 	protected void updateMessagesCount() {
@@ -184,6 +204,14 @@ public class JPanelToastButton extends JPanelMyBack {
 				return true;
 			}
 		});
+	}
+
+	protected void toggleState() {
+		if (this.state == ActuationState.TRIGGERED) {
+			updateState(ActuationState.IDLE);
+		} else {
+			updateState(ActuationState.TRIGGERED);
+		}
 	}
 
 	protected void updateState(ActuationState state) {

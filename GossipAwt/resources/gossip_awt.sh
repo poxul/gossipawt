@@ -93,7 +93,7 @@ java_flags="-Xmx1000m \
 application_class='gossip.run.GossipAwt'
 
 tcp_port='45049'
-tcp_host='localhost'
+tcp_host='ipc-bv-0160394'
 
 # Key-File to start debugging
 debugFile="/opt/gossip/data/debug"
@@ -182,7 +182,7 @@ echo "(II) Java $javaVersion"  | tee -a $log_file
 # Start application
 echo "(II) Start application >${application_class}< ${tcp_host} ${tcp_port}"  | tee -a $log_file
 java ${flags} -cp "${application_base_dir}/lib/*" \
--Dlog4j.configurationFile=${application_base_dir}/log4j2.xml \
+-Dlog4j.configurationFile=${application_base_dir}/bin/log4j2.xml \
 ${application_class} -b ${application_base_dir} -h ${tcp_host} -p ${tcp_port} &>> $log_file 
 
 # END

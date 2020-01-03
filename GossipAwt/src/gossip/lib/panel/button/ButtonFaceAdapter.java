@@ -1,8 +1,6 @@
-package gossip.view;
+package gossip.lib.panel.button;
 
 import java.util.UUID;
-
-import gossip.lib.panel.button.ButtonFaceListener;
 
 public abstract class ButtonFaceAdapter implements ButtonFaceListener {
 
