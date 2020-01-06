@@ -89,7 +89,7 @@
 		<copy file="${resources}/log4j2.xml" todir="${dist_bin}" />
 		<!-- doc -->
 		<copy file="${resources}/readme.txt" tofile="${dist}/readme.txt" />
-		<copy file="${resources}/gossip.version" tofile="${dist}/gossip.version" />
+		<copy file="${resources}/gossip.version" tofile="${dist_resources}/gossip.version" />
 
 		<!-- resources images -->
 		<copy failonerror="true" toDir="${dist_resources}/img">
