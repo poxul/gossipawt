@@ -20,7 +20,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
 import gossip.config.ColorConstants;
 import gossip.util.DrawingUtil;
 
-public class FwaScrollBarUIFlat extends BasicScrollBarUI {
+public class MyScrollBarUIFlat extends BasicScrollBarUI {
 
 	private static final Color DARK_COLOR = ColorConstants.BACKGROUND_COLOR;
 	private static final Color LIGHT_COLOR = ColorConstants.INFO_BACKGROUND_1;
@@ -28,11 +28,11 @@ public class FwaScrollBarUIFlat extends BasicScrollBarUI {
 
 	private final Dimension minThumbSize;
 
-	public FwaScrollBarUIFlat() {
+	public MyScrollBarUIFlat() {
 		this(new Dimension(10, 3));
 	}
 
-	public FwaScrollBarUIFlat(final Dimension minThumbSize) {
+	public MyScrollBarUIFlat(final Dimension minThumbSize) {
 		super();
 		this.minThumbSize = minThumbSize;
 	}
