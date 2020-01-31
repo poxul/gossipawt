@@ -118,7 +118,6 @@ public class JPanelDictionaryTab extends JPanelDisposable {
 
 			};
 			scrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-			scrollPane.setViewportBorder(null);
 			scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 			scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
