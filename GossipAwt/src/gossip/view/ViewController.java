@@ -10,11 +10,13 @@ import gossip.config.DimensionConstants;
 import gossip.config.InputItemConstants;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
+import gossip.data.AwtBroker;
 import gossip.data.AwtData;
 import gossip.event.KeyBoardResultEvent;
 import gossip.lib.job.ServiceJobAWTDefault;
 import gossip.lib.job.ServiceJobAWTUtil;
 import gossip.lib.util.MyLogger;
+import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
 import gossip.run.GossipClient;
 import gossip.view.toast.ActuatedListener;
@@ -198,6 +200,7 @@ public class ViewController implements ActuatedListener {
 	private JDialog createDialogChat() {
 		JDialog dialog = new JDialog();
 		dialog.setUndecorated(true);
+		dialog.setAlwaysOnTop(true);
 		dialog.setLayout(new BorderLayout());
 		dialog.setPreferredSize(DimensionConstants.CHAT_DIALOG_DIMENSION);
 		dialog.add(getMainView(), BorderLayout.CENTER);
@@ -217,7 +220,15 @@ public class ViewController implements ActuatedListener {
 	}
 
 	public void onKeyboard(KeyBoardResultEvent event) {
-		// TODO handle keyboard result
+		if( event == null || StringUtil.isNullOrEmpty(event.getResult())) {
+			logger.warn("empty keyboard event: {}", event);
+			return;
+		}
+		logger.info("send: {}", event);
+		/**
+		 * transmit message
+		 */
+		AwtBroker.get().getController().say(event.getResult());
 	}
 
 }

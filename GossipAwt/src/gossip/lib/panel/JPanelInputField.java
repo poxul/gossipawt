@@ -8,7 +8,6 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.BorderFactory;
 import javax.swing.SwingConstants;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.JTextComponent;
@@ -172,7 +171,7 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 
 	private final CardLayout layout = new CardLayout(0, 0);
 
-	private JPanelMyBack cardPanel;
+	private JPanelDisposable cardPanel;
 	private KeyListener inputKeyListener = new KeyListener() {
 
 		@Override
@@ -264,13 +263,13 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 		repaint();
 	}
 
-	protected JPanelMyBack getJPanelInputCard() {
+	protected JPanelDisposable getJPanelInputCard() {
 		if (cardPanel == null) {
-			cardPanel = new JPanelMyBack(Color.WHITE, Color.WHITE);
+			cardPanel = new JPanelDisposable();
 			cardPanel.setLayout(layout);
 			cardPanel.add(getJTextInputNormal(), NORMAL_INPUT);
 			cardPanel.add(getJTextInputPassword(), PASSWORD_INPUT);
-			cardPanel.setOuterBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
+//			cardPanel.setOuterBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
 			cardPanel.setOpaque(false);
 		}
 		return cardPanel;
@@ -291,7 +290,6 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 			textFieldNormal.setForeground(INPUT_TEXT_COLOR);
 			textFieldNormal.setFont(FontConstants.INPUTPANEL_NUMPAD_INPUT_FONT);
 			textFieldNormal.setHorizontalAlignment(SwingConstants.RIGHT);
-			textFieldNormal.setBorder(BorderFactory.createEmptyBorder());
 			textFieldNormal.setSelectionColor(INPUT_SELECTION_COLOR);
 			textFieldNormal.addKeyListener(inputKeyListener);
 		}
@@ -305,7 +303,6 @@ public abstract class JPanelInputField extends JPanelDisposable implements Input
 			textFieldPassword.setForeground(INPUT_TEXT_COLOR);
 			textFieldPassword.setFont(FontConstants.INPUTPANEL_NUMPAD_INPUT_FONT);
 			textFieldPassword.setHorizontalAlignment(SwingConstants.RIGHT);
-			textFieldPassword.setBorder(BorderFactory.createEmptyBorder());
 			textFieldPassword.setSelectionColor(INPUT_SELECTION_COLOR);
 			textFieldPassword.addKeyListener(inputKeyListener);
 		}

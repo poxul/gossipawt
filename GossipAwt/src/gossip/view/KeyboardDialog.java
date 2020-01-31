@@ -35,6 +35,7 @@ public class KeyboardDialog extends JDialog {
 
 	private void init() {
 		setUndecorated(true);
+		setAlwaysOnTop(true);
 		setLayout(new BorderLayout());
 		setPreferredSize(DimensionConstants.KEYBOARD_DIALOG_DIMENSION);
 		add(getKeyBoardView(), BorderLayout.CENTER);
@@ -50,7 +51,7 @@ public class KeyboardDialog extends JDialog {
 	}
 
 	private JPanelKeyBoard createKeyBoard() {
-		JPanelKeyBoard panel = new JPanelKeyBoard();
+		JPanelKeyBoard panel = new JPanelKeyBoard(viewController);
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
 		panel.addKeyBoardResultListener(event -> {
 			logger.info("keyboard end result: {}", event);

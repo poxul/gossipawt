@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+  <Properties>
+    <Property name="logDir">${sys:user.home}/.gossip/log</Property>
+    <Property name="logVersion">V01</Property>
+    <Property name="logBaseName">gossip.client.${logVersion}</Property>
+    <Property name="logFileInfo">${logBaseName}.info</Property>
+    <Property name="logFileError">${logBaseName}.error</Property>
+    <Property name="logFileObserver">${logBaseName}.observer</Property>
+    <Property name="logFileMessage">${logBaseName}.message</Property>
+    <Property name="logFileConnection">${logBaseName}.connection</Property>
+    <Property name="logFileData">${logBaseName}.data</Property>
+  </Properties>
+  <Appenders>
+    <RollingFile name="RollingFileInfo" fileName="${logDir}/${logFileInfo}.log" filePattern="${logDir}/${logFileInfo}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 2 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileInfo}-*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="5" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+    <RollingFile name="RollingFileError" fileName="${logDir}/${logFileError}.log" filePattern="${logDir}/${logFileError}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 8 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileError}*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="5" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+    <RollingFile name="RollingFileObserver" fileName="${logDir}/${logFileObserver}.log" filePattern="${logDir}/${logFileObserver}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 8 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileObserver}*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="5" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+    <RollingFile name="RollingFileMessage" fileName="${logDir}/${logFileMessage}.log" filePattern="${logDir}/${logFileMessage}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 8 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileMessage}*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="5" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+
+    <RollingFile name="RollingFileConnection" fileName="${logDir}/${logFileConnection}.log" filePattern="${logDir}/${logFileConnection}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 8 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileConnection}*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="5" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+
+    <RollingFile name="RollingFileData" fileName="${logDir}/${logFileData}.log" filePattern="${logDir}/${logFileData}-%d{yyyy-MM-dd-HH-mm}-%i.log.gz" ignoreExceptions="false">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %c{1} - %msg%n" />
+      <Policies>
+        <OnStartupTriggeringPolicy />
+        <SizeBasedTriggeringPolicy size="10 MB" />
+        <CronTriggeringPolicy schedule="0 0 8 * * ?" evaluateOnStartup="false" />
+      </Policies>
+      <DefaultRolloverStrategy>
+        <Delete basePath="${logDir}" maxDepth="1">
+          <IfFileName glob="${logFileData}*.log.gz" />
+          <IfAny>
+            <IfAccumulatedFileSize exceeds="20 MB" />
+            <IfAccumulatedFileCount exceeds="2" />
+          </IfAny>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+
+    <Async name="AsyncInfo">
+      <AppenderRef ref="RollingFileInfo" />
+      <Filters>
+        <MarkerFilter marker="OBSERVER" onMatch="DENY" onMismatch="NEUTRAL" />
+        <MarkerFilter marker="DEVELOP" onMatch="DENY" onMismatch="NEUTRAL" />
+        <MarkerFilter marker="MESSAGE" onMatch="DENY" onMismatch="NEUTRAL" />
+      </Filters>
+    </Async>
+    <Async name="AsyncError">
+      <AppenderRef ref="RollingFileError" />
+      <Filters>
+        <MarkerFilter marker="DEVELOP" onMatch="DENY" onMismatch="NEUTRAL" />
+        <ThresholdFilter level="WARN" onMatch="ACCEPT" />
+      </Filters>
+    </Async>
+    <Async name="AsyncObserver">
+      <AppenderRef ref="RollingFileObserver" />
+      <Filters>
+        <MarkerFilter marker="OBSERVER" onMatch="ACCEPT" />
+      </Filters>
+    </Async>
+    <Async name="AsyncMessage">
+      <AppenderRef ref="RollingFileMessage" />
+      <Filters>
+        <MarkerFilter marker="MESSAGE" onMatch="ACCEPT" />
+      </Filters>
+    </Async>
+    <Async name="AsyncConnection">
+      <AppenderRef ref="RollingFileConnection" />
+      <Filters>
+        <MarkerFilter marker="CONNECTIONS" onMatch="ACCEPT" />
+      </Filters>
+    </Async>
+    <Async name="AsyncData">
+      <AppenderRef ref="RollingFileData" />
+      <Filters>
+        <MarkerFilter marker="DATA" onMatch="ACCEPT" />
+      </Filters>
+    </Async>
+  </Appenders>
+  <Loggers>
+    <Root level="info">
+      <AppenderRef ref="AsyncInfo" />
+      <AppenderRef ref="AsyncError" />
+      <AppenderRef ref="AsyncObserver" />
+      <AppenderRef ref="AsyncMessage" />
+      <AppenderRef ref="AsyncConnection" />
+      <AppenderRef ref="AsyncData" />
+    </Root>
+    <Logger name="io.netty" level="info">
+      <AppenderRef ref="AsyncInfo" />
+    </Logger>
+  </Loggers>
+</Configuration>

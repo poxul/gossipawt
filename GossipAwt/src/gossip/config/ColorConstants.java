@@ -52,4 +52,10 @@ public class ColorConstants {
 	public static final Color BUTTON_COLOR_HIDE = new Color(0.8f, 0.0f, 0.0f, 0.7f);
 	public static final Color BUTTON_COLOR_ADD = new Color(0.0f, 0.0f, 0.8f, 0.7f);
 
+	public static final Color BACKGROUND_COLOR = Color.DARK_GRAY;
+	public static final Color INFO_BACKGROUND_1 = Color.GRAY;
+	public static final Color BUTTON_COLOR_THUMP = Color.BLACK;
+
+	public static final Color TEXT_COLOR_LABEL = Color.WHITE;
+
 }

@@ -42,11 +42,10 @@ public class ObservableClientProfile {
 
 			@Override
 			public void onModelChaned(Object source, String origin, Object oldValue, Object newValue) {
-				// TODO
 				if (select.getValue()) {
-//					FxBroker.get().getData().addSelected(myProfile.getProfileId());
+					AwtBroker.get().getData().addSelected(myProfile.getProfileId());
 				} else {
-//					FxBroker.get().getData().removeSelected(myProfile.getProfileId());
+					AwtBroker.get().getData().removeSelected(myProfile.getProfileId());
 				}
 
 			}

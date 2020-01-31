@@ -24,7 +24,7 @@ public abstract class ServiceJobAWTDefault extends ServiceJobAWT<Boolean, Boolea
 	protected Boolean doInBackground(Boolean initResult) {
 		if (!StrictUtil.isThread(false)) {
 			try {
-				SwingUtilities.invokeAndWait(this::startJob);
+				SwingUtilities.invokeLater(this::startJob);
 			} catch (Exception e) {
 				MyLogger.printExecption(logger, e);
 			}

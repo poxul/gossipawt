@@ -9,7 +9,9 @@ import java.awt.Toolkit;
 public class LocationUtil {
 
 	public enum ViewId {
-		TOAST, CHAT, KEYBOARD
+		TOAST,
+		CHAT,
+		KEYBOARD
 	}
 
 	public static Point getLocation(ViewId id, Rectangle bounds) {
@@ -21,14 +23,12 @@ public class LocationUtil {
 		case TOAST:
 			p = new Point(screenSize.width - 100 - bounds.width, 0);
 			break;
-
 		case CHAT:
-			p = new Point(screenSize.width - 10 - bounds.width, 50);
+			p = new Point(screenSize.width - 10 - bounds.width, 30);
 			break;
 		case KEYBOARD:
-			p = new Point(screenSize.width - bounds.width, (screenSize.height - bounds.height) / 2);
+			p = new Point(screenSize.width - bounds.width - 10, screenSize.height - bounds.height - 130);
 			break;
-
 		default:
 			p = new Point(screenSize.width - bounds.width, screenSize.height - bounds.height);
 			break;

@@ -272,8 +272,8 @@
         <gs:Value id="0">#ENTER</gs:Value>
         <gs:Value id="1">#ENTER</gs:Value>
         <gs:Value id="2">#ENTER</gs:Value>
-        <gs:Size>150</gs:Size>
-        <gs:Color>#00AA88</gs:Color>
+        <gs:Size>100</gs:Size>
+        <gs:Color>#00AA44</gs:Color>
       </gs:Key>
 
     </gs:KeyLine>

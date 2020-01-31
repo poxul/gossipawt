@@ -10,13 +10,13 @@ public class ImageConstants {
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_BACKSPACE = "backspace.png";
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_CURSOR_LEFT = "arrow_backward.png";
 	public static final String IMAGE_NAME_BUTTON_OVERLAY_CURSOR_RIGHT = "arrow_forward.png";
-	public static final String IMAGE_NAME_BUTTON_OVERLAY_ENTER = IMAGE_OVERLAY_NAME_COMMIT;
+	public static final String IMAGE_NAME_BUTTON_OVERLAY_ENTER = "send.png";
 	public static final String IMAGE_NAME_BUTTON_EMOTE_OK = "ok.png";
 	public static final String IMAGE_NAME_BUTTON_EMOTE_KO = "ko.png";
 	public static final String IMAGE_NAME_BUTTON_EMOTE_YES = "smile.png";
 	public static final String IMAGE_NAME_BUTTON_EMOTE_NO = "frowning.png";
 	public static final String IMAGE_NAME_BUTTON_KEYBOARD = null;
-	public static final String IMAGE_NAME_BUTTON_DICTIONARY = null;
+	public static final String IMAGE_NAME_BUTTON_DICTIONARY = "share.png";
 
 	public static final String IMAGE_NAME_BUTTON_HIDE_CHAT = "cancel.png";
 	public static final String IMAGE_NAME_BUTTON_ADD_MESSAGE = "add.png";

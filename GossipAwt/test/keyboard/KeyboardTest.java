@@ -18,6 +18,7 @@ import gossip.lib.util.MyLogger;
 import gossip.run.ConfigurationService;
 import gossip.util.KeyBoardUtil;
 import gossip.util.KeyBoardUtil.KeyBoardType;
+import gossip.view.ViewController;
 import gossip.view.keyboard.JPanelKeyBoard;
 
 public class KeyboardTest {
@@ -41,7 +42,7 @@ public class KeyboardTest {
 	}
 
 	private JPanelKeyBoard createContentPane() {
-		JPanelKeyBoard panel = new JPanelKeyBoard();
+		JPanelKeyBoard panel = new JPanelKeyBoard(new ViewController(null, null));
 		panel.setKeyBoardDefinition(KeyBoardUtil.getKeyBoardDefinition(KeyBoardType.GENERAL, Locale.GERMAN));
 		panel.addKeyBoardResultListener(event -> logger.info("keyboard end result: {}", event));
 		return panel;

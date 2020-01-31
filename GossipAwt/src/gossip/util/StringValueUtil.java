@@ -8,6 +8,7 @@ import gossip.config.InputItemConstants;
 import gossip.data.AwtBroker;
 import gossip.data.MyProfile;
 import gossip.data.MyProfileId;
+import gossip.data.ObservableClientProfile;
 import gossip.data.device.DeviceData;
 import gossip.lib.util.StringUtil;
 import gossip.manager.LanguageManager;
@@ -128,6 +129,10 @@ public class StringValueUtil {
 	public static String buildTimeStirng(Date date) {
 		SimpleDateFormat dateFormater = new SimpleDateFormat(DATE_TIME_FORMAT_WITH_SECONDS);
 		return dateFormater.format(date);
+	}
+
+	public static String buildProfileString(ObservableClientProfile p) {
+		return p == null ? "Y" : p.getMyProfile().getHostName();
 	}
 
 }

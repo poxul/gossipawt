@@ -1,0 +1,155 @@
+<project name="Gossip" default="Standard" basedir=".">
+	<description>
+        Gossip indoor chat
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src" />
+	<property name="libs" location="lib" />
+	<property name="resources" location="resources" />
+
+	<property name="dist" location="dist" />
+	<property name="dist_lib" location="${dist}/lib" />
+	<property name="dist_bin" location="${dist}/bin" />
+	<property name="dist_install" location="${dist}/install" />
+	<property name="dist_data" location="${dist}/data" />
+	<property name="dist_resources" location="${dist}/resources" />
+
+	<!-- temp -->
+	<property name="build" location="temp/build" />
+
+	<!-- version -->
+	<property file="${resources}/gossip.version" />
+
+	<path id="class.path">
+		<fileset dir="${dist_lib}">
+			<include name="log4j-api.jar" />
+			<include name="log4j-core.jar" />
+			<include name="netty.jar" />
+			<include name="jargs.jar" />
+			<include name="commons-lang.jar" />
+			<include name="gossip-proto.jar" />
+			<include name="gossip.jar" />
+			<include name="protobuf-java.jar" />
+		</fileset>
+	</path>
+
+	<target name="init" depends="clean" description="make dirs ">
+		<!-- create the time stamp -->
+		<tstamp />
+		<!-- create the build directory structure used by compile -->
+		<mkdir dir="${build}" />
+		<mkdir dir="${build}/classes" />
+
+		<!-- create the dist directory structure used -->
+		<mkdir dir="${dist}" />
+		<mkdir dir="${dist_lib}" />
+		<mkdir dir="${dist_data}" />
+		<mkdir dir="${dist_install}" />
+		<mkdir dir="${dist_bin}" />
+		<!-- print properties to build log-->
+		<echoproperties />
+		<!-- copy libs bevore compile -->
+		<antcall target="copyLibs" />
+	</target>
+
+	<target name="compile" depends="init" description="compile the server source ">
+		<!-- compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}/classes" debug="true" includeAntRuntime="false" target="1.8" source="1.8">
+			<classpath refid="class.path" />
+		</javac>
+		<jar destfile="${dist_lib}/gossipAwt.jar">
+			<fileset dir="${build}/classes" />
+			<manifest>
+				<attribute name="Main-Class" value="gossip.run.GossipAwt" />
+				<attribute name="Class-Path" value="log4j-api.jar log4j-core.jar netty.jar jargs.jar commons-lang.jar gossip.jar  gossip-proto.jar protobuf-java.jar" />
+
+				<attribute name="Specification-Title" value="GossipAwt" />
+				<attribute name="Specification-Version" value="1.0" />
+
+				<attribute name="Implementation-Title" value="GossipAwt" />
+				<attribute name="Implementation-Version" value="1.0" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="createVersion">
+		<echo file="${dist}/gossip.version.txt" append="false" message="VERSION = &quot;${version.major}.${version.minor}.${version.maintenance}&quot;" />
+	</target>
+
+	<target name="copyResources" description="copy resources">
+		<!-- install -->
+		<copy file="${resources}/install/update.sh" todir="${dist_install}" />
+		<copy file="${resources}/install/postinst.sh" todir="${dist_install}" />
+
+		<chmod perm="ugo+rx">
+			<fileset dir="${resources}/install/" includes="**/*.sh" />
+		</chmod>
+		<!-- start -->
+		<copy file="${resources}/gossip_awt.sh" todir="${dist_bin}" />
+		<copy file="${resources}/log4j2.xml" todir="${dist_bin}" />
+		<!-- doc -->
+		<copy file="${resources}/readme.txt" tofile="${dist}/readme.txt" />
+		<copy file="${resources}/gossip.version" tofile="${dist_resources}/gossip.version" />
+
+		<!-- resources images -->
+		<copy failonerror="true" toDir="${dist_resources}/img">
+			<fileset dir="${resources}/img" />
+		</copy>
+
+		<!-- resources language files -->
+		<copy failonerror="true" toDir="${dist_resources}/lang">
+			<fileset dir="${resources}/lang" />
+		</copy>
+
+		<!-- resources keyboard definition files -->
+		<copy failonerror="true" toDir="${dist_resources}/xml">
+			<fileset dir="${resources}/xml" />
+		</copy>
+	</target>
+
+	<target name="copyLibs" description="copy libs">
+		<copy file="${libs}/apache-log4j-2.12.1-bin/log4j-api-2.12.1.jar" tofile="${dist_lib}/log4j-api.jar" />
+		<copy file="${libs}/apache-log4j-2.12.1-bin/log4j-core-2.12.1.jar" tofile="${dist_lib}/log4j-core.jar" />
+		<copy file="${libs}/netty-4.1.43.Final/jar/all-in-one/netty-all-4.1.43.Final.jar" tofile="${dist_lib}/netty.jar" />
+		<copy file="${libs}/jargs.jar" tofile="${dist_lib}/jargs.jar" />
+		<copy file="${libs}/commons-lang3-3.9/commons-lang3-3.9.jar" tofile="${dist_lib}/commons-lang.jar" />
+		<copy file="${libs}/gossip-proto.jar" tofile="${dist_lib}/gossip-proto.jar" />
+		<copy file="${libs}/gossip.jar" tofile="${dist_lib}/gossip.jar" />
+		<copy file="${libs}/protobuf-java.jar" tofile="${dist_lib}/protobuf-java.jar" />
+	</target>
+
+	<target name="dist" depends="compile" description="generate the distribution">
+		<antcall target="copyResources" />
+		<antcall target="distCommon" />
+	</target>
+
+	<target name="distCommon" description="common work for all">
+		<antcall target="createVersion" />
+		<antcall target="postInstall" />
+		<antcall target="postClean" />
+	</target>
+
+	<target name="postInstall" description="clean up">
+		<chmod perm="ugo+rx">
+			<fileset dir="${dist_bin}" includes="*.sh" />
+		</chmod>
+
+		<chmod perm="ugo+rx">
+			<fileset dir="${dist_install}" includes="*.sh" />
+		</chmod>
+	</target>
+
+	<target name="postClean" description="clean up">
+		<delete dir="${build}" />
+	</target>
+
+	<target name="clean" description="clean up">
+		<!-- delete directory trees -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="Standard">
+		<antcall target="dist" />
+	</target>
+</project>

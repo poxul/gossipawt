@@ -1,7 +1,7 @@
 package gossip.run;
 
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.image.BufferStrategy;
 import java.util.Properties;
 
 import javax.swing.JFrame;
@@ -13,8 +13,8 @@ import org.apache.logging.log4j.Logger;
 import gossip.config.LocationUtil;
 import gossip.config.LocationUtil.ViewId;
 import gossip.data.AwtBroker;
-import gossip.data.device.DeviceIdUtil;
 import gossip.data.device.DeviceData.ApplicationType;
+import gossip.data.device.DeviceIdUtil;
 import gossip.lib.exception.ConfigurationException;
 import gossip.lib.file.FileNameUtil;
 import gossip.lib.panel.ComponentUtil;
@@ -70,12 +70,19 @@ public class GossipAwt {
 	protected void createGui(JPanel panel) {
 		frame = ComponentUtil.createFrame();
 		frame.setAlwaysOnTop(true);
+		frame.setUndecorated(true);
 		frame.setOpacity(0.5f);
+		frame.setLocationByPlatform(true);
 		frame.setContentPane(panel);
-		frame.setBackground(Color.DARK_GRAY);
 		frame.setPreferredSize(new Dimension(120, 25));
 		frame.pack();
 		frame.setVisible(true);
+		
+		BufferStrategy bs = frame.getBufferStrategy();
+		if (bs == null) {
+			frame.createBufferStrategy(2);
+			logger.info("Frame create buffered strategy= {}" ,frame.getBufferStrategy());
+		}
 		frame.setLocation(LocationUtil.getLocation(ViewId.TOAST, frame.getBounds()));
 	}
 
@@ -107,7 +114,6 @@ public class GossipAwt {
 			System.exit(-2);
 		}
 		initClient(host, port);
-
 
 		initData();
 		ViewController viewController = new ViewController(gClient, AwtBroker.get().getData());
